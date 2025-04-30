@@ -1,0 +1,4 @@
+$validin = $lib.import("s1.validin")
+
+
+divert $cmdopts.yield $validin.dns($node, $cmdopts)
