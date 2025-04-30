@@ -1,0 +1,139 @@
+$privsep = $lib.import(s1.validin.privsep)
+
+
+function endpoint(
+    uri, params=$lib.null, first_seen=$lib.null, last_seen=$lib.null, limit=20000
+) {
+    // base function to call validin dns endpoints
+
+    if ($params = $lib.null) {
+        $params = ({})
+    }
+
+    if $first_seen {
+        $params.first_seen = $lib.time.format($first_seen, "%Y-%m-%d")
+    }
+
+    if $last_seen {
+        $params.last_seen = $lib.time.format($last_seen, "%Y-%m-%d")
+    }
+
+    if ($limit != 20000) {
+        $params.limit = $limit
+    }
+
+    return($privsep.base_get($uri, $params).records)
+}
+
+
+// dns endpoints
+function domain_history(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `domain/dns/history/{$fqdn}`
+    $params = ({
+        "wildcard": $wildcard,
+        "exclude_nx": $lib.true,  // can't think of a reason to ever want these
+    })
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit,
+        )
+    )
+}
+
+
+function domain_hostname(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `domain/dns/hostname/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        )
+    )
+}
+
+
+function domain_extra(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `domain/dns/extra/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        )
+    )
+}
+
+
+function ip_history(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
+    $uri = `ip/dns/history/{$ip}`
+    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+}
+
+
+function ip_hostname(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
+    $uri = `ip/dns/hostname/{$ip}`
+    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+}
+
+
+function ip_extra(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
+    $uri = `ip/dns/extra/{$ip}`
+    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+}
+
+
+// whois endpoint
+function whois(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `domain/registration/history/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).registration  // this is the only record type for whois
+    )
+}
+
+
+function domain_certificates(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `domain/certificates/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).ctstream
+    )
+}

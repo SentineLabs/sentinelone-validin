@@ -1,0 +1,139 @@
+name: s1-validin
+version: 2.0.0
+
+synapse_version: '>=2.144.0,<3.0.0'
+
+genopts:
+    dotstorm: true # Specify that storm command/module files end with ".storm"
+
+author:
+  url: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin
+  name: Aaron Stephens
+
+desc: s1-validin is a rapid power-up for Validin.
+
+perms:
+  - perm: [s1, validin, user]
+    gate: cortex
+    desc: Allows a user to call privileged APIs from s1-validin.
+
+modules:
+  - name: s1.validin
+  - name: s1.validin.api
+  - name: s1.validin.ingest
+  - name: s1.validin.privsep
+    asroot:perms:
+      - [s1, validin, user]
+
+commands:
+  - name: s1.validin.dns
+    descr: |
+      Get DNS records.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+        - inet:ipv4
+        - inet:ipv6
+
+      // get all dns records for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.dns
+
+      // get all dns records for an inet:fqdn node, including subdomains
+      inet:fqdn=sentinelone.com | s1.validin.dns --wildcard
+
+      // get all dns records for multiple inet:ipv4 nodes
+      inet:ipv4#cno.threat.t4.use | s1.validin.dns
+
+      // get dns records from 2024 for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.dns --first-seen 2024 --last-seen 2024/12/31
+
+    cmdargs:
+      - - --first-seen
+        - type: time
+      - - --last-seen
+        - type: time
+      - - --wildcard
+        - type: bool
+          action: store_true
+      - - --limit
+        - type: int
+          default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
+  - name: s1.validin.whois
+    descr: |
+      Get WHOIS records.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+
+      // get all whois records for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.whois
+
+    cmdargs:
+      - - --first-seen
+        - type: time
+      - - --last-seen
+        - type: time
+      - - --wildcard
+        - type: bool
+          action: store_true
+      - - --limit
+        - type: int
+          default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
+  - name: s1.validin.certs
+    descr: |
+      Get Domain Certificates.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+
+      // get all certificates for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.certs
+
+    cmdargs:
+      - - --first-seen
+        - type: time
+      - - --last-seen
+        - type: time
+      - - --wildcard
+        - type: bool
+          action: store_true
+      - - --limit
+        - type: int
+          default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
+
+
+optic:
+  actions:
+    - name: dns
+      storm: s1.validin.dns
+      descr: Get DNS records.
+      forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: dns wild
+      storm: s1.validin.dns --wildcard
+      descr: Get DNS records including subdomains.
+      forms: [inet:fqdn]
+    - name: whois
+      storm: s1.validin.whois
+      descr: Get WHOIS records.
+      forms: [inet:fqdn]
+    - name: whois wild
+      storm: s1.validin.whois --wildcard
+      descr: Get WHOIS records including subdomains.
+      forms: [inet:fqdn]
+    - name: certs
+      storm: s1.validin.certs
+      descr: Get Certificates.
+      forms: [inet:fqdn]
+    - name: certs wild
+      storm: s1.validin.certs --wildcard
+      descr: Get Certificates including subdomains.
+      forms: [inet:fqdn]

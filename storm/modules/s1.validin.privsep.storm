@@ -1,0 +1,50 @@
+function base_get(uri, params) {
+    // base http request for the validin api
+
+    // Retrieve an API key from protected storage
+    $apikey = $lib.globals.get(s1:validin:apikey)
+
+    $headers = ({
+        "Authorization": `BEARER {$apikey}`,
+        "content-type": "application/json",
+    })
+
+    $url = `https://pilot.validin.com/api/axon/{$uri}`
+
+    // exponential backoff
+    $attempts = 5  // max attempts
+    $base = 5      // base value
+
+    for $i in $lib.range(($attempts + 1), start=1) {
+        // Use the API key on the callers behalf
+        $response = $lib.inet.http.get($url, headers=$headers, params=$params)
+        $sleep = ($base ** $i)
+
+        if ($response.code = 200) {
+            return($response.json())
+
+        } elif ($response.code = -1) {
+            // exception occurred, sleep and retry
+            $lib.warn(
+                `{$url} raised an exception, sleeping {$sleep} seconds and retrying`
+            )
+            $lib.time.sleep($sleep)
+
+        } elif (500 <= $response.code < 600) {
+            // server error, sleep and retry
+            $lib.warn(
+                `{$url} returned HTTP code {$response.code}, sleeping {$sleep} seconds and retrying`
+            )
+            $lib.time.sleep($sleep)
+
+        } else {
+            // client error, raise
+            // TODO: inspect the response for an error message
+            $msg = `{$url} returned HTTP code {$response.code}`
+            $lib.raise("HTTPResponseError", $msg, response=$response)
+        }
+    }
+
+    // retries exceeded, raise
+    $lib.raise("HTTPRetriesExceeded", `{$url} failed {$attempts} times`)
+}

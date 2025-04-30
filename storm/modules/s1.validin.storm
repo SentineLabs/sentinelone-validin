@@ -1,0 +1,153 @@
+$api = $lib.import(s1.validin.api)
+$ingest = $lib.import(s1.validin.ingest)
+
+
+function dns(fqdn_or_ip, options) {
+    // get dns records for an fqdn or ip address
+
+    $form = $fqdn_or_ip.form()
+
+    switch $form {
+        "inet:fqdn": {yield $dns_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {yield $dns_ip($fqdn_or_ip.repr(), $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+}
+
+
+function dns_fqdn(fqdn, options) {
+    // get dns records for an fqdn
+
+    $records = ({})
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.domain_history(
+                $fqdn,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                wildcard=$options.wildcard,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.domain_hostname(
+                $fqdn,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                wildcard=$options.wildcard,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.domain_extra(
+                $fqdn,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                wildcard=$options.wildcard,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    // model records and yield nodes
+    yield $ingest.dns($records)
+}
+
+
+function dns_ip(ip, options) {
+    // get dns records for an ip address
+
+    $records = ({})
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.ip_history(
+                $ip,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.ip_hostname(
+                $ip,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    try {
+        $lib.dict.update(
+            $records,
+            $api.ip_extra(
+                $ip,
+                first_seen=$options.first_seen,
+                last_seen=$options.last_seen,
+                limit=$options.limit,
+            )
+        )
+    } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
+        $lib.warn($error)
+    }
+
+    // model records and yield nodes
+    yield $ingest.dns($records)
+}
+
+
+function whois(fqdn, options) {
+    // get whois records for an fqdn
+
+    $records = $api.whois(
+        $fqdn.repr(),
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        wildcard=$options.wildcard,
+        limit=$options.limit
+    )
+
+    // model records and yield nodes
+    yield $ingest.whois($records)
+}
+
+function certificates(fqdn, options) {
+    // get certificates for an fqdn
+
+    $records = $api.domain_certificates(
+        $fqdn.repr(),
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        wildcard=$options.wildcard,
+        limit=$options.limit
+    )
+
+    // model records and yield nodes
+    yield $ingest.domain_certificates($records)
+}
