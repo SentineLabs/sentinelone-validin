@@ -1,5 +1,6 @@
 $api = $lib.import(s1.validin.api)
 $ingest = $lib.import(s1.validin.ingest)
+$ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
 
 
 function dns(fqdn_or_ip, options) {
@@ -150,4 +151,45 @@ function certificates(fqdn, options) {
 
     // model records and yield nodes
     yield $ingest.domain_certificates($records)
+}
+
+function http(fqdn_or_ip, options) {
+    // get dns records for an fqdn or ip address
+
+    $form = $fqdn_or_ip.form()
+
+    switch $form {
+        "inet:fqdn": {yield $http_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {yield $http_ip($fqdn_or_ip.repr(), $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+}
+
+function http_fqdn(fqdn, options) {
+    // get http records for an fqdn
+
+    $records = $api.domain_crawl_history(
+        $fqdn,
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        limit=$options.limit
+    )
+
+    // model records and yield nodes
+    yield $ingest_crawlr.crawlr($records)
+}
+
+
+function http_ip(ip, options) {
+    // get dns records for an ip address
+
+    $records = $api.ip_crawl_history(
+        $ip,
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        limit=$options.limit
+    )
+
+    // model records and yield nodes
+    yield $ingest_crawlr.crawlr($records)
 }

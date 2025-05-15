@@ -137,3 +137,35 @@ function domain_certificates(
         ).ctstream
     )
 }
+
+function domain_crawl_history(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=100
+) {
+    $uri = `domain/crawl/history/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).crawlr
+    )
+}
+
+function ip_crawl_history(
+    ip, first_seen=$lib.null, last_seen=$lib.null, limit=100
+) {
+    $uri = `ip/crawl/history/{$ip}`
+
+    return(
+        $endpoint(
+            $uri,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).crawlr
+    )
+}
