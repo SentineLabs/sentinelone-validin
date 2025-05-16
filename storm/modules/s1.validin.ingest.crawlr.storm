@@ -30,9 +30,8 @@ function crawlr(records) {
         }
 
         //construct URL
-
         $url = `{$scheme}://{$host}{$path}`
-         if ($host = $lib.null) {
+        if ($host = $lib.null) {
             $url = `{$scheme}://{$ip}{$path}`
         }
 
@@ -48,17 +47,41 @@ function crawlr(records) {
             $headers.append(($key, $val))
         }
 
+        //lift server 
+        $server = {
+            [ 
+                inet:server=`tcp://{$ip}:{$port}` 
+                    :ipv4=$ip
+                    :port=$port
+                    :proto='tcp'
+
+                <(seen)+ $source
+            ]
+        }
+
         [
-            inet:http:request=($time, $ip, $scheme, $host, $path)
+             //unique GUID is derived from Validin scraping strategy
+            (inet:http:request=($time, $ip, $scheme, $host, $path)
                 :time=$parsedTime
+                :server=$server
                 :server:ipv4=$ip
                 :server:port=$port
+                :path=$path
                 :url=$url
                 :headers=$headers
                 :response:code = $response_code
                 :response:reason = $response_reason
                 :method='GET'
-            <(seen)+ $source
+            <(seen)+ $source)
         ]
+
+
+        if ($value.cert_details != $lib.null){
+           [ 
+                (
+                    inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                )
+            ]   
+        }
     }
 }
