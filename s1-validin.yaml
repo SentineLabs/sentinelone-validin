@@ -12,6 +12,10 @@ author:
 
 desc: s1-validin is a rapid power-up for Validin.
 
+docs:
+  - title: Validin Crawler
+    path: docs/crawld.md
+
 perms:
   - perm: [s1, validin, user]
     gate: cortex
@@ -110,6 +114,7 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+  
   - name: s1.validin.http
     descr: |
       Get HTTP Crawl History.
