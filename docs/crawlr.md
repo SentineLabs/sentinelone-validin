@@ -1,6 +1,6 @@
-# Validin Crawlr
+# Validin Crawler
 
-Composed from a conversation on May 14th in #validin-sentinelone slack channel.
+_(Composed from a conversation on May 14th 2025 in #validin-sentinelone slack channel.)_
 
 Validin web crawling system discovers and processes web content through IP space and virtual host crawls.
 

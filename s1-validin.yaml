@@ -14,7 +14,7 @@ desc: s1-validin is a rapid power-up for Validin.
 
 docs:
   - title: Validin Crawler
-    path: docs/crawld.md
+    path: docs/crawlr.md
 
 perms:
   - perm: [s1, validin, user]
