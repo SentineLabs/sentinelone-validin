@@ -84,9 +84,7 @@ function crawlr(records) {
                 } 
                 $sans.append(('dns', $domain))
             }
-            $lib.print(`{$time}, {$ip}, {$scheme}, {$host}, {$path}`)
-            $lib.print($value.cert_fingerprint_sha256)
-            $lib.print($value.cert)
+            
             [ 
                 (
                     crypto:x509:cert=($value.cert_fingerprint_sha256,)
