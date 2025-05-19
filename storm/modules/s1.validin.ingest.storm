@@ -517,13 +517,3 @@ function domain_certificates(records) {
         ]
     }
 }
-
-
-function http(records) {
-    // model Crawling records from validin
-
-    // get the meta:source
-    $source = $get_source()
-
-    $lib.print($lib.len($records))
-}
