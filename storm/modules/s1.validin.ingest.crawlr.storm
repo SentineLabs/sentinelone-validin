@@ -75,13 +75,39 @@ function crawlr(records) {
             <(seen)+ $source)
         ]
 
+        if ($value.cert != $lib.null){
+            $sans = ([])
+            $fqdns = ([])
+            for $domain in $value.cert_details.domains {
+                if( not $domain.startswith('*')){
+                    $fqdns.append({[inet:fqdn=$domain]})
+                } 
+                $sans.append(('dns', $domain))
+            }
+            $lib.print(`{$time}, {$ip}, {$scheme}, {$host}, {$path}`)
+            $lib.print($value.cert_fingerprint_sha256)
+            $lib.print($value.cert)
+            [ 
+                (
+                    crypto:x509:cert=($value.cert_fingerprint_sha256,)
+                        :sha256=$value.cert_fingerprint_sha256
+                        :sha1=$value.cert_details.fingerprint
+                        :issuer=$value.cert.cert_issuer.O
+                        :validity:notbefore=$value.cert.not_before
+                        :validity:notafter=$value.cert.not_after
+                        :identities:fqdns?=$fqdns
+                        :ext:sans?=$sans
 
-        if ($value.cert_details != $lib.null){
-           [ 
+                )
+                 <(seen)+ $source
+            ]   
+            
+            [ 
                 (
                     inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                    <(seen)+ $source
                 )
-            ]   
+            ] 
         }
     }
 }
