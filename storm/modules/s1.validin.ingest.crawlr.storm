@@ -15,28 +15,36 @@ function crawlr(records) {
         $parsedTime = $lib.cast(time, $time)
 
         $ip = $value.ip
-        $port = $value.port
-        $host = $value.host
-        $path = $value.path
 
+        if ($port = $lib.null) {
+            $port = 80
+        } else {
+            $port = $value.port
+        }
+
+        if $value.host {
+            $host = $value.host
+        } else {
+            $host = $ip
+        }
+
+        $path = $value.path
         if ($path = $lib.null) {
             $path = '/'
         }
-
-        $scheme= $value.scheme
-         if ($scheme = $lib.null) {
+        $scheme = $value.scheme
+        if ($scheme = $lib.null) {
             $scheme = 'http'
+        }
+        
+        if (($scheme = "http" and $value.port = 80) or ($scheme = "https" and $value.port = 443)) {
+            $port_urlpart = ""
+        } else {
+            $port_urlpart = `:{$value.port}`
         }
 
         //construct URL
-        $url = `{$scheme}://{$host}{$path}`
-        $port_url_suffix = ''
-        if ($port != 80 and $port != 443) {
-            $port_suffix = `:{$port}`
-        }
-        if ($host = $lib.null) {
-            $url = `{$scheme}://{$ip}{$path}{$port_suffix}`
-        }
+        $url = `{$scheme}://{$host}{$port_urlpart}{$path}`
 
         //parse banner
         $response_code = $lib.regex.search("^HTTP/\\d\\.\\d\\s+(\\d{3})", $value.banner).index(0)
@@ -63,7 +71,7 @@ function crawlr(records) {
         [
              //unique GUID is derived from Validin scraping strategy
             (
-                inet:http:request=($time, $ip, $scheme, $host, $path)
+                inet:http:request=($time, $ip, $scheme, $host, $port, $path)
                     :time=$parsedTime
                     :server=$server
                     :server:ipv4=$ip
