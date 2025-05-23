@@ -1,0 +1,44 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+
+function domain_certificates(records) {
+    $source = $ingest.get_source()
+    for $record in $records {
+        $fingerprint = $record.fingerprint
+        $subject = `CN={$record.common_name}`
+        $notbefore = ($record.not_before * 1000)
+        $notafter = ($record.not_after * 1000)
+
+        //parse domains as crypto:x509:sans or inet:fqdn 
+        $fqdns = ([])
+        $sans = ([])
+        for $domain in $record.all_domains {
+            // store wildcard domains as sans
+            if($domain.startswith('*')){
+                $sans.append(('dns', $domain))
+            } else {
+                $fqdns.append({[inet:fqdn=$domain]})
+            }
+        }
+
+        // find extra urls
+        // TODO: place into extended properties (e.g. :_validin:authority_info_access_uris,..)
+        $urls = ()
+        $urls.extend($record.authority_info_access_uris)
+        $urls.extend($record.certificate_policy_uri)
+
+        // create the cert
+        [
+            crypto:x509:cert=($fingerprint,)
+                :sha1=$fingerprint
+                :subject=$subject
+                :validity:notbefore=$notbefore
+                :validity:notafter=$notafter
+                :identities:fqdns?=$fqdns
+                :identities:urls?=$urls
+                :ext:sans?=$sans
+
+            <(seen)+ $source
+        ]
+    }
+}

@@ -1,0 +1,965 @@
+{
+  "query_opts": {
+    "limit": 10,
+    "wildcard": false,
+    "type": "ip4",
+    "categories_include": [
+      "IP_DOC_ID"
+    ],
+    "annotate": false
+  },
+  "query_key": "138.197.40.194",
+  "status": "finished",
+  "records_returned": 10,
+  "limited": true,
+  "records": {
+    "crawlr": [
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1735603200,
+        "last_seen": 1735603200,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2024-12-31T01:15:13Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Tue, 31 Dec 2024 01:15:12 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Tue, 31 Dec 2024 01:15:12 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1735776000,
+        "last_seen": 1735776000,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-01-02T13:03:44Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 02 Jan 2025 13:03:40 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 02 Jan 2025 13:03:40 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1738454400,
+        "last_seen": 1738454400,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-02-02T19:11:25Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 02 Feb 2025 19:11:19 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 02 Feb 2025 19:11:19 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1740873600,
+        "last_seen": 1740873600,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-02T00:38:43Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 02 Mar 2025 00:38:41 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 02 Mar 2025 00:38:41 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1743465600,
+        "last_seen": 1743465600,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-04-01T12:38:04Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Tue, 01 Apr 2025 12:38:04 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Tue, 01 Apr 2025 12:38:04 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1746316800,
+        "last_seen": 1746316800,
+        "value": {
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-05-04T07:05:42Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 04 May 2025 07:05:41 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "ip_type": "ip4",
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 04 May 2025 07:05:41 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1741305600,
+        "last_seen": 1741305600,
+        "value": {
+          "host": "validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-07T20:54:42Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Fri, 07 Mar 2025 20:54:42 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "validin.com\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Fri, 07 Mar 2025 20:54:42 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1742860800,
+        "last_seen": 1742860800,
+        "value": {
+          "host": "validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-25T19:49:04Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Tue, 25 Mar 2025 19:49:02 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "validin.com\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Tue, 25 Mar 2025 19:49:02 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1743206400,
+        "last_seen": 1743206400,
+        "value": {
+          "host": "validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-29T18:23:31Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sat, 29 Mar 2025 18:23:29 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "validin.com\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sat, 29 Mar 2025 18:23:29 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      },
+      {
+        "key": "138.197.40.194",
+        "value_type": "JSON",
+        "first_seen": 1743897600,
+        "last_seen": 1743897600,
+        "value": {
+          "host": "validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-04-06T20:03:12Z",
+          "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 06 Apr 2025 20:03:08 GMT\r\nContent-Type: text/html\r\nContent-Length: 178\r\nConnection: keep-alive\r\nLocation: https://www.validin.com/\r\n\r\n",
+          "title": "301 Moved Permanently",
+          "location": "https://www.validin.com/",
+          "length": 178,
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "733c05da132193d6cf1d8e242d12e2525c03bab4",
+          "banner_0_hash": "40ab4a76101ed102941d92e0271b83fc",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "f600b7fdb669224c089e",
+          "start_line": "HTTP/1.1 301 Moved Permanently",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "validin.com\n138.197.40.194",
+          "type": 443,
+          "location_domain": "www.validin.com",
+          "banner_full": [
+            "HTTP/1.1 301 Moved Permanently",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 06 Apr 2025 20:03:08 GMT",
+            "Content-Type: text/html",
+            "Content-Length: 178",
+            "Connection: keep-alive",
+            "Location: https://www.validin.com/"
+          ],
+          "response_line": "HTTP/1.1 301 Moved Permanently"
+        }
+      }
+    ]
+  }
+}

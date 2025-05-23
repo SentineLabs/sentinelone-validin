@@ -26,6 +26,9 @@ modules:
   - name: s1.validin.api
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr
+  - name: s1.validin.ingest.ctstream
+  - name: s1.validin.ingest.dns
+  - name: s1.validin.ingest.registration
   - name: s1.validin.privsep
     asroot:perms:
       - [s1, validin, user]

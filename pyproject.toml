@@ -1,0 +1,9 @@
+[project]
+name = "s1-validin-dev"
+version = "0.0.0"
+requires-python = ">=3.12"
+dependencies=[
+    "synapse==2.210.0",
+    "pytest>=8.0.0",
+    "aioresponses>=0.7.8",
+]

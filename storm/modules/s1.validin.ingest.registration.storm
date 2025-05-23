@@ -1,0 +1,162 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+function whois(records) {
+    // model whois records
+
+    $source = $ingest.get_source()
+
+    for $record in $records {
+        // whois parsing can be partial, need to check for existence of fields
+
+        // use earliest registered time
+        try {
+            $record.registered.sort()
+            $created = $record.registered.index(0)
+        } catch * as error {
+            $created = $lib.null
+        }
+
+        // use latest expires time
+        try {
+            $record.expires.sort()
+            $expires = $record.expires.index(-1)
+        } catch * as error {
+            $expires = $lib.null
+        }
+
+        // use latest updated time
+        try {
+            $record.changed.sort()
+            $updated = $record.changed.index(-1)
+        } catch * as error {
+            $updated = $lib.null
+        }
+
+        try {
+            $registrar = $record.registrar.index(0)
+        } catch * as error {
+            $registrar = $lib.null
+        }
+
+        [
+            inet:whois:rec=($record.domain, $record.date)
+                :created?=$created
+                :expires?=$expires
+                :registrar?={[inet:whois:rar=$registrar]}
+                :updated?=$updated
+
+            // edge to meta:source
+            <(seen)+ $source
+        ]
+
+        // add nameservers, if available        
+        if $record.nameservers {
+            {  // isolate for-loop in subquery
+                for $nameserver in $record.nameservers {
+                    [(inet:whois:recns=($nameserver, $node) <(seen)+ $source)]
+                }
+            }
+        }
+
+        // add contacts, if available
+        if $record.roles {
+            {  // isolate for-loop in subquery
+                for ($role_type, $role) in $record.roles {
+                    // email
+                    try {
+                        $email = $role.email.index(0)
+                    } catch * as error {
+                        $email = $lib.null
+                    }
+
+                    // phone
+                    if $role.phone {
+                        $phone = $role.phone.index(0)
+                    } elif $role.tel {
+                        $phone = $role.tel.index(0)
+
+                        if $phone.startswith("tel:") {
+                            $phone = $phone.slice(4)
+                        }
+                    } else {
+                        $phone = $lib.null
+                    }
+
+                    // fax
+                    try {
+                        $fax = $role.fax.index(0)
+                    } catch * as error {
+                        $fax = $lib.null
+                    }
+
+                    // name
+                    try {
+                        $name = $role.name.index(0)
+                    } catch * as error {
+                        $name = $lib.null
+                    }
+
+                    // orgname
+                    try {
+                        $orgname = $role.org.index(0)
+                    } catch * as error {
+                        $orgname = $lib.null
+                    }
+
+                    // address
+                    try {
+                        $address = ("\n").join($role.address)
+                    } catch * as error {
+                        $address = $lib.null
+                    }
+
+                    // city 
+                    try {
+                        $city = $role.city.index(0)
+                    } catch * as error {
+                        $city = $lib.null
+                    }
+
+                    // state
+                    try {
+                        $state = $role.state.index(0)
+                    } catch * as error {
+                        $state = $lib.null
+                    }
+
+                    // country
+                    try {
+                        $country = $role.country.index(0)
+                    } catch * as error {
+                        $country = $lib.null
+                    }
+
+                    // url
+                    try {
+                        $url = $role.url.index(0)
+                    } catch * as error {
+                        $url = $lib.null
+                    }
+
+                    [
+                        (
+                            inet:whois:contact=($node, $role_type)
+                                :address?=$address
+                                :city?=$city
+                                :country?=$country
+                                :email?=$email
+                                :fax?=$fax
+                                :name?=$name
+                                :orgname?=$orgname
+                                :phone?=$phone
+                                :state?=$state
+                                :url?=$url
+
+                            <(seen)+ $source
+                        )
+                    ]
+                }
+            }
+        }
+    }
+}

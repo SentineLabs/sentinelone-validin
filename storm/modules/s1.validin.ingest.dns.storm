@@ -1,0 +1,309 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+function dns(records) {
+    // model DNS records from validin
+
+    // get the meta:source
+    $source = $ingest.get_source()
+
+    // determine the record type
+    for ($type, $type_records) in $records {
+        switch $type {
+            "A": {$type_func = $a}
+            "AAAA": {$type_func = $aaaa}
+            // "CAA": {}
+            // "CAA_ISSUER_FOR": {}
+            // "CAA_ISSUERWILD_FOR": {}
+            "CNAME": {$type_func = $cname}
+            "CNAME_FOR": {$type_func = $cname_for}
+            // "HTTPS": {}
+            // "HTTPS_FOR": {}
+            "MX": {$type_func = $mx}
+            "MX_FOR": {$type_func = $mx_for}
+            "NS": {$type_func = $ns}
+            "NS_FOR": {$type_func = $ns_for}
+            "PTR": {$type_func = $ptr}
+            // (
+            //    "SOA_MNAME", "SOA_MNAME_FOR", "SOA_RNAME", "SOA_RNAME_FOR"
+            // ): {$type_func = $soa}
+            // "SRV": {}
+            // "SRV_TARGET_FOR": {}
+            "TXT": {$type_func = $txt}
+            // "WAYWARD_HTTPS": {}
+            // "WAYWARD_MX": {}
+            // "WAYWARD_NS": {}
+            // "WAYWARD_SOA_MNAME": {}
+            // "WAYWARD_SOA_RNAME": {}
+            // "WAYWARD_TXT": {}
+            *: {
+                $lib.warn(`Got {$type_records.size()} {$type} record(s), not currently supported`)
+                continue
+            }
+        }
+
+        // model records and edge to meta:source
+        yield $type_func($type_records) [<(seen)+ $source]
+    }
+}
+
+
+function a(records) {
+    // model A records as inet:dns:a
+
+    for $record in $records {
+        try {
+            if $record.value {  // old format
+                if ($record.value_type = "dom") {  // value is the inet:fqdn
+                    [inet:dns:a = ($record.value, $record.key)]
+                } else {  // value is the inet:ipv4
+                    [inet:dns:a = ($record.key, $record.value)]
+                }
+            } elif $record.name {  // new format
+                [inet:dns:a = ($record.name, $record.rdata)]
+            } else {  // unknown format
+                $lib.warn(`Got an A record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model A record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function aaaa(records) {
+    // model AAAA records as inet:dns:aaaa
+
+    for $record in $records {
+        try {
+            if $record.value {  // old format
+                if ($record.value_type = "dom") {  // value is the inet:fqdn
+                    [inet:dns:aaaa = ($record.value, $record.key)]
+                } else {  // value is the inet:ipv6
+                    [inet:dns:aaaa = ($record.key, $record.value)]
+                }
+            } elif $record.name {  // new format
+                [inet:dns:aaaa = ($record.name, $record.rdata)]
+            } else {  // unknown format
+                $lib.warn(`Got an AAAA record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model AAAA record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function cname(records) {
+    // model CNAME records as inet:dns:cname
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:cname = ($record.key, $record.value)]
+            } else {  // unknown format
+                $lib.warn(`Got a CNAME record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model CNAME record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function cname_for(records) {
+    // model CNAME_FOR records as inet:dns:cname
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:cname = ($record.value, $record.key)]
+            } else {  // unknown format
+                $lib.warn(`Got a CNAME_FOR record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model CNAME_FOR record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function mx(records) {
+    // model mx records as inet:dns:mx
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:mx = ($record.key, $record.value)]
+            } else {  // unknown format
+                $lib.warn(`Got an MX record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model MX record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function mx_for(records) {
+    // model MX_FOR records as inet:dns:mx
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:mx = ($record.value, $record.key)]
+            } else {  // unknown format
+                $lib.warn(`Got an MX_FOR record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model MX_FOR record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function ns(records) {
+    // model NS records as inet:dns:ns
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:ns = ($record.key, $record.value)]
+            } else {  // unknown format
+                $lib.warn(`Got an NS record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model NS record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function ns_for(records) {
+    // model NS_FOR records as inet:dns:ns
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:ns = ($record.value, $record.key)]
+            } else {  // unknown format
+                $lib.warn(`Got an NS_FOR record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model NS_FOR record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function ptr(records) {
+    // model PTR records as inet:dns:rev
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                if ($record.value_type = "dom") {
+                    [inet:dns:rev = ($record.key, $record.value)]
+                } else {
+                    [inet:dns:rev = ($record.value, $record.key)]
+                }
+            } else {  // unknown format
+                $lib.warn(`Got a PTR record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model PTR record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
+
+function soa(records) {
+    // TODO
+}
+
+
+function txt(records) {
+    // model TXT records as inet:dns:txt
+
+    for $record in $records {
+        try {
+            if $record.key {  // old format
+                [inet:dns:txt = ($record.key, $record.value)]
+            } else {  // unknown format
+                $lib.warn(`Got a TXT record in unknown format: {$record}`)
+                continue
+            }
+        } catch * as error {
+            $lib.warn(`Failed to model TXT record: {$record}`)
+            continue
+        }
+
+        // set the .seen property
+        $first = ($record.first_seen * 1000)
+        $last = ($record.last_seen * 1000)
+        $node [.seen=($first, $last)]
+    }
+}
+
