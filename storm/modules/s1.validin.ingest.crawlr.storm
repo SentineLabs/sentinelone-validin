@@ -16,10 +16,10 @@ function crawlr(records) {
 
         $ip = $value.ip
 
-        if ($port = $lib.null) {
-            $port = 80
-        } else {
+        if $value.port {
             $port = $value.port
+        } else {
+            $port = 80
         }
 
         if $value.host {
@@ -37,10 +37,10 @@ function crawlr(records) {
             $scheme = 'http'
         }
         
-        if (($scheme = "http" and $value.port = 80) or ($scheme = "https" and $value.port = 443)) {
+        if (($scheme = "http" and $port = 80) or ($scheme = "https" and $port = 443)) {
             $port_urlpart = ""
         } else {
-            $port_urlpart = `:{$value.port}`
+            $port_urlpart = `:{$port}`
         }
 
         //construct URL
@@ -82,7 +82,6 @@ function crawlr(records) {
                     :response:code = $response_code
                     :response:reason = $response_reason
                     :method='GET'
-                <(seen)+ $source
             )
         ]
 
@@ -106,14 +105,9 @@ function crawlr(records) {
                         :validity:notafter=$value.cert.not_after
                         :identities:fqdns?=$fqdns
                         :ext:sans?=$sans
-                    <(seen)+ $source
                 )
-            ]   
-            
-            [ 
                 (
                     inet:ssl:jarmsample=($server,$value.cert_details.jarm)
-                    <(seen)+ $source
                 )
             ] 
         }
