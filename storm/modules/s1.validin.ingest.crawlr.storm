@@ -6,34 +6,45 @@ function crawlr(records) {
     $source = $ingest.get_source()
 
     for $record in $records {
-        $key = $record.key
         $first_seen = ($record.first_seen * 1000)
         $last_seen = ($record.last_seen * 1000)
 
         $value = $record.value
 
         $time = $value.time
-        $parsedTime = $lib.cast(time,$time)
+        $parsedTime = $lib.cast(time, $time)
 
         $ip = $value.ip
-        $port = $value.port
-        $host = $value.host
-        $path = $value.path
 
+        if ($port = $lib.null) {
+            $port = 80
+        } else {
+            $port = $value.port
+        }
+
+        if $value.host {
+            $host = $value.host
+        } else {
+            $host = $ip
+        }
+
+        $path = $value.path
         if ($path = $lib.null) {
             $path = '/'
         }
-
-        $scheme= $value.scheme
-         if ($scheme = $lib.null) {
+        $scheme = $value.scheme
+        if ($scheme = $lib.null) {
             $scheme = 'http'
+        }
+        
+        if (($scheme = "http" and $value.port = 80) or ($scheme = "https" and $value.port = 443)) {
+            $port_urlpart = ""
+        } else {
+            $port_urlpart = `:{$value.port}`
         }
 
         //construct URL
-        $url = `{$scheme}://{$host}{$path}`
-        if ($host = $lib.null) {
-            $url = `{$scheme}://{$ip}{$path}`
-        }
+        $url = `{$scheme}://{$host}{$port_urlpart}{$path}`
 
         //parse banner
         $response_code = $lib.regex.search("^HTTP/\\d\\.\\d\\s+(\\d{3})", $value.banner).index(0)
@@ -41,7 +52,7 @@ function crawlr(records) {
 
         $headers = ([])
         for $banner_item in  $value.banner_full.slice(1) {
-            ($key, $val) = $lib.cast(str, $banner_item).split(":")
+            ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
             $key = $key.strip()
             $val = $val.strip()
             $headers.append(($key, $val))
@@ -54,25 +65,25 @@ function crawlr(records) {
                     :ipv4=$ip
                     :port=$port
                     :proto='tcp'
-
-                <(seen)+ $source
             ]
         }
 
         [
              //unique GUID is derived from Validin scraping strategy
-            (inet:http:request=($time, $ip, $scheme, $host, $path)
-                :time=$parsedTime
-                :server=$server
-                :server:ipv4=$ip
-                :server:port=$port
-                :path=$path
-                :url=$url
-                :headers=$headers
-                :response:code = $response_code
-                :response:reason = $response_reason
-                :method='GET'
-            <(seen)+ $source)
+            (
+                inet:http:request=($time, $ip, $scheme, $host, $port, $path)
+                    :time=$parsedTime
+                    :server=$server
+                    :server:ipv4=$ip
+                    :server:port=$port
+                    :path=$path
+                    :url=$url
+                    :headers=$headers
+                    :response:code = $response_code
+                    :response:reason = $response_reason
+                    :method='GET'
+                <(seen)+ $source
+            )
         ]
 
         if ($value.cert != $lib.null){
@@ -95,9 +106,8 @@ function crawlr(records) {
                         :validity:notafter=$value.cert.not_after
                         :identities:fqdns?=$fqdns
                         :ext:sans?=$sans
-
+                    <(seen)+ $source
                 )
-                 <(seen)+ $source
             ]   
             
             [ 
@@ -107,5 +117,6 @@ function crawlr(records) {
                 )
             ] 
         }
+        [<(seen)+ $source]
     }
 }
