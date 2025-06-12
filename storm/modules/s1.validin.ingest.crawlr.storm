@@ -47,15 +47,25 @@ function crawlr(records) {
         $url = `{$scheme}://{$host}{$port_urlpart}{$path}`
 
         //parse banner
-        $response_code = $lib.regex.search("^HTTP/\\d\\.\\d\\s+(\\d{3})", $value.banner).index(0)
-        $response_reason=  $lib.regex.search("^HTTP/[^\\s]+\\s\\d{3}\\s(.*)", $value.banner_full.index(0)).index(0)
+        try {
+            $response_code = $lib.regex.search("^HTTP/\\d\\.\\d\\s+(\\d{3})", $value.banner).index(0)
+        } catch * as error {
+            $response_code = $lib.null
+        }
+        try {
+            $response_reason =  $lib.regex.search("^HTTP/[^\\s]+\\s\\d{3}\\s(.*)", $value.banner_full.index(0)).index(0)
+        } catch * as error {
+            $response_reason = $lib.null
+        }
 
         $headers = ([])
-        for $banner_item in  $value.banner_full.slice(1) {
-            ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
-            $key = $key.strip()
-            $val = $val.strip()
-            $headers.append(($key, $val))
+        if ($value.banner_full != $lib.null) {
+            for $banner_item in  $value.banner_full.slice(1) {
+                ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
+                $key = $key.strip()
+                $val = $val.strip()
+                $headers.append(($key, $val))
+            }
         }
 
         //lift server 
@@ -79,11 +89,15 @@ function crawlr(records) {
                     :path=$path
                     :url=$url
                     :headers=$headers
-                    :response:code = $response_code
-                    :response:reason = $response_reason
+                    :response:code ?= $response_code
+                    :response:reason ?= $response_reason
                     :method='GET'
             )
         ]
+
+        if($value.error != $lib.null) {
+            $lib.warn(`{$node.iden()} {$time} {$ip} {$scheme} {$host} {$port} {$path} {$value.error}`)
+        }
 
         if ($value.cert != $lib.null){
             $sans = ([])
