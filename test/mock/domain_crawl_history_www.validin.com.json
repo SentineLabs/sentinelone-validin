@@ -1,0 +1,1933 @@
+{
+  "query_opts": {
+    "limit": 10,
+    "wildcard": false,
+    "type": "dom",
+    "categories_include": [
+      "DOM_DOC_ID"
+    ],
+    "annotate": false
+  },
+  "query_key": "www.validin.com",
+  "status": "finished",
+  "records_returned": 9,
+  "limited": false,
+  "records": {
+    "crawlr": [
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1741219200,
+        "last_seen": 1741219200,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-06T04:50:30Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 06 Mar 2025 04:50:20 GMT\r\nContent-Type: text/html\r\nLast-Modified: Fri, 31 Jan 2025 20:39:35 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"679d3507-345d\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13405,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "twitter.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "twitter.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "b33d4ced80dae7e5e57b894a291440c0d509dd4b",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "12ab132141b147c4750b6775b8fe9e1c",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 06 Mar 2025 04:50:20 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Fri, 31 Jan 2025 20:39:35 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"679d3507-345d\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1741478400,
+        "last_seen": 1741478400,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-09T07:27:05Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 09 Mar 2025 07:27:03 GMT\r\nContent-Type: text/html\r\nLast-Modified: Fri, 31 Jan 2025 20:39:35 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"679d3507-345d\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13405,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "twitter.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "twitter.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "b33d4ced80dae7e5e57b894a291440c0d509dd4b",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "12ab132141b147c4750b6775b8fe9e1c",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 09 Mar 2025 07:27:03 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Fri, 31 Jan 2025 20:39:35 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"679d3507-345d\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1742428800,
+        "last_seen": 1742428800,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-20T14:03:06Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 20 Mar 2025 14:03:06 GMT\r\nContent-Type: text/html\r\nLast-Modified: Tue, 11 Mar 2025 17:14:26 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"67d06f72-345d\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13405,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "twitter.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "twitter.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "b33d4ced80dae7e5e57b894a291440c0d509dd4b",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "c190bcf8fd3091700a372017dcafa507",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 20 Mar 2025 14:03:06 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Tue, 11 Mar 2025 17:14:26 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"67d06f72-345d\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1742515200,
+        "last_seen": 1742515200,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-21T06:59:45Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Fri, 21 Mar 2025 06:59:39 GMT\r\nContent-Type: text/html\r\nLast-Modified: Tue, 11 Mar 2025 17:14:26 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"67d06f72-345d\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13405,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "twitter.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "twitter.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "b33d4ced80dae7e5e57b894a291440c0d509dd4b",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "c190bcf8fd3091700a372017dcafa507",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Fri, 21 Mar 2025 06:59:39 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Tue, 11 Mar 2025 17:14:26 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"67d06f72-345d\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1742688000,
+        "last_seen": 1742688000,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-03-23T07:35:42Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Sun, 23 Mar 2025 07:35:39 GMT\r\nContent-Type: text/html\r\nLast-Modified: Tue, 11 Mar 2025 17:14:26 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"67d06f72-345d\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://twitter.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13405,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "twitter.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "twitter.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "b33d4ced80dae7e5e57b894a291440c0d509dd4b",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "c190bcf8fd3091700a372017dcafa507",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Sun, 23 Mar 2025 07:35:39 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Tue, 11 Mar 2025 17:14:26 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"67d06f72-345d\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1746057600,
+        "last_seen": 1746057600,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "137.184.54.107",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-05-01T11:30:54Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 01 May 2025 11:30:54 GMT\r\nContent-Type: text/html\r\nLast-Modified: Thu, 17 Apr 2025 10:41:00 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"6800dabc-344b\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13387,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "x.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "x.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "7f7f62798053b022af2ee15b5cfc8f332490552c",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "9b5692da1efd51a7172a13a5dae16ed3",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "137.184.48.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "137.184.48.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n137.184.54.107",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 01 May 2025 11:30:54 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Thu, 17 Apr 2025 10:41:00 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"6800dabc-344b\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1743638400,
+        "last_seen": 1743638400,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-04-03T14:53:57Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 03 Apr 2025 14:53:51 GMT\r\nContent-Type: text/html\r\nLast-Modified: Sat, 29 Mar 2025 11:55:17 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"67e7dfa5-344b\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13387,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "x.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "x.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "18ed2e99e12800abd6899c0c0b918c2c4186dc93",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "fcd062d2954d3aaac8fb2ed574792786",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n138.197.40.194",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 03 Apr 2025 14:53:51 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Sat, 29 Mar 2025 11:55:17 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"67e7dfa5-344b\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1744848000,
+        "last_seen": 1744848000,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-04-17T08:27:47Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 17 Apr 2025 08:27:47 GMT\r\nContent-Type: text/html\r\nLast-Modified: Mon, 07 Apr 2025 14:03:35 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"67f3db37-344b\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 13387,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "x.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "x.com",
+              "www.linkedin.com"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "18ed2e99e12800abd6899c0c0b918c2c4186dc93",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "a66438c6f99fcb420676889ab7488906",
+          "class_1_hash": "0747e6c0d3242123025bb06c288d54dd",
+          "banner_0_hash": "102dbb17713d728485f2173d25a562ea",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n138.197.40.194",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 17 Apr 2025 08:27:47 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Mon, 07 Apr 2025 14:03:35 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"67f3db37-344b\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      },
+      {
+        "key": "www.validin.com",
+        "value_type": "JSON",
+        "first_seen": 1747267200,
+        "last_seen": 1747267200,
+        "value": {
+          "host": "www.validin.com",
+          "ip": "138.197.40.194",
+          "scheme": "https",
+          "port": 443,
+          "time": "2025-05-15T07:49:40Z",
+          "banner": "HTTP/1.1 200 OK\r\nServer: nginx/1.18.0 (Ubuntu)\r\nDate: Thu, 15 May 2025 07:49:38 GMT\r\nContent-Type: text/html\r\nLast-Modified: Tue, 13 May 2025 21:46:48 GMT\r\nTransfer-Encoding: chunked\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nETag: W/\"6823bdc8-b5c4\"\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;\r\nContent-Encoding: gzip\r\n\r\n",
+          "title": "Threat Hunting and DNS Enrichment | Validin",
+          "meta": [
+            {
+              "content": "\"Hugo 0.110.0\"",
+              "name": "\"generator\""
+            },
+            {
+              "charset": "\"utf-8\""
+            },
+            {
+              "content": "\"width=device-width, initial-scale=1\"",
+              "name": "\"viewport\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"title\""
+            },
+            {
+              "content": "\"Validin - the next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"description\""
+            },
+            {
+              "content": "\"en\"",
+              "property": "\"og:locale\""
+            },
+            {
+              "content": "\"website\"",
+              "property": "\"og:type\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "property": "\"og:title\""
+            },
+            {
+              "content": "\"Validin - the next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "property": "\"og:description\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "property": "\"og:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "property": "\"og:image\""
+            },
+            {
+              "content": "\"Validin\"",
+              "property": "\"og:site_name\""
+            },
+            {
+              "content": "\"summary_large_image\"",
+              "name": "\"twitter:card\""
+            },
+            {
+              "content": "\"Validin | Validin\"",
+              "name": "\"twitter:title\""
+            },
+            {
+              "content": "\"Validin - the next-generation internet intelligence platform. Pivot through DNS, certificates, and host responses. Annotation with threat intelligence - for tracking and discovering digital threats.\"",
+              "name": "\"twitter:description\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:site\""
+            },
+            {
+              "content": "\"https://x.com/ValidinLLC\"",
+              "name": "\"twitter:creator\""
+            },
+            {
+              "content": "\"https://www.validin.com/\"",
+              "name": "\"twitter:url\""
+            },
+            {
+              "content": "\"https://www.validin.com/images/slider/slide1.webp\"",
+              "name": "\"twitter:image\""
+            }
+          ],
+          "length": 46532,
+          "ext_links": {
+            "meta": [
+              "www.validin.com",
+              "x.com"
+            ],
+            "links": [
+              "www.validin.com"
+            ],
+            "js": [
+              "www.validin.com"
+            ],
+            "iframes": [
+              "app.validin.com"
+            ],
+            "anchors": [
+              "app.validin.com",
+              "www.validin.com",
+              "join.slack.com",
+              "x.com",
+              "linkedin.com",
+              "discord.gg"
+            ]
+          },
+          "cert_fingerprint_sha256": "c44f6738c8ee74b7058e9a97fe6bb3f8921bb04adcb098e51ff3c44aaf4568d3",
+          "cert_chain_serials": [
+            "09162170B9947805FCA7C560BB84972C",
+            "0B259422CED9812A15A04E99528A0EFA"
+          ],
+          "body_hash": "1a7a8d91bea7cc23b06bdf52b5507101844b329f",
+          "favicon_hash": "52ec0f426864bc98b38b85effb309a16",
+          "class_0_hash": "ee017dbce97c8827b88ef87fbafd3791",
+          "class_1_hash": "cd169cc2d09c2423c8576eb134301af6",
+          "banner_0_hash": "c474d1c4a6ceab6ce898353c005b045a",
+          "date_info": {
+            "date_format": "rfc-1123"
+          },
+          "header_hash": "e5e1f4adf1852ff99579",
+          "start_line": "HTTP/1.1 200 OK",
+          "cert": {
+            "cert_issuer": {
+              "C": "US",
+              "O": "DigiCert Inc",
+              "OU": "www.digicert.com",
+              "CN": "RapidSSL TLS RSA CA G1"
+            },
+            "chain_fingerprints": [
+              "cbfe9eb43b3b37fe0dfbc4c2eb2d4e07d08bd8e8"
+            ],
+            "not_before": "2024-09-05T00:00:00Z",
+            "not_after": "2025-09-16T23:59:59Z",
+            "verification_status": 0,
+            "issuer": "/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=RapidSSL TLS RSA CA G1"
+          },
+          "cert_details": {
+            "jarm": "2ad2ad0002ad2ad00042d42d0000005d86ccb1a0567e012264097a0315d7a7",
+            "fingerprint": "44c465cfc920f026bf4e51f0811079df95a70965",
+            "domains": [
+              "*.validin.com",
+              "validin.com"
+            ]
+          },
+          "host_type": "dom",
+          "ip_type": "ip4",
+          "host_intel": {
+            "informational": {
+              "structure": {
+                "fqdn": "www.validin.com",
+                "etld": "com",
+                "e2ld": "validin.com"
+              }
+            },
+            "annotations": [
+              {
+                "key_type": "dom",
+                "key": "com",
+                "value_type": "raw",
+                "value": 8100,
+                "type": "PIVOT_COUNT_LOCATION_DOMAIN",
+                "category": "risk",
+                "risk_cat": "val_popularity",
+                "title": "LOCATION_DOMAIN: Estimated Pivot Count: 8.1K",
+                "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+              }
+            ]
+          },
+          "ip_intel": {
+            "informational": {
+              "title": "Digital Ocean",
+              "cloud": "digital-ocean",
+              "cidrs": [
+                "138.197.32.0/20"
+              ],
+              "ownership": [
+                {
+                  "owner": "DIGITALOCEAN-ASN",
+                  "country": "US",
+                  "asn": "AS 14061",
+                  "name": "DIGITALOCEAN-ASN, US",
+                  "cidrs": [
+                    "138.197.32.0/20"
+                  ]
+                }
+              ]
+            }
+          },
+          "host_ip": "www.validin.com\n138.197.40.194",
+          "type": 443,
+          "banner_full": [
+            "HTTP/1.1 200 OK",
+            "Server: nginx/1.18.0 (Ubuntu)",
+            "Date: Thu, 15 May 2025 07:49:38 GMT",
+            "Content-Type: text/html",
+            "Last-Modified: Tue, 13 May 2025 21:46:48 GMT",
+            "Transfer-Encoding: chunked",
+            "Connection: keep-alive",
+            "Vary: Accept-Encoding",
+            "ETag: W/\"6823bdc8-b5c4\"",
+            "Expires: Thu, 01 Jan 1970 00:00:01 GMT",
+            "Cache-Control: no-cache",
+            "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options: nosniff",
+            "Content-Security-Policy: script-src 'self' unpkg.com validin.com www.validin.com;font-src 'self' validin.com www.validin.com data:;img-src 'self' validin.com www.validin.com miro.medium.com data:;",
+            "Content-Encoding: gzip"
+          ],
+          "response_line": "HTTP/1.1 200 OK"
+        }
+      }
+    ]
+  }
+}

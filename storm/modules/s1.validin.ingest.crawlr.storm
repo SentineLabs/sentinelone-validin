@@ -1,0 +1,130 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+function crawlr(records) {
+    // model .crawlr (Crawling Results) records from validin
+
+    $source = $ingest.get_source()
+
+    for $record in $records {
+        $first_seen = ($record.first_seen * 1000)
+        $last_seen = ($record.last_seen * 1000)
+
+        $value = $record.value
+
+        $time = $value.time
+        $parsedTime = $lib.cast(time, $time)
+
+        $ip = $value.ip
+
+        if $value.port {
+            $port = $value.port
+        } else {
+            $port = 80
+        }
+
+        if $value.host {
+            $host = $value.host
+        } else {
+            $host = $ip
+        }
+
+        $path = $value.path
+        if ($path = $lib.null) {
+            $path = '/'
+        }
+        $scheme = $value.scheme
+        if ($scheme = $lib.null) {
+            $scheme = 'http'
+        }
+        
+        if (($scheme = "http" and $port = 80) or ($scheme = "https" and $port = 443)) {
+            $port_urlpart = ""
+        } else {
+            $port_urlpart = `:{$port}`
+        }
+
+        //construct URL
+        $url = `{$scheme}://{$host}{$port_urlpart}{$path}`
+
+        //parse banner
+        try {
+            $response_code = $lib.regex.search("^HTTP/\\d\\.\\d\\s+(\\d{3})", $value.banner).index(0)
+        } catch * as error {
+            $response_code = $lib.null
+        }
+        try {
+            $response_reason =  $lib.regex.search("^HTTP/[^\\s]+\\s\\d{3}\\s(.*)", $value.banner_full.index(0)).index(0)
+        } catch * as error {
+            $response_reason = $lib.null
+        }
+
+        $headers = ([])
+        if ($value.banner_full != $lib.null) {
+            for $banner_item in  $value.banner_full.slice(1) {
+                ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
+                $key = $key.strip()
+                $val = $val.strip()
+                $headers.append(($key, $val))
+            }
+        }
+
+        //lift server 
+        $server = {
+            [ 
+                inet:server=`tcp://{$ip}:{$port}` 
+                    :ipv4=$ip
+                    :port=$port
+                    :proto='tcp'
+            ]
+        }
+
+        [
+             //unique GUID is derived from Validin scraping strategy
+            (
+                inet:http:request=($time, $ip, $scheme, $host, $port, $path)
+                    :time=$parsedTime
+                    :server=$server
+                    :server:ipv4=$ip
+                    :server:port=$port
+                    :path=$path
+                    :url=$url
+                    :headers=$headers
+                    :response:code ?= $response_code
+                    :response:reason ?= $response_reason
+                    :method='GET'
+            )
+        ]
+
+        if($value.error != $lib.null) {
+            $lib.warn(`{$node.iden()} {$time} {$ip} {$scheme} {$host} {$port} {$path} {$value.error}`)
+        }
+
+        if ($value.cert != $lib.null){
+            $sans = ([])
+            $fqdns = ([])
+            for $domain in $value.cert_details.domains {
+                if( not $domain.startswith('*')){
+                    $fqdns.append({[inet:fqdn=$domain]})
+                } 
+                $sans.append(('dns', $domain))
+            }
+            
+            [ 
+                (
+                    crypto:x509:cert=($value.cert_fingerprint_sha256,)
+                        :sha256=$value.cert_fingerprint_sha256
+                        :sha1=$value.cert_details.fingerprint
+                        :issuer=$value.cert.cert_issuer.O
+                        :validity:notbefore=$value.cert.not_before
+                        :validity:notafter=$value.cert.not_after
+                        :identities:fqdns?=$fqdns
+                        :ext:sans?=$sans
+                )
+                (
+                    inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                )
+            ] 
+        }
+        [<(seen)+ $source]
+    }
+}

@@ -12,6 +12,10 @@ author:
 
 desc: s1-validin is a rapid power-up for Validin.
 
+docs:
+  - title: Validin Crawler
+    path: docs/crawlr.md
+
 perms:
   - perm: [s1, validin, user]
     gate: cortex
@@ -21,6 +25,10 @@ modules:
   - name: s1.validin
   - name: s1.validin.api
   - name: s1.validin.ingest
+  - name: s1.validin.ingest.crawlr
+  - name: s1.validin.ingest.ctstream
+  - name: s1.validin.ingest.dns
+  - name: s1.validin.ingest.registration
   - name: s1.validin.privsep
     asroot:perms:
       - [s1, validin, user]
@@ -109,6 +117,30 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+  
+  - name: s1.validin.http
+    descr: |
+      Get HTTP Crawl History.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+        - inet:ipv4
+        - inet:ipv6
+
+    cmdargs:
+      - - --first-seen
+        - type: time
+      - - --last-seen
+        - type: time
+      - - --wildcard
+        - type: bool
+          action: store_true
+      - - --limit
+        - type: int
+          default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
 
 
 optic:
@@ -137,3 +169,7 @@ optic:
       storm: s1.validin.certs --wildcard
       descr: Get Certificates including subdomains.
       forms: [inet:fqdn]
+    - name: http
+      storm: s1.validin.http
+      descr: Get HTTP Crawling history.
+      forms: [inet:fqdn, inet:ipv4, inet:ipv6]
