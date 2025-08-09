@@ -1,0 +1,21 @@
+$ingest = $lib.import(s1.validin.ingest)
+$ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
+$ingest_dns = $lib.import(s1.validin.ingest.dns)
+$ingest_registration = $lib.import(s1.validin.ingest.registration)
+
+
+function connections(data) {
+    // model connections data from Validin 
+
+    if $data.dns {
+        $ingest_dns.dns($data.dns)
+    }
+
+    if $data.crawler {
+        $ingest_crawlr.crawlr($data.crawler)
+    }
+
+    if $data.registration {
+        $ingest_registration.whois($data.registration)
+    }
+}

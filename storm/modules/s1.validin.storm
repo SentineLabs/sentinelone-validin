@@ -12,8 +12,8 @@ function dns(fqdn_or_ip, options) {
     $form = $fqdn_or_ip.form()
 
     switch $form {
-        "inet:fqdn": {yield $dns_fqdn($fqdn_or_ip.repr(), $options)}
-        ("inet:ipv4", "inet:ipv6"): {yield $dns_ip($fqdn_or_ip.repr(), $options)}
+        "inet:fqdn": {$dns_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {$dns_ip($fqdn_or_ip.repr(), $options)}
         *: {$lib.warn(`{$form} not supported`)}
     }
 }
@@ -69,8 +69,8 @@ function dns_fqdn(fqdn, options) {
         $lib.warn($error)
     }
 
-    // model records and yield nodes
-    yield $ingest_dns.dns($records)
+    // model records
+    $ingest_dns.dns($records)
 }
 
 
@@ -121,8 +121,8 @@ function dns_ip(ip, options) {
         $lib.warn($error)
     }
 
-    // model records and yield nodes
-    yield $ingest_dns.dns($records)
+    // model records
+    $ingest_dns.dns($records)
 }
 
 
@@ -137,8 +137,8 @@ function whois(fqdn, options) {
         limit=$options.limit
     )
 
-    // model records and yield nodes
-    yield $ingest_registration.whois($records)
+    // model records
+    $ingest_registration.whois($records)
 }
 
 function certificates(fqdn, options) {
@@ -152,8 +152,8 @@ function certificates(fqdn, options) {
         limit=$options.limit
     )
 
-    // model records and yield nodes
-    yield $ingest_ctstream.domain_certificates($records)
+    // model records
+    $ingest_ctstream.domain_certificates($records)
 }
 
 function http(fqdn_or_ip, options) {
@@ -162,8 +162,8 @@ function http(fqdn_or_ip, options) {
     $form = $fqdn_or_ip.form()
 
     switch $form {
-        "inet:fqdn": {yield $http_fqdn($fqdn_or_ip.repr(), $options)}
-        ("inet:ipv4", "inet:ipv6"): {yield $http_ip($fqdn_or_ip.repr(), $options)}
+        "inet:fqdn": {$http_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {$http_ip($fqdn_or_ip.repr(), $options)}
         *: {$lib.warn(`{$form} not supported`)}
     }
 }
@@ -178,8 +178,8 @@ function http_fqdn(fqdn, options) {
         limit=$options.limit
     )
 
-    // model records and yield nodes
-    yield $ingest_crawlr.crawlr($records)
+    // model records
+    $ingest_crawlr.crawlr($records)
 }
 
 
@@ -193,6 +193,22 @@ function http_ip(ip, options) {
         limit=$options.limit
     )
 
-    // model records and yield nodes
-    yield $ingest_crawlr.crawlr($records)
+    // model records
+    $ingest_crawlr.crawlr($records)
+}
+
+
+function enrich(fqdn, options) {
+    // enrich an fqdn with dns, crawler, and registration data
+
+    $data = $api.domain_connections(
+        $fqdn
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        wildcard=$options.wildcard,
+        limit=$options.limit
+    )
+
+    // model data
+    $ingest_connections.connections($data)
 }

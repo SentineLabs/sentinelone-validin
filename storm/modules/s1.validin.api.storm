@@ -22,7 +22,26 @@ function endpoint(
         $params.limit = $limit
     }
 
-    return($privsep.base_get($uri, $params).records)
+    return($privsep.base_get($uri, $params))
+}
+
+
+// v2 combined connections
+function domain_connections(
+    fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = `v2/domain/combined/connections/{$fqdn}`
+    $params = ({"wildcard": $wildcard})
+
+    return (
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit,
+        )
+    )
 }
 
 
@@ -30,7 +49,7 @@ function endpoint(
 function domain_history(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
-    $uri = `domain/dns/history/{$fqdn}`
+    $uri = `axon/domain/dns/history/{$fqdn}`
     $params = ({
         "wildcard": $wildcard,
         "exclude_nx": $lib.true,  // can't think of a reason to ever want these
@@ -43,7 +62,7 @@ function domain_history(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit,
-        )
+        ).records
     )
 }
 
@@ -51,7 +70,7 @@ function domain_history(
 function domain_hostname(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
-    $uri = `domain/dns/hostname/{$fqdn}`
+    $uri = `axon/domain/dns/hostname/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
     return(
@@ -61,7 +80,7 @@ function domain_hostname(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        )
+        ).records
     )
 }
 
@@ -69,7 +88,7 @@ function domain_hostname(
 function domain_extra(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
-    $uri = `domain/dns/extra/{$fqdn}`
+    $uri = `axon/domain/dns/extra/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
     return(
@@ -79,26 +98,50 @@ function domain_extra(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        )
+        ).records
     )
 }
 
 
 function ip_history(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
-    $uri = `ip/dns/history/{$ip}`
-    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+    $uri = `axon/ip/dns/history/{$ip}`
+
+    return(
+        $endpoint(
+            $uri,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).records
+    )
 }
 
 
 function ip_hostname(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
-    $uri = `ip/dns/hostname/{$ip}`
-    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+    $uri = `axon/ip/dns/hostname/{$ip}`
+
+    return(
+        $endpoint(
+            $uri,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).records
+    )
 }
 
 
 function ip_extra(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
-    $uri = `ip/dns/extra/{$ip}`
-    return($endpoint($uri, first_seen=$first_seen, last_seen=$last_seen, limit=$limit))
+    $uri = `axon/ip/dns/extra/{$ip}`
+
+    return(
+        $endpoint(
+            $uri,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).records
+    )
 }
 
 
@@ -106,7 +149,7 @@ function ip_extra(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
 function whois(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
-    $uri = `domain/registration/history/{$fqdn}`
+    $uri = `axon/domain/registration/history/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
     return(
@@ -116,7 +159,7 @@ function whois(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        ).registration  // this is the only record type for whois
+        ).records.registration  // this is the only record type for whois
     )
 }
 
@@ -124,7 +167,7 @@ function whois(
 function domain_certificates(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
-    $uri = `domain/certificates/{$fqdn}`
+    $uri = `axon/domain/certificates/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
     return(
@@ -134,14 +177,14 @@ function domain_certificates(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        ).ctstream
+        ).records.ctstream
     )
 }
 
 function domain_crawl_history(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=100
 ) {
-    $uri = `domain/crawl/history/{$fqdn}`
+    $uri = `axon/domain/crawl/history/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
     return(
@@ -151,14 +194,14 @@ function domain_crawl_history(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        ).crawlr
+        ).records.crawlr
     )
 }
 
 function ip_crawl_history(
     ip, first_seen=$lib.null, last_seen=$lib.null, limit=100
 ) {
-    $uri = `ip/crawl/history/{$ip}`
+    $uri = `axon/ip/crawl/history/{$ip}`
 
     return(
         $endpoint(
@@ -166,6 +209,6 @@ function ip_crawl_history(
             first_seen=$first_seen,
             last_seen=$last_seen,
             limit=$limit
-        ).crawlr
+        ).records.crawlr
     )
 }
