@@ -8,7 +8,7 @@ function connections(data) {
     // model connections data from Validin 
 
     if $data.dns {
-        $ingest_dns.dns($data.dns)
+        $ingest_dns.dns_v2($data.dns)
     }
 
     if $data.crawler {
@@ -17,5 +17,16 @@ function connections(data) {
 
     if $data.registration {
         $ingest_registration.whois($data.registration)
+    }
+}
+
+
+function crawler(records) {
+    // model crawler records from the v2 connections endpoint
+
+    $source = $ingest.get_source()
+
+    for $record in $records {
+        // todo
     }
 }

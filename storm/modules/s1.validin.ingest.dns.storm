@@ -289,6 +289,8 @@ function ptr(records) {
                 } else {
                     [inet:dns:rev = ($record.value, $record.key)]
                 }
+            } elif $record.ipv4 {  // new format
+                [inet:dns:rev = ($record.ipv4, $record.fqdn)]
             } else {  // unknown format
                 $lib.warn(`Got a PTR record in unknown format: {$record}`)
                 continue

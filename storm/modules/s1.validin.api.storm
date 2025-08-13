@@ -33,7 +33,7 @@ function domain_connections(
     $uri = `v2/domain/combined/connections/{$fqdn}`
     $params = ({"wildcard": $wildcard})
 
-    return (
+    return(
         $endpoint(
             $uri,
             params=$params,
@@ -42,6 +42,38 @@ function domain_connections(
             limit=$limit,
         )
     )
+}
+
+
+// content endpoints
+function html_content(sha1) {
+    $uri = `axon/hash/content/html/sha1/{$sha1}`
+    $response = $endpoint($uri)
+
+    if $response.result {
+        return($lib.base64.decode($response.result))
+    }
+
+    return($lib.null)
+}
+
+
+function cert_content(sha1) {
+    $uri = `axon/hash/content/html/sha1/{$sha1}`
+    $response = $endpoint($uri)
+
+    if $response.pem {
+        return($lib.base64.decode($response.pem.slice(28, -27)))
+    }
+
+    return($lib.null)
+}
+
+
+function favicon_content(md5) {
+    $uri = `axon/hash/content/favicon/md5/{$md5}`
+    $response = $endpoint(uri)
+    // TODO: parse response and return bytes
 }
 
 
