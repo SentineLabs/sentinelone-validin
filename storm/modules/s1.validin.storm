@@ -202,7 +202,7 @@ function enrich(fqdn, options) {
     // enrich an fqdn with dns, crawler, and registration data
 
     $data = $api.domain_connections(
-        $fqdn
+        $fqdn,
         first_seen=$options.first_seen,
         last_seen=$options.last_seen,
         wildcard=$options.wildcard,
