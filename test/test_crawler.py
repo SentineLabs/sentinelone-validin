@@ -12,7 +12,7 @@ class TestCrawler(s_t_utils.SynTest):
         mocked.get(
             re.compile(f'^{re.escape(BASE_URL + 'axon/domain/crawl/history/'+'www.validin.com')}'),
             status=200,
-            body=get_mock_file_content('domain_crawl_history_www.validin.com.json')
+            body=get_mock_file_content('axon_domain_crawl_history_www.validin.com.json')
         )
 
         pkgdef = genpkg.loadPkgProto(SYNAPSE_PACKAGE_YAML)
@@ -36,7 +36,7 @@ class TestCrawler(s_t_utils.SynTest):
         mocked.get(
             re.compile(f'^{BASE_URL + 'axon/ip/crawl/history/'+'138.197.40.194'}'),
             status=200,
-            body=get_mock_file_content('ip_crawl_history_138.197.40.194.json')
+            body=get_mock_file_content('axon_ip_crawl_history_138.197.40.194.json')
         )
 
         pkgdef = genpkg.loadPkgProto(SYNAPSE_PACKAGE_YAML)

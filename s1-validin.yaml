@@ -4,7 +4,7 @@ version: 2.0.0
 synapse_version: '>=2.144.0,<3.0.0'
 
 genopts:
-    dotstorm: true # Specify that storm command/module files end with ".storm"
+    dotstorm: true 
 
 author:
   url: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin
@@ -144,10 +144,13 @@ commands:
 
   - name: s1.validin.enrich
     descr: |
-      Enrich an FQDN with DNS, crawler, and registration data.
+      Enrich an FQDN with DNS, crawler, and WHOIS records.
 
       This command accepts the following input node forms:
         - inet:fqdn
+
+      // get all enrich records for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.enrich
 
     cmdargs:
       - - --first-seen
@@ -163,7 +166,6 @@ commands:
       - - --yield
         - type: bool
           action: store_true
-
 
 optic:
   actions:
@@ -197,6 +199,6 @@ optic:
       forms: [inet:fqdn, inet:ipv4, inet:ipv6]
     - name: enrich
       storm: s1.validin.enrich
-      descr: Enrich an FQDN with DNS, crawler, and registration data.
+      descr: Enrich with DNS, crawler, and WHOIS records.
       forms: [inet:fqdn]
       
