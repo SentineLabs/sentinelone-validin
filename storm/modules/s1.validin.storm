@@ -198,17 +198,17 @@ function http_ip(ip, options) {
 }
 
 
-function enrich(fqdn, options) {
+function enrich(fqdn_node, options) {
     // enrich an fqdn with dns, crawler, and registration data
-
     $data = $api.domain_connections(
-        $fqdn,
+        $fqdn_node.repr(),
         first_seen=$options.first_seen,
         last_seen=$options.last_seen,
         wildcard=$options.wildcard,
         limit=$options.limit
     )
-
     // model data
-    $ingest_connections.connections($data)
+    $ingest_dns.dns_v2($data.dns)
+    $ingest_crawlr.crawlr($data.crawler)
+    $ingest_registration.whois($data.registration)
 }

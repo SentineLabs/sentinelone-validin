@@ -64,8 +64,15 @@ function dns_v2(records) {
             "TXT": {$type_func = $txt}
             *: {continue}
         }
-
-        yield $type_func(([$record])) [<(seen)+ $source]
+        $compatible_param = ([(
+            {
+                "key" : $record.rrname,
+                "value" : $record.rdata,
+                "first_seen" : $record.time_first,
+                "last_seen" : $record.time_first,
+            }
+        )])
+        yield $type_func($compatible_param) [<(seen)+ $source]
     }
 }
 
@@ -81,8 +88,6 @@ function a(records) {
                 } else {  // value is the inet:ipv4
                     [inet:dns:a = ($record.key, $record.value)]
                 }
-            } elif $record.rrname {  // new format
-                [inet:dns:a = ($record.rrname, $record.rdata)]
             } else {  // unknown format
                 $lib.warn(`Got an A record in unknown format: {$record}`)
                 continue
@@ -111,8 +116,6 @@ function aaaa(records) {
                 } else {  // value is the inet:ipv6
                     [inet:dns:aaaa = ($record.key, $record.value)]
                 }
-            } elif $record.rrname {  // new format
-                [inet:dns:aaaa = ($record.rrname, $record.rdata)]
             } else {  // unknown format
                 $lib.warn(`Got an AAAA record in unknown format: {$record}`)
                 continue
@@ -185,8 +188,6 @@ function mx(records) {
         try {
             if $record.key {  // old format
                 [inet:dns:mx = ($record.key, $record.value)]
-            } elif $record.rrname {  // new format
-                [inet:dns:mx = ($record.rrname, $record.rdata)]
             } else {  // unknown format
                 $lib.warn(`Got an MX record in unknown format: {$record}`)
                 continue
@@ -235,8 +236,6 @@ function ns(records) {
         try {
             if $record.key {  // old format
                 [inet:dns:ns = ($record.key, $record.value)]
-            } elif $record.rrname {  // new format
-                [inet:dns:ns = ($record.rrname, $record.rdata)]
             } else {  // unknown format
                 $lib.warn(`Got an NS record in unknown format: {$record}`)
                 continue
@@ -289,8 +288,6 @@ function ptr(records) {
                 } else {
                     [inet:dns:rev = ($record.value, $record.key)]
                 }
-            } elif $record.ipv4 {  // new format
-                [inet:dns:rev = ($record.ipv4, $record.fqdn)]
             } else {  // unknown format
                 $lib.warn(`Got a PTR record in unknown format: {$record}`)
                 continue
@@ -320,8 +317,6 @@ function txt(records) {
         try {
             if $record.key {  // old format
                 [inet:dns:txt = ($record.key, $record.value)]
-            } elif $record.rrname { // new format
-                [inet:dns:txt = ($record.rrname, $record.rdata)]
             } else {  // unknown format
                 $lib.warn(`Got a TXT record in unknown format: {$record}`)
                 continue
@@ -330,7 +325,6 @@ function txt(records) {
             $lib.warn(`Failed to model TXT record: {$record}`)
             continue
         }
-
         // set the .seen property
         $first = ($record.first_seen * 1000)
         $last = ($record.last_seen * 1000)

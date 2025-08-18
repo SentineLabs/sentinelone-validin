@@ -6,10 +6,12 @@ function crawlr(records) {
     $source = $ingest.get_source()
 
     for $record in $records {
-        $first_seen = ($record.first_seen * 1000)
-        $last_seen = ($record.last_seen * 1000)
-
         $value = $record.value
+        
+        // v2 format (value only)
+        if ($record.value = $lib.null) {
+            $value = $record
+        }
 
         $time = $value.time
         $parsedTime = $lib.cast(time, $time)
@@ -120,11 +122,14 @@ function crawlr(records) {
                         :identities:fqdns?=$fqdns
                         :ext:sans?=$sans
                 )
-                (
-                    inet:ssl:jarmsample=($server,$value.cert_details.jarm)
-                )
             ] 
+            if ($value.cert_details.jarm != $lib.null) {
+                [
+                    (
+                        inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                    )
+                ]
+            }
         }
-        [<(seen)+ $source]
     }
 }
