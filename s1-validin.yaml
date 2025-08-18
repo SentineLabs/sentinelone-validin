@@ -142,6 +142,28 @@ commands:
         - type: bool
           action: store_true
 
+  - name: s1.validin.enrich
+    descr: |
+      Enrich an FQDN with DNS, crawler, and registration data.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+
+    cmdargs:
+      - - --first-seen
+        - type: time
+      - - --last-seen
+        - type: time
+      - - --wildcard
+        - type: bool
+          action: store_true
+      - - --limit
+        - type: int
+          default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
+
 
 optic:
   actions:
@@ -173,3 +195,8 @@ optic:
       storm: s1.validin.http
       descr: Get HTTP Crawling history.
       forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: enrich
+      storm: s1.validin.enrich
+      descr: Enrich an FQDN with DNS, crawler, and registration data.
+      forms: [inet:fqdn]
+      
