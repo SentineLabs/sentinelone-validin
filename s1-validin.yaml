@@ -24,6 +24,7 @@ perms:
 modules:
   - name: s1.validin
   - name: s1.validin.api
+  - name: s1.validin.download
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr
   - name: s1.validin.ingest.ctstream
@@ -167,6 +168,21 @@ commands:
         - type: bool
           action: store_true
 
+  - name: s1.validin.download
+    descr: |
+      Download a certificate.
+
+      This command accepts the following input node forms:
+        - crypto:x509:cert
+
+      // download a certificate for an crypto:x509:cert node
+      crypto:x509:cert=<xyz> | s1.validin.download
+
+    cmdargs:
+      - - --yield
+        - type: bool
+          action: store_true
+
 optic:
   actions:
     - name: dns
@@ -201,4 +217,9 @@ optic:
       storm: s1.validin.enrich
       descr: Enrich with DNS, crawler, and WHOIS records.
       forms: [inet:fqdn]
+    - name: download and parse
+      storm: s1.validin.download --yield | fileparser.parse
+      descr: Download a certificate and parse it.
+      forms: [crypto:x509:cert]
+      
       

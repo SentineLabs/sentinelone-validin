@@ -59,11 +59,12 @@ function html_content(sha1) {
 
 
 function cert_content(sha1) {
-    $uri = `axon/hash/content/html/sha1/{$sha1}`
+    $uri = `axon/hash/content/certificate/sha1/{$sha1}`
     $response = $endpoint($uri)
 
     if $response.pem {
-        return($lib.base64.decode($response.pem.slice(28, -27)))
+        //return($lib.base64.decode($response.pem.slice(28, -27)))
+        return($response.pem.encode())
     }
 
     return($lib.null)

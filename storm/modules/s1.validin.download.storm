@@ -1,0 +1,22 @@
+$api = $lib.import(s1.validin.api)
+$ingest = $lib.import(s1.validin.ingest)
+
+function download(inode, options) {
+    $form = $inode.form()
+    $result = $lib.null
+    switch $form {
+        "crypto:x509:cert": {$result = $download_x509_cert($inode, $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+    yield $result
+}
+
+function download_x509_cert(x509_cert, options) {
+    $source = $ingest.get_source()
+
+    $bytes = $api.cert_content(
+        $x509_cert.props.sha1,
+    )
+    ($size, $sha256) = $lib.axon.put($bytes)
+    [file:bytes=$sha256 <(seen)- {$source}]
+}

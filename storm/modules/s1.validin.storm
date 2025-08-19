@@ -4,6 +4,7 @@ $ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
 $ingest_ctstream = $lib.import(s1.validin.ingest.ctstream)
 $ingest_dns = $lib.import(s1.validin.ingest.dns)
 $ingest_registration = $lib.import(s1.validin.ingest.registration)
+$_download = $lib.import(s1.validin.download)
 
 
 function dns(fqdn_or_ip, options) {
@@ -212,3 +213,5 @@ function enrich(fqdn_node, options) {
     $ingest_crawlr.crawlr($data.crawler)
     $ingest_registration.whois($data.registration)
 }
+
+$download = $_download.download

@@ -19,7 +19,7 @@ function base_get(uri, params) {
         // Use the API key on the callers behalf
         $response = $lib.inet.http.get($url, headers=$headers, params=$params)
         $sleep = ($base ** $i)
-
+        
         if ($response.code = 200) {
             return($response.json())
 
@@ -30,7 +30,7 @@ function base_get(uri, params) {
             )
             $lib.time.sleep($sleep)
 
-        } elif (500 <= $response.code < 600) {
+        } elif (500 <= $response.code and $response.code < 600) {
             // server error, sleep and retry
             $lib.warn(
                 `{$url} returned HTTP code {$response.code}, sleeping {$sleep} seconds and retrying`
@@ -41,7 +41,7 @@ function base_get(uri, params) {
             // client error, raise
             // TODO: inspect the response for an error message
             $msg = `{$url} returned HTTP code {$response.code}`
-            $lib.raise("HTTPResponseError", $msg, response=$response)
+            $lib.raise("HTTPResponseError", $msg, reason=$response.reason)
         }
     }
 
