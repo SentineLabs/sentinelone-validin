@@ -97,6 +97,7 @@ function crawlr(records) {
                     :_s1:validin:response:bodyhash ?= $value.body_hash
                     :_s1:validin:response:faviconhash ?= $value.favicon_hash
             )
+            <(seen)+ $source
         ]
 
         if($value.error != $lib.null) {

@@ -123,6 +123,10 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+
+      - - --download
+        - type: bool
+          action: store_true
   
   - name: s1.validin.http
     descr: |
@@ -145,6 +149,9 @@ commands:
         - type: int
           default: 20000
       - - --yield
+        - type: bool
+          action: store_true
+      - - --download
         - type: bool
           action: store_true
 
@@ -226,5 +233,9 @@ optic:
       storm: s1.validin.download --yield | fileparser.parse
       descr: Download a certificate and parse it.
       forms: [crypto:x509:cert]
+    - name: download 
+      storm: s1.validin.download --yield
+      descr: Download favicon and body and parse it. 
+      forms: [inet:http:request]
       
       
