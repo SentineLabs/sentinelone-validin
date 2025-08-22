@@ -1,0 +1,18 @@
+init {
+    $privsep = $lib.import(s1.validin.privsep, debug=$lib.debug)
+
+    if ($cmdopts.self) {
+        $lib.print("Setting Validin API key for the current user.")
+    } else {
+        $lib.print("Setting Validin API key for all users.")
+    }
+
+    $key_status_ok = $privsep.setApiKey($cmdopts.apikey, $cmdopts.self)
+
+    if ($key_status_ok) {
+        if ($lib.debug) {$lib.print("Validin API key set successfully")}
+    } else {
+        $lib.warn("Failed setting the key for the Validin API. Check if the token you provided is valid.")
+    }
+
+}
