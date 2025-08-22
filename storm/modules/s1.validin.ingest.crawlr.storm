@@ -94,8 +94,8 @@ function crawlr(records) {
                     :response:code ?= $response_code
                     :response:reason ?= $response_reason
                     :method='GET'
-                    :_s1:validin:response:bodyhash ?= $value.body_hash
-                    :_s1:validin:response:faviconhash ?= $value.favicon_hash
+                    :_s1:validin:response:body_hash ?= $value.body_hash
+                    :_s1:validin:response:favicon_hash ?= $value.favicon_hash
             )
             <(seen)+ $source
         ]

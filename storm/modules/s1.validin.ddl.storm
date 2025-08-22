@@ -1,20 +1,20 @@
 function update_forms() {
     $lib.model.ext.addFormProp(
         inet:http:request,
-        '_s1:validin:response:bodyhash',
+        '_s1:validin:response:body_hash',
         (hash:sha1, ({})),
-        ({"doc":'SHA1 hashed response body.' })
+        ({"doc":'SHA1 body hash observed by Validin crawler.' })
     )
     $lib.model.ext.addFormProp(
         inet:http:request,
-        '_s1:validin:response:faviconhash',
+        '_s1:validin:response:favicon_hash',
         (hash:md5, ({})),
-        ({"doc":'MD5 hashed favicon.' })
+        ({"doc":'MD5 favicon hash observed by Validin crawler.' })
     )
     $lib.model.ext.addFormProp(
         inet:http:request,
         '_s1:validin:response:favicon',
         (file:bytes, ({})),
-        ({"doc":'Favicon bytes.' })
+        ({"doc":'Favicon bytes observed by Validin crawler.' })
     )
 }
