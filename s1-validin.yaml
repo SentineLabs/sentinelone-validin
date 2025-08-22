@@ -1,5 +1,5 @@
 name: s1-validin
-version: 2.0.0
+version: 3.0.0
 
 synapse_version: '>=2.144.0,<3.0.0'
 
@@ -13,6 +13,14 @@ author:
 desc: s1-validin is a rapid power-up for Validin.
 
 docs:
+  - title: Changelog
+    path: docs/changelog.md
+  - title: Admin Guide
+    path: docs/admin_guide.md
+  - title: User Guide  
+    path: docs/user_guide.md
+  - title: Package Documentation
+    path: docs/package_documentation.md
   - title: Validin Crawler
     path: docs/crawlr.md
 
