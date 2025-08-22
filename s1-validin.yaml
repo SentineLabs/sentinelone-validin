@@ -16,6 +16,10 @@ docs:
   - title: Validin Crawler
     path: docs/crawlr.md
 
+
+onload: | 
+  $lib.import("s1.validin.ddl").update_forms()
+
 perms:
   - perm: [s1, validin, user]
     gate: cortex
@@ -24,6 +28,7 @@ perms:
 modules:
   - name: s1.validin
   - name: s1.validin.api
+  - name: s1.validin.ddl
   - name: s1.validin.download
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr

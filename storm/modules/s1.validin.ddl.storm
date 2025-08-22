@@ -1,0 +1,20 @@
+function update_forms() {
+    $lib.model.ext.addFormProp(
+        inet:http:request,
+        '_s1:validin:response:bodyhash',
+        (hash:sha1, ({})),
+        ({"doc":'SHA1 hashed response body.' })
+    )
+    $lib.model.ext.addFormProp(
+        inet:http:request,
+        '_s1:validin:response:faviconhash',
+        (hash:md5, ({})),
+        ({"doc":'MD5 hashed favicon.' })
+    )
+    $lib.model.ext.addFormProp(
+        inet:http:request,
+        '_s1:validin:response:favicon',
+        (file:bytes, ({})),
+        ({"doc":'Favicon bytes.' })
+    )
+}

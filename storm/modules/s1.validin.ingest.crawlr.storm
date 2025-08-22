@@ -94,6 +94,8 @@ function crawlr(records) {
                     :response:code ?= $response_code
                     :response:reason ?= $response_reason
                     :method='GET'
+                    :_s1:validin:response:bodyhash ?= $value.body_hash
+                    :_s1:validin:response:faviconhash ?= $value.favicon_hash
             )
         ]
 
@@ -111,24 +113,28 @@ function crawlr(records) {
                 $sans.append(('dns', $domain))
             }
             
-            [ 
-                (
-                    crypto:x509:cert=($value.cert_fingerprint_sha256,)
-                        :sha256=$value.cert_fingerprint_sha256
-                        :sha1=$value.cert_details.fingerprint
-                        :issuer=$value.cert.cert_issuer.O
-                        :validity:notbefore=$value.cert.not_before
-                        :validity:notafter=$value.cert.not_after
-                        :identities:fqdns?=$fqdns
-                        :ext:sans?=$sans
-                )
-            ] 
-            if ($value.cert_details.jarm != $lib.null) {
-                [
+            {
+                [ 
                     (
-                        inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                        crypto:x509:cert=($value.cert_fingerprint_sha256,)
+                            :sha256=$value.cert_fingerprint_sha256
+                            :sha1=$value.cert_details.fingerprint
+                            :issuer=$value.cert.cert_issuer.O
+                            :validity:notbefore=$value.cert.not_before
+                            :validity:notafter=$value.cert.not_after
+                            :identities:fqdns?=$fqdns
+                            //:ext:sans?=$sans
                     )
-                ]
+                ] 
+            }
+            if ($value.cert_details.jarm != $lib.null) {
+                {
+                    [
+                        (
+                            inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                        )
+                    ]
+                }
             }
         }
     }
