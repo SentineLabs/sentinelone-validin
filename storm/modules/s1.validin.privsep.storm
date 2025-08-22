@@ -1,22 +1,74 @@
+function getApiKey() {
+    // see if the user has their own key set
+    $apikey = $lib.user.vars.get("s1:validin:apikey")
+    if ($apikey) {
+        return($apikey)
+    }
+
+    // no user key, check for global
+    $apikey = $lib.globals.get("s1:validin:apikey")
+    if ($apikey) {
+        return($apikey)
+    }
+ 
+    return($lib.false)
+}
+
+function setApiKey(key, self) {
+    if ($self) {
+        $lib.user.vars.set("s1:validin:apikey", $key)
+    } else {
+        $lib.globals.set("s1:validin:apikey", $key)
+    }
+    return($checkApiKey())
+}
+
+
+function checkApiKey() {
+    $resp = $base_get("ping",{})
+        
+    if ($resp.status = "OK") {
+        return($lib.true)
+    } else {
+        return($lib.false)
+    }
+}
+
+function getApiHostname() {
+    $hostname = $lib.globals.get("s1:validin:apihostname")
+    if ($hostname) {
+        return($hostname)
+    }
+    return("pilot.validin.com")
+}
+
+function setApiHostname(hostname) {
+    ($ok, $hostname_normalised) = $lib.trycast(inet:fqdn, $hostname)
+    if ($ok) {
+        $lib.globals.set("s1:validin:apihostname", $hostname)
+        return($lib.true)
+    } else {
+        $lib.warn("Failed to set Validin Api hostname {$hostname}")
+        return($lib.false)
+    }
+    
+}
+
 function base_get(uri, params) {
     // base http request for the validin api
-
-    // Retrieve an API key from protected storage
-    $apikey = $lib.globals.get(s1:validin:apikey)
-
     $headers = ({
-        "Authorization": `BEARER {$apikey}`,
+        "Authorization": `BEARER {$getApiKey()}`,
         "content-type": "application/json",
     })
 
-    $url = `https://pilot.validin.com/api/{$uri}`
+    $url = `https://{$getApiHostname()}/api/{$uri}`
 
     // exponential backoff
     $attempts = 5  // max attempts
     $base = 5      // base value
 
     for $i in $lib.range(($attempts + 1), start=1) {
-        // Use the API key on the callers behalf
+        // Use the Api key on the callers behalf
         $response = $lib.inet.http.get($url, headers=$headers, params=$params)
         $sleep = ($base ** $i)
         
