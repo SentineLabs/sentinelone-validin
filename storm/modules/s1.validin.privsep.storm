@@ -9,7 +9,7 @@ function base_get(uri, params) {
         "content-type": "application/json",
     })
 
-    $url = `https://pilot.validin.com/api/axon/{$uri}`
+    $url = `https://pilot.validin.com/api/{$uri}`
 
     // exponential backoff
     $attempts = 5  // max attempts
