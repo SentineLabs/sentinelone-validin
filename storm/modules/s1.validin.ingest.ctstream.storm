@@ -36,7 +36,7 @@ function domain_certificates(records) {
                 :validity:notafter=$notafter
                 :identities:fqdns?=$fqdns
                 :identities:urls?=$urls
-                :ext:sans?=$sans
+                //:ext:sans?=$sans
 
             <(seen)+ $source
         ]

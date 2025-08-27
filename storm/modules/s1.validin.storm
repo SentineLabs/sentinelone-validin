@@ -4,6 +4,7 @@ $ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
 $ingest_ctstream = $lib.import(s1.validin.ingest.ctstream)
 $ingest_dns = $lib.import(s1.validin.ingest.dns)
 $ingest_registration = $lib.import(s1.validin.ingest.registration)
+$_download = $lib.import(s1.validin.download)
 
 
 function dns(fqdn_or_ip, options) {
@@ -70,7 +71,7 @@ function dns_fqdn(fqdn, options) {
     }
 
     // model records
-    $ingest_dns.dns($records)
+    yield $ingest_dns.dns($records)
 }
 
 
@@ -122,7 +123,7 @@ function dns_ip(ip, options) {
     }
 
     // model records
-    $ingest_dns.dns($records)
+    yield $ingest_dns.dns($records)
 }
 
 
@@ -138,7 +139,7 @@ function whois(fqdn, options) {
     )
 
     // model records
-    $ingest_registration.whois($records)
+    yield $ingest_registration.whois($records)
 }
 
 function certificates(fqdn, options) {
@@ -153,7 +154,7 @@ function certificates(fqdn, options) {
     )
 
     // model records
-    $ingest_ctstream.domain_certificates($records)
+    yield $ingest_ctstream.domain_certificates($records)
 }
 
 function http(fqdn_or_ip, options) {
@@ -161,11 +162,14 @@ function http(fqdn_or_ip, options) {
 
     $form = $fqdn_or_ip.form()
 
+    $res = $lib.null
     switch $form {
-        "inet:fqdn": {$http_fqdn($fqdn_or_ip.repr(), $options)}
-        ("inet:ipv4", "inet:ipv6"): {$http_ip($fqdn_or_ip.repr(), $options)}
+        "inet:fqdn": { $res = $http_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): { $res = $http_ip($fqdn_or_ip.repr(), $options)}
         *: {$lib.warn(`{$form} not supported`)}
     }
+
+    yield $res
 }
 
 function http_fqdn(fqdn, options) {
@@ -179,7 +183,7 @@ function http_fqdn(fqdn, options) {
     )
 
     // model records
-    $ingest_crawlr.crawlr($records)
+    yield $ingest_crawlr.crawlr($records)
 }
 
 
@@ -194,7 +198,7 @@ function http_ip(ip, options) {
     )
 
     // model records
-    $ingest_crawlr.crawlr($records)
+    yield $ingest_crawlr.crawlr($records)
 }
 
 
@@ -208,7 +212,10 @@ function enrich(fqdn_node, options) {
         limit=$options.limit
     )
     // model data
-    $ingest_dns.dns_v2($data.dns)
-    $ingest_crawlr.crawlr($data.crawler)
-    $ingest_registration.whois($data.registration)
+    $res1 = $ingest_dns.dns_v2($data.dns)
+    $res2 =$ingest_crawlr.crawlr($data.crawler)
+    $res3 =$ingest_registration.whois($data.registration)
+    yield ($res1, $res2, $res3) | uniq  
 }
+
+$download = $_download.download

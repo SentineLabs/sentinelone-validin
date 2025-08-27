@@ -16,6 +16,10 @@ docs:
   - title: Validin Crawler
     path: docs/crawlr.md
 
+
+onload: | 
+  $lib.import("s1.validin.ddl").update_forms()
+
 perms:
   - perm: [s1, validin, user]
     gate: cortex
@@ -24,6 +28,8 @@ perms:
 modules:
   - name: s1.validin
   - name: s1.validin.api
+  - name: s1.validin.ddl
+  - name: s1.validin.download
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr
   - name: s1.validin.ingest.ctstream
@@ -34,6 +40,43 @@ modules:
       - [s1, validin, user]
 
 commands:
+  - name: s1.validin.setup.apikey
+    descr: Set the API key to use with validin (required)
+    perms:
+      - [s1, validin, user]
+    cmdargs:
+      - - apikey
+        - type: str
+          help: The API Key
+      - - --self
+        - type: bool
+          default: false
+          action: store_true
+          help: Set the key as a user variable. If not used, the key is set globally.
+  
+  - name: s1.validin.setup.apikey
+    descr: Set the API key to use with validin (required)
+    perms:
+      - [s1, validin, user]
+    cmdargs:
+      - - apikey
+        - type: str
+          help: The API Key
+      - - --self
+        - type: bool
+          default: false
+          action: store_true
+          help: Set the key as a user variable. If not used, the key is set globally.
+  - name: s1.validin.setup.apihostname
+    descr: Set the API hostname used for making API requests. Defaults to `pilot.validin.com`
+    perms:
+      - [s1, validin, user]
+    cmdargs:
+      - - hostname
+        - type: str
+          default: pilot.validin.com
+          help: The domain hostname to use.
+ 
   - name: s1.validin.dns
     descr: |
       Get DNS records.
@@ -117,6 +160,10 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+
+      - - --download
+        - type: bool
+          action: store_true
   
   - name: s1.validin.http
     descr: |
@@ -141,6 +188,9 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+      - - --download
+        - type: bool
+          action: store_true
 
   - name: s1.validin.enrich
     descr: |
@@ -163,6 +213,21 @@ commands:
       - - --limit
         - type: int
           default: 20000
+      - - --yield
+        - type: bool
+          action: store_true
+
+  - name: s1.validin.download
+    descr: |
+      Download a certificate.
+
+      This command accepts the following input node forms:
+        - crypto:x509:cert
+
+      // download a certificate for an crypto:x509:cert node
+      crypto:x509:cert=<xyz> | s1.validin.download
+
+    cmdargs:
       - - --yield
         - type: bool
           action: store_true
@@ -201,4 +266,13 @@ optic:
       storm: s1.validin.enrich
       descr: Enrich with DNS, crawler, and WHOIS records.
       forms: [inet:fqdn]
+    - name: download and parse
+      storm: s1.validin.download --yield | fileparser.parse
+      descr: Download a certificate and parse it.
+      forms: [crypto:x509:cert]
+    - name: download 
+      storm: s1.validin.download --yield
+      descr: Download favicon and body and parse it. 
+      forms: [inet:http:request]
+      
       

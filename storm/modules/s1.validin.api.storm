@@ -59,11 +59,11 @@ function html_content(sha1) {
 
 
 function cert_content(sha1) {
-    $uri = `axon/hash/content/html/sha1/{$sha1}`
+    $uri = `axon/hash/content/certificate/sha1/{$sha1}`
     $response = $endpoint($uri)
 
     if $response.pem {
-        return($lib.base64.decode($response.pem.slice(28, -27)))
+        return($response.pem.encode())
     }
 
     return($lib.null)
@@ -72,8 +72,11 @@ function cert_content(sha1) {
 
 function favicon_content(md5) {
     $uri = `axon/hash/content/favicon/md5/{$md5}`
-    $response = $endpoint(uri)
-    // TODO: parse response and return bytes
+    $response = $endpoint($uri)
+    if $response.result {
+        return($lib.base64.decode($response.result))
+    }
+    return($lib.null)
 }
 
 
