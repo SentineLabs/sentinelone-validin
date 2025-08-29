@@ -26,7 +26,7 @@ docs:
 
 
 onload: | 
-  $lib.import("s1.validin.ddl").update_forms()
+  $lib.import("s1.validin.model").update_forms()
 
 perms:
   - perm: [s1, validin, user]
@@ -36,7 +36,7 @@ perms:
 modules:
   - name: s1.validin
   - name: s1.validin.api
-  - name: s1.validin.ddl
+  - name: s1.validin.model
   - name: s1.validin.download
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr
