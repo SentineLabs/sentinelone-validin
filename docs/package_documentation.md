@@ -17,9 +17,9 @@
 | `s1.validin.privsep` | Privilege separation |
 
 ### Data Model Extensions
-- `inet:http:request._s1:validin:response:body_hash` - SHA1 of crawled body
-- `inet:http:request._s1:validin:response:favicon_hash` - MD5 of favicon
+- `inet:http:request._s1:validin:response:body:sha1` - SHA1 of crawled body
 - `inet:http:request._s1:validin:response:favicon` - Favicon bytes
+- `inet:http:request._s1:validin:response:favicon:md5` - MD5 of favicon
 
 ## API Integration
 
