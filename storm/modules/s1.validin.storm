@@ -108,6 +108,7 @@ function dns_ip(ip, options) {
         $lib.warn($error)
     }
 
+    /* currently, no data from this endpoint is modeled
     try {
         $lib.dict.update(
             $records,
@@ -121,6 +122,7 @@ function dns_ip(ip, options) {
     } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
         $lib.warn($error)
     }
+    */
 
     // model records
     yield $ingest_dns.dns($records)
