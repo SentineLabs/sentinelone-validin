@@ -64,14 +64,26 @@ function dns_v2(records) {
             "TXT": {$type_func = $txt}
             *: {continue}
         }
-        $compatible_param = ([(
-            {
-                "key" : $record.rrname,
-                "value" : $record.rdata,
-                "first_seen" : $record.time_first,
-                "last_seen" : $record.time_first,
-            }
-        )])
+
+        if ($record.rrtype = "PTR") {
+            $compatible_param = ([(
+                {
+                    "key" : $record.fqdn,
+                    "value" : $record.ipv4,
+                    "first_seen" : $record.time_first,
+                    "last_seen" : $record.time_first,
+                }
+            )])
+        } else {
+            $compatible_param = ([(
+                {
+                    "key" : $record.rrname,
+                    "value" : $record.rdata,
+                    "first_seen" : $record.time_first,
+                    "last_seen" : $record.time_first,
+                }
+            )])
+        }
         yield $type_func($compatible_param) [<(seen)+ $source]
     }
 }

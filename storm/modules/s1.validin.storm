@@ -161,8 +161,8 @@ function http(fqdn_or_ip, options) {
     // get dns records for an fqdn or ip address
 
     $form = $fqdn_or_ip.form()
-
     $res = $lib.null
+
     switch $form {
         "inet:fqdn": { $res = $http_fqdn($fqdn_or_ip.repr(), $options)}
         ("inet:ipv4", "inet:ipv6"): { $res = $http_ip($fqdn_or_ip.repr(), $options)}
@@ -211,11 +211,13 @@ function enrich(fqdn_node, options) {
         wildcard=$options.wildcard,
         limit=$options.limit
     )
+
     // model data
     $res1 = $ingest_dns.dns_v2($data.dns)
-    $res2 =$ingest_crawlr.crawlr($data.crawler)
-    $res3 =$ingest_registration.whois($data.registration)
+    $res2 = $ingest_crawlr.crawlr($data.crawler)
+    $res3 = $ingest_registration.whois($data.registration)
     yield ($res1, $res2, $res3) | uniq  
 }
+
 
 $download = $_download.download

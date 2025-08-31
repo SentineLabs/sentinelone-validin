@@ -1,0 +1,16 @@
+function set_global_api_key(key) {
+    $lib.globals.set("s1:validin:apikey", $key)
+}
+
+
+function set_api_hostname(hostname) {
+    ($ok, $hostname_normalised) = $lib.trycast(inet:fqdn, $hostname)
+
+    if $ok {
+        $lib.globals.set("s1:validin:apihostname", $hostname_normalised)
+        return($lib.true)
+    }
+
+    $lib.warn(`Failed to set Validin API hostname {$hostname}`)
+    return($lib.false)
+}

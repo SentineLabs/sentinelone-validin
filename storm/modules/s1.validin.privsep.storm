@@ -1,67 +1,64 @@
-function getApiKey() {
+function get_api_key() {
     // see if the user has their own key set
     $apikey = $lib.user.vars.get("s1:validin:apikey")
-    if ($apikey) {
+
+    if $apikey {
         return($apikey)
     }
 
     // no user key, check for global
     $apikey = $lib.globals.get("s1:validin:apikey")
-    if ($apikey) {
+
+    if $apikey {
         return($apikey)
     }
  
     return($lib.false)
 }
 
-function setApiKey(key, self) {
-    if ($self) {
-        $lib.user.vars.set("s1:validin:apikey", $key)
+
+function set_api_key(key, global=$lib.false) {
+    if $global {
+        $admin = $lib.import(s1.validin.privsep.admin)
+        $admin.set_global_api_key($key)
     } else {
-        $lib.globals.set("s1:validin:apikey", $key)
+        $lib.user.vars.set("s1:validin:apikey", $key)
     }
-    return($checkApiKey())
+
+    return($check_api_key())
 }
 
 
-function checkApiKey() {
-    $resp = $base_get("ping",{})
+function check_api_key() {
+    $resp = $base_get("ping", {})
         
     if ($resp.status = "OK") {
         return($lib.true)
-    } else {
-        return($lib.false)
     }
+
+    return($lib.false)
 }
 
-function getApiHostname() {
+
+function get_api_hostname() {
     $hostname = $lib.globals.get("s1:validin:apihostname")
+
     if ($hostname) {
         return($hostname)
     }
+
     return("pilot.validin.com")
 }
 
-function setApiHostname(hostname) {
-    ($ok, $hostname_normalised) = $lib.trycast(inet:fqdn, $hostname)
-    if ($ok) {
-        $lib.globals.set("s1:validin:apihostname", $hostname)
-        return($lib.true)
-    } else {
-        $lib.warn("Failed to set Validin Api hostname {$hostname}")
-        return($lib.false)
-    }
-    
-}
 
 function base_get(uri, params) {
     // base http request for the validin api
     $headers = ({
-        "Authorization": `BEARER {$getApiKey()}`,
+        "Authorization": `BEARER {$get_api_key()}`,
         "content-type": "application/json",
     })
 
-    $url = `https://{$getApiHostname()}/api/{$uri}`
+    $url = `https://{$get_api_hostname()}/api/{$uri}`
 
     // exponential backoff
     $attempts = 5  // max attempts
@@ -71,7 +68,7 @@ function base_get(uri, params) {
         // Use the Api key on the callers behalf
         $response = $lib.inet.http.get($url, headers=$headers, params=$params)
         $sleep = ($base ** $i)
-        
+
         if ($response.code = 200) {
             return($response.json())
 
