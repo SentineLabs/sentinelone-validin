@@ -1,5 +1,6 @@
 $ingest = $lib.import(s1.validin.ingest)
 
+
 function dns(records) {
     // model DNS records from validin
 
@@ -88,6 +89,7 @@ function dns_v2(records) {
         yield $type_func($compatible_param) [<(seen)+ $source]
     }
 }
+
 
 function set_seen_ival(inode, record) {
     // set the .seen property from records
@@ -273,4 +275,3 @@ function txt(records) {
         $set_seen_ival($node, $record)
     }
 }
-

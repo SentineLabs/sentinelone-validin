@@ -1,5 +1,6 @@
 function update_forms() {
     $existing_props = ()
+
     for $i in $lib.model.ext.getExtModel().props {
        $existing_props.append(`{$i.0}:{$i.1}`)
     }
@@ -21,6 +22,7 @@ function update_forms() {
             ({"doc":'MD5 favicon hash observed by Validin crawler.' })
         )
     }
+
     if (not $existing_props.has('inet:http:request:_s1:validin:response:favicon')) {
         $lib.model.ext.addFormProp(
             inet:http:request,

@@ -21,7 +21,7 @@ function download(inode, options) {
 function download_cert(x509_cert, options) {
     $source = $ingest.get_source()
 
-    if($x509_cert.props.file = $lib.null){
+    if ($x509_cert.props.file = $lib.null) {
         $bytes = $lib.null
 
         try {
@@ -30,7 +30,7 @@ function download_cert(x509_cert, options) {
             $lib.warn(`failed downloading x509 cert {$x509_cert.repr()}: {$error}`)
         }
 
-        if ($bytes) {
+        if $bytes {
             ($size, $sha256) = $lib.axon.put($bytes)
             [file:bytes=$sha256 <(seen)+ {$source}]
         }

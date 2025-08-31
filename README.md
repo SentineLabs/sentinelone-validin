@@ -1,6 +1,6 @@
-# S1 Validin
+# `s1-validin`
 
-Synapse Rapid Power-Up for [Validin](https://validin.com) web intelligence platform. Enriches Synapse with DNS records, HTTP crawl data, SSL certificates, and WHOIS information.
+`s1-validin` is a [Synapse Rapid Power-Up](https://synapse.docs.vertex.link/en/latest/synapse/power_ups.html) for [Validin](https://validin.com). It provides commands to query for and model DNS records, HTTP crawl data, TLS certificates, and WHOIS information.
 
 ## Quick Start
 
@@ -17,11 +17,11 @@ storm> inet:fqdn=example.com | s1.validin.dns
 
 ## Features
 
-- **DNS Intelligence** - Forward/reverse DNS lookups with historical data
-- **HTTP Crawling** - Web content, headers, favicons from 850M+ daily crawls
-- **SSL Certificates** - Certificate chains and CT logs
+- **DNS History** - Forward/reverse DNS lookups with historical data
+- **HTTP Crawling** - HTTP bodies, headers, favicons, and certificates from 850M+ daily crawls
+- **TLS Certificates** - Certificates from the Certificate Transparency Stream
 - **WHOIS Data** - Registration and ownership history
-- **Bulk Enrichment** - Combined DNS, HTTP, and WHOIS in one command
+- **Bulk Enrichment** - Combined DNS, HTTP, and WHOIS data in one command
 
 ## Documentation
 
@@ -33,7 +33,7 @@ storm> inet:fqdn=example.com | s1.validin.dns
 ## Requirements
 
 - Synapse `>=2.144.0,<3.0.0`
-- Valid Validin API key
+- Validin API key
 - Synapse Axon (for download features)
 - Synapse FileParser (for parsing downloaded content)
 
@@ -49,8 +49,3 @@ pytest
 # Debug mode
 storm> $lib.debug = $lib.true
 ```
-
-## Support
-
-- Slack: #validin-sentinelone
-- Repo: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin

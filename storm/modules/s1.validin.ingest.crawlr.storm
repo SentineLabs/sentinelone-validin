@@ -1,5 +1,6 @@
 $ingest = $lib.import(s1.validin.ingest)
 
+
 function crawlr(records) {
     // model .crawlr (Crawling Results) records from validin
 
@@ -54,6 +55,7 @@ function crawlr(records) {
         } catch * as error {
             $response_code = $lib.null
         }
+
         try {
             $response_reason =  $lib.regex.search("^HTTP/[^\\s]+\\s\\d{3}\\s(.*)", $value.banner_full.index(0)).index(0)
         } catch * as error {
@@ -61,8 +63,9 @@ function crawlr(records) {
         }
 
         $headers = ([])
-        if ($value.banner_full != $lib.null) {
-            for $banner_item in  $value.banner_full.slice(1) {
+
+        if $value.banner_full {
+            for $banner_item in $value.banner_full.slice(1) {
                 ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
                 $key = $key.strip()
                 $val = $val.strip()
@@ -91,24 +94,25 @@ function crawlr(records) {
                     :path=$path
                     :url=$url
                     :headers=$headers
-                    :response:code ?= $response_code
-                    :response:reason ?= $response_reason
+                    :response:code?=$response_code
+                    :response:reason?=$response_reason
                     :method='GET'
-                    :_s1:validin:response:body:sha1 ?= $value.body_hash
-                    :_s1:validin:response:favicon:md5 ?= $value.favicon_hash
+                    :_s1:validin:response:body:sha1?=$value.body_hash
+                    :_s1:validin:response:favicon:md5?=$value.favicon_hash
             )
             <(seen)+ $source
         ]
 
-        if($value.error != $lib.null) {
+        if $value.error {
             $lib.warn(`{$node.iden()} {$time} {$ip} {$scheme} {$host} {$port} {$path} {$value.error}`)
         }
 
-        if ($value.cert != $lib.null){
+        if $value.cert {
             $sans = ([])
             $fqdns = ([])
+
             for $domain in $value.cert_details.domains {
-                if( not $domain.startswith('*')){
+                if  (not $domain.startswith('*')) {
                     $fqdns.append({[inet:fqdn=$domain]})
                 } 
                 $sans.append(('dns', $domain))
@@ -128,11 +132,12 @@ function crawlr(records) {
                     )
                 ] 
             }
-            if ($value.cert_details.jarm != $lib.null) {
+
+            if $value.cert_details.jarm {
                 {
                     [
                         (
-                            inet:ssl:jarmsample=($server,$value.cert_details.jarm)
+                            inet:ssl:jarmsample=($server, $value.cert_details.jarm)
                         )
                     ]
                 }
