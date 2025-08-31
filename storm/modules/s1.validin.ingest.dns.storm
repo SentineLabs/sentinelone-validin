@@ -84,6 +84,7 @@ function dns_v2(records) {
                 }
             )])
         }
+
         yield $type_func($compatible_param) [<(seen)+ $source]
     }
 }

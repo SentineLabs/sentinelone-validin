@@ -8,7 +8,7 @@ genopts:
 
 author:
   url: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin
-  name: Aaron Stephens
+  name: SentinelLABS <labs@sentinelone.com>
 
 desc: s1-validin is a rapid power-up for Validin.
 
@@ -29,6 +29,9 @@ onload: |
   $lib.import("s1.validin.ddl").update_forms()
 
 perms:
+  - perm: [s1, validin, admin]
+    gate: cortex
+    desc: Allows a user to set global configuration values for s1-validin.
   - perm: [s1, validin, user]
     gate: cortex
     desc: Allows a user to call privileged APIs from s1-validin.
@@ -46,44 +49,34 @@ modules:
   - name: s1.validin.privsep
     asroot:perms:
       - [s1, validin, user]
+  - name: s1.validin.privsep.admin
+    asroot:perms:
+      - [s1, validin, admin]
 
 commands:
   - name: s1.validin.setup.apikey
-    descr: Set the API key to use with validin (required)
+    descr: Set the Validin API key to use.
     perms:
       - [s1, validin, user]
     cmdargs:
       - - apikey
         - type: str
           help: The API Key
-      - - --self
+      - - --global
         - type: bool
           default: false
           action: store_true
-          help: Set the key as a user variable. If not used, the key is set globally.
+          help: Set the API key globally for all users.
   
-  - name: s1.validin.setup.apikey
-    descr: Set the API key to use with validin (required)
+  - name: s1.validin.setup.hostname
+    descr: Set the Validin API hostname to use globally. Defaults to "pilot.validin.com".
     perms:
-      - [s1, validin, user]
-    cmdargs:
-      - - apikey
-        - type: str
-          help: The API Key
-      - - --self
-        - type: bool
-          default: false
-          action: store_true
-          help: Set the key as a user variable. If not used, the key is set globally.
-  - name: s1.validin.setup.apihostname
-    descr: Set the API hostname used for making API requests. Defaults to `pilot.validin.com`
-    perms:
-      - [s1, validin, user]
+      - [s1, validin, admin]
     cmdargs:
       - - hostname
         - type: str
           default: pilot.validin.com
-          help: The domain hostname to use.
+          help: The hostname to use.
  
   - name: s1.validin.dns
     descr: |
@@ -120,6 +113,7 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+
   - name: s1.validin.whois
     descr: |
       Get WHOIS records.
@@ -144,9 +138,10 @@ commands:
       - - --yield
         - type: bool
           action: store_true
+
   - name: s1.validin.certs
     descr: |
-      Get Domain Certificates.
+      Get domain certificates seen in the Certificate Transparency Stream.
 
       This command accepts the following input node forms:
         - inet:fqdn
@@ -168,14 +163,13 @@ commands:
       - - --yield
         - type: bool
           action: store_true
-
       - - --download
         - type: bool
           action: store_true
-  
+
   - name: s1.validin.http
     descr: |
-      Get HTTP Crawl History.
+      Get HTTP crawl history.
 
       This command accepts the following input node forms:
         - inet:fqdn
@@ -202,15 +196,19 @@ commands:
 
   - name: s1.validin.enrich
     descr: |
-      Enrich an FQDN with DNS, crawler, and WHOIS records.
+      Enrich an FQDN with DNS, HTTP crawler, and WHOIS data.
 
       This command accepts the following input node forms:
         - inet:fqdn
 
-      // get all enrich records for an inet:fqdn node
+      // enrich an inet:fqdn node with dns, http, and whois data
       inet:fqdn=sentinelone.com | s1.validin.enrich
 
     cmdargs:
+      - - --download
+        - type: bool
+          action: store_true
+          help: Download raw HTTP data including response bodies, certificates, and favicons.
       - - --first-seen
         - type: time
       - - --last-seen
@@ -232,7 +230,7 @@ commands:
       This command accepts the following input node forms:
         - crypto:x509:cert
 
-      // download a certificate for an crypto:x509:cert node
+      // download a certificate for a crypto:x509:cert node
       crypto:x509:cert=<xyz> | s1.validin.download
 
     cmdargs:
@@ -282,5 +280,3 @@ optic:
       storm: s1.validin.download --yield
       descr: Download favicon and body and parse it. 
       forms: [inet:http:request]
-      
-      
