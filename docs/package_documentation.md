@@ -7,13 +7,13 @@
 |--------|-------------|
 | `s1.validin` | Core module |
 | `s1.validin.api` | Validin API client |
-| `s1.validin.ddl` | Data model extensions |
 | `s1.validin.download` | Content downloader |
 | `s1.validin.ingest` | Data ingestion base |
 | `s1.validin.ingest.crawlr` | HTTP crawl ingestion |
 | `s1.validin.ingest.ctstream` | Certificate transparency |
 | `s1.validin.ingest.dns` | DNS record ingestion |
 | `s1.validin.ingest.registration` | WHOIS ingestion |
+| `s1.validin.model` | Data model extensions |
 | `s1.validin.privsep` | Privilege separation |
 
 ### Data Model Extensions
