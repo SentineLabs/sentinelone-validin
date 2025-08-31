@@ -34,8 +34,8 @@ function download_http(http_request, options) {
     $source = $ingest.get_source()
 
     // find or fetch body bytes
-    if ($http_request.props.`_s1:validin:response:body_hash` != $lib.null) {
-        $body_node = { file:bytes:sha1=$http_request.props.`_s1:validin:response:body_hash` }
+    if ($http_request.props.`_s1:validin:response:body:sha1` != $lib.null) {
+        $body_node = { file:bytes:sha1=$http_request.props.`_s1:validin:response:body:sha1` }
         if($body_node!= $lib.null){
             $lib.print('cortex already has body node!!!')
             $http_request.props.`response:body`=$body_node
@@ -44,7 +44,7 @@ function download_http(http_request, options) {
 
             try {
                 $body_bytes = $api.html_content(
-                    $http_request.props.`_s1:validin:response:body_hash`,
+                    $http_request.props.`_s1:validin:response:body:sha1`,
                 )
             } catch * as error {
                 $lib.warn(`failed downloading html body {$http_request.repr()}: {$error}`)
@@ -56,7 +56,7 @@ function download_http(http_request, options) {
                 $body_node = {
                     [
                         file:bytes=$sha256 
-                            :sha1=$http_request.props.`_s1:validin:response:body_hash`
+                            :sha1=$http_request.props.`_s1:validin:response:body:sha1`
                         <(seen)- {$source}
                     ]
                 }
@@ -66,8 +66,8 @@ function download_http(http_request, options) {
     }
 
     // find or fetch favicon bytes
-    if ($http_request.props.`_s1:validin:response:favicon_hash` != $lib.null) {
-        $favicon_node = { file:bytes:md5=$http_request.props.`_s1:validin:response:favicon_hash` }
+    if ($http_request.props.`_s1:validin:response:favicon:md5` != $lib.null) {
+        $favicon_node = { file:bytes:md5=$http_request.props.`_s1:validin:response:favicon:md5` }
 
         if($favicon_node!= $lib.null){
             $lib.print('cortex already has favicon node!!!')
@@ -76,7 +76,7 @@ function download_http(http_request, options) {
             $favicon_bytes = $lib.null
             try {
                 $favfavicon_bytesicon = $api.favicon_content(
-                    $http_request.props.`_s1:validin:response:favicon_hash`,
+                    $http_request.props.`_s1:validin:response:favicon:md5`,
                 )
             } catch * as error {
                 $lib.warn(`failed downloading favicon {$http_request.repr()}: {$error}`)
@@ -88,7 +88,7 @@ function download_http(http_request, options) {
                 $favicon_node = {
                     [
                         file:bytes=$sha256 
-                            :md5=$http_request.props.`_s1:validin:response:favicon_hash`
+                            :md5=$http_request.props.`_s1:validin:response:favicon:md5`
                         <(seen)- {$source}
                     ]  
                 }
