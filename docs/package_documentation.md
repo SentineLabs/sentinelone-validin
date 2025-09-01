@@ -24,12 +24,37 @@
 ## API Integration
 
 ### Endpoints
-- `/v2/domain/combined/connections/{fqdn}` - Domain connections
-- `/axon/domain/crawl/history/{fqdn}` - Crawl history
-- `/axon/ip/crawl/history/{ip}` - IP crawl history
-- `/v2/ct/{fqdn}` - Certificate transparency
-- `/axon/hash/content/html/sha1/{sha1}` - HTML content
-- `/axon/hash/content/favicon/md5/{md5}` - Favicon content
+
+#### `s1.validin.certs`
+
+- `/api/axon/domain/certificates/:domain` - Certificate Transparency Stream
+
+#### `s1.validin.dns`
+
+- `/api/axon/domain/dns/history/:domain` - Domain DNS history
+- `/api/axon/domain/dns/hostname/:domain` - Domain PTR records
+- `/api/axon/domain/dns/extra/:domain` - Domain MX, TXT, and CNAME records
+- `/api/axon/ip/dns/history/:ip` - IP DNS history
+- `/api/axon/ip/dns/hostname/:ip` - IP PTR records
+
+#### `s1.validin.download`
+
+- `/api/axon/hash/content/certificate/sha1/:hash` - Certificate bytes
+- `/api/axon/hash/content/html/sha1/:hash` - Response body bytes 
+- `/api/axon/hash/content/favicon/md5/:hash` - Favicon bytes
+
+#### `s1.validin.enrich`
+
+- `/api/v2/domain/combined/connections/:domain` - Domain connections
+
+#### `s1.validin.http`
+
+- `/api/axon/domain/crawl/history/:domain` - Domain Crawl history
+- `/api/axon/ip/crawl/history/{ip}` - IP crawl history
+
+#### `s1.validin.whois`
+
+- `/api/axon/domain/registration/history/:domain` - Registration history
 
 ### Authentication
 - API key stored in Synapse $lib.globals and $lib.user.vars
