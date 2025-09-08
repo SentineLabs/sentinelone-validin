@@ -45,7 +45,7 @@ function download_http(http_request, options) {
         $body_node = {file:bytes:sha1=$http_request.props.`_s1:validin:response:body:sha1`}
 
         if $body_node {
-            $lib.print('cortex already has body node!!!')
+            $lib.print('cortex already has body node!')
             $http_request.props.`response:body` = $body_node
         } else {
             try {
@@ -53,9 +53,9 @@ function download_http(http_request, options) {
                     $http_request.props.`_s1:validin:response:body:sha1`,
                 )
             } catch * as error {
-                $lib.warn(`failed downloading html body {$http_request.repr()}: {$error}`)
+                $lib.warn(`failed to download http body {$http_request.repr()}: {$error}`)
                 $body_bytes = $lib.null
-            }      
+            }
 
             if $body_bytes {
                 ($size, $sha256) = $lib.axon.put($body_bytes)
@@ -80,7 +80,7 @@ function download_http(http_request, options) {
         $favicon_node = {file:bytes:md5=$http_request.props.`_s1:validin:response:favicon:md5`}
 
         if $favicon_node {
-            $lib.print('cortex already has favicon node!!!')
+            $lib.print('cortex already has favicon node!')
             $http_request.props.`_s1:validin:response:favicon` = $favicon_node
         } else {
             try {
@@ -88,7 +88,7 @@ function download_http(http_request, options) {
                     $http_request.props.`_s1:validin:response:favicon:md5`,
                 )
             } catch * as error {
-                $lib.warn(`failed downloading favicon {$http_request.repr()}: {$error}`)
+                $lib.warn(`failed to download favicon {$http_request.repr()}: {$error}`)
                 $favicon_bytes = $lib.null
             }     
 

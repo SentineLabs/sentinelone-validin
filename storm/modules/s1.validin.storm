@@ -143,6 +143,7 @@ function whois(fqdn, options) {
     yield $ingest_registration.whois($records)
 }
 
+
 function certificates(fqdn, options) {
     // get certificates for an fqdn
 
@@ -156,7 +157,12 @@ function certificates(fqdn, options) {
 
     // model records
     yield $ingest_ctstream.domain_certificates($records)
+
+    if $options.download {
+        | s1.validin.download
+    }
 }
+
 
 function http(fqdn_or_ip, options) {
     // get dns records for an fqdn or ip address
@@ -171,7 +177,12 @@ function http(fqdn_or_ip, options) {
     }
 
     yield $res
+
+    if $options.download {
+        | s1.validin.download
+    }
 }
+
 
 function http_fqdn(fqdn, options) {
     // get http records for an fqdn
@@ -217,5 +228,9 @@ function enrich(fqdn_node, options) {
     $res1 = $ingest_dns.dns_v2($data.dns)
     $res2 = $ingest_crawlr.crawlr($data.crawler)
     $res3 = $ingest_registration.whois($data.registration)
-    yield ($res1, $res2, $res3) | uniq  
+    yield ($res1, $res2, $res3) | uniq
+
+    if $options.download {
+        +(crypto:x509:cert or inet:http:request) | s1.validin.download
+    }
 }
