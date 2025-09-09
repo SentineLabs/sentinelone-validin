@@ -1,4 +1,13 @@
 $validin = $lib.import(s1.validin)
 
 
-divert $cmdopts.yield $validin.http($node, $cmdopts)
+function main(input) {
+    yield $validin.http($input, $cmdopts)
+
+    if $cmdopts.download {
+        | s1.validin.download
+    }
+}
+
+
+divert $cmdopts.yield $main($node)

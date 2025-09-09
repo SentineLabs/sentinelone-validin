@@ -1,11 +1,13 @@
-# S1 Validin User Guide
+# `s1-validin` User Guide
 
 ## Overview
-S1 Validin integrates Validin's web intelligence data into Synapse, providing DNS records, HTTP crawl data, certificates, and WHOIS information.
+
+`s1-validin` integrates Validin's data into Synapse, providing DNS records, HTTP crawl data, certificates, and WHOIS information.
 
 ## Commands
 
 ### DNS Records
+
 ```storm
 // Basic DNS lookup
 inet:fqdn=example.com | s1.validin.dns
@@ -21,6 +23,7 @@ inet:ipv4=1.2.3.4 | s1.validin.dns
 ```
 
 ### HTTP Crawl Data
+
 ```storm
 // Get crawl history for domain
 inet:fqdn=example.com | s1.validin.http
@@ -33,6 +36,7 @@ inet:fqdn=example.com | s1.validin.http --download
 ```
 
 ### Certificates
+
 ```storm
 // Get certificates
 inet:fqdn=example.com | s1.validin.certs
@@ -45,6 +49,7 @@ inet:fqdn=example.com | s1.validin.certs --download
 ```
 
 ### WHOIS Records
+
 ```storm
 // Get WHOIS data
 inet:fqdn=example.com | s1.validin.whois
@@ -54,6 +59,7 @@ inet:fqdn=example.com | s1.validin.whois --wildcard
 ```
 
 ### Enrichment
+
 ```storm
 // Comprehensive enrichment (DNS + HTTP + WHOIS)
 inet:fqdn=example.com | s1.validin.enrich
@@ -63,6 +69,7 @@ inet:fqdn=example.com | s1.validin.enrich --first-seen 2024-01-01
 ```
 
 ### Download Content
+
 ```storm
 // Download certificate
 crypto:x509:cert | s1.validin.download
@@ -85,6 +92,7 @@ crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 ## Use Cases
 
 ### Threat Investigation
+
 ```storm
 // Investigate suspicious domain
 inet:fqdn=malicious.example | s1.validin.enrich
@@ -93,6 +101,7 @@ inet:fqdn=malicious.example | s1.validin.enrich
 ```
 
 ### Infrastructure Mapping
+
 ```storm
 // Map domain infrastructure
 inet:fqdn=target.com | s1.validin.dns --wildcard
@@ -101,6 +110,7 @@ inet:fqdn=target.com | s1.validin.dns --wildcard
 ```
 
 ### Certificate Analysis
+
 ```storm
 // Analyze SSL certificates
 inet:fqdn=example.com | s1.validin.certs --download
@@ -109,6 +119,7 @@ inet:fqdn=example.com | s1.validin.certs --download
 ```
 
 ## Tips
+
 - Use `--wildcard` for comprehensive subdomain discovery
 - Combine with native Synapse pivots for powerful analysis
 - Set reasonable `--limit` values for large datasets

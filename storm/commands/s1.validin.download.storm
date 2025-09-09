@@ -1,4 +1,4 @@
 $download = $lib.import(s1.validin.download)
 
 
-divert $cmdopts.yield $download.download($node, $cmdopts)
+divert $cmdopts.yield $download.download($node)

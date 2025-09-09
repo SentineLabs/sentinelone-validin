@@ -2,15 +2,15 @@ $api = $lib.import(s1.validin.api)
 $ingest = $lib.import(s1.validin.ingest)
 
 
-function download(inode, options) {
+function download(inode) {
     // Download bytes for the given node from Validin.
 
     $form = $inode.form()
     $result = $lib.null
 
     switch $form {
-        "crypto:x509:cert": {$result = $download_cert($inode, $options)}
-        "inet:http:request": {$result = $download_http($inode, $options)}
+        "crypto:x509:cert": {$result = $download_cert($inode)}
+        "inet:http:request": {$result = $download_http($inode)}
         *: {$lib.warn(`{$form} not supported`)}
     }
 
@@ -18,7 +18,7 @@ function download(inode, options) {
 }
 
 
-function download_cert(x509_cert, options) {
+function download_cert(x509_cert) {
     $source = $ingest.get_source()
 
     if ($x509_cert.props.file = $lib.null) {
@@ -37,7 +37,7 @@ function download_cert(x509_cert, options) {
 }
 
 
-function download_http(http_request, options) {
+function download_http(http_request) {
     $source = $ingest.get_source()
 
     // find or fetch body bytes
