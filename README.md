@@ -28,7 +28,6 @@ storm> inet:fqdn=example.com | s1.validin.dns
 - [Admin Guide](docs/admin_guide.md) - Installation and configuration
 - [User Guide](docs/user_guide.md) - Commands and usage examples
 - [Package Documentation](docs/package_documentation.md) - Technical details
-- [Crawler Info](docs/crawlr.md) - How Validin crawls the web
 
 ## Requirements
 

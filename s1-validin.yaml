@@ -21,9 +21,6 @@ docs:
     path: docs/user_guide.md
   - title: Package Documentation
     path: docs/package_documentation.md
-  - title: Validin Crawler
-    path: docs/crawlr.md
-
 
 onload: $lib.import(s1.validin.model).update_forms()
 
