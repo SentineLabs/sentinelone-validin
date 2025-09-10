@@ -5,7 +5,7 @@ function main(input) {
     yield $validin.enrich($input, $cmdopts)
 
     if $cmdopts.download {
-        +(crypto:x509:cert or inet:http:request) | s1.validin.download
+        {+(crypto:x509:cert or inet:http:request) | s1.validin.download}
     }
 }
 

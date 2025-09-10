@@ -61,10 +61,10 @@ commands:
       inet:fqdn=sentinelone.com | s1.validin.certs
 
     cmdargs:
-      - - --download
-        - type: bool
-          action: store_true
-          help: Download certificate bytes.
+      # - - --download
+      #   - type: bool
+      #     action: store_true
+      #     help: Download certificate bytes.
       - - --first-seen
         - type: time
           help: Filter to certificates seen on or after this time.

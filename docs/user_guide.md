@@ -31,7 +31,7 @@ inet:fqdn=example.com | s1.validin.http
 // Get crawl history for IP
 inet:ipv4=1.2.3.4 | s1.validin.http
 
-// Download HTML/favicon content
+// Download HTTP content
 inet:fqdn=example.com | s1.validin.http --download
 ```
 
@@ -43,9 +43,6 @@ inet:fqdn=example.com | s1.validin.certs
 
 // Include wildcard certificates
 inet:fqdn=example.com | s1.validin.certs --wildcard
-
-// Download certificate files
-inet:fqdn=example.com | s1.validin.certs --download
 ```
 
 ### WHOIS Records
@@ -78,7 +75,7 @@ crypto:x509:cert | s1.validin.download
 crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 ```
 
-## Parameters
+## Common Parameters
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
@@ -87,36 +84,6 @@ crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 | `--wildcard` | Include subdomains | False |
 | `--limit` | Max records | 20000 |
 | `--yield` | Yield nodes | False |
-| `--download` | Download content | False |
-
-## Use Cases
-
-### Threat Investigation
-
-```storm
-// Investigate suspicious domain
-inet:fqdn=malicious.example | s1.validin.enrich
-  | -> inet:dns:a -> inet:ipv4
-  | s1.validin.dns
-```
-
-### Infrastructure Mapping
-
-```storm
-// Map domain infrastructure
-inet:fqdn=target.com | s1.validin.dns --wildcard
-  | -> inet:ipv4
-  | uniq
-```
-
-### Certificate Analysis
-
-```storm
-// Analyze SSL certificates
-inet:fqdn=example.com | s1.validin.certs --download
-  | -> crypto:x509:cert
-  | fileparser.parse
-```
 
 ## Tips
 
