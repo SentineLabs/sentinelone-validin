@@ -16,7 +16,7 @@ inet:fqdn=example.com | s1.validin.dns
 inet:fqdn=example.com | s1.validin.dns --wildcard
 
 // Filter by date
-inet:fqdn=example.com | s1.validin.dns --first-seen 2024-01-01 --last-seen 2024-12-31
+inet:fqdn=example.com | s1.validin.dns --first-seen 2024/01/01 --last-seen 2024/12/31
 
 // Reverse DNS (IP to domain)
 inet:ipv4=1.2.3.4 | s1.validin.dns
@@ -62,7 +62,7 @@ inet:fqdn=example.com | s1.validin.whois --wildcard
 inet:fqdn=example.com | s1.validin.enrich
 
 // With date filtering
-inet:fqdn=example.com | s1.validin.enrich --first-seen 2024-01-01
+inet:fqdn=example.com | s1.validin.enrich --first-seen 2024/01/01
 ```
 
 ### Download Content
