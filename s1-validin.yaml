@@ -7,7 +7,7 @@ genopts:
     dotstorm: true 
 
 author:
-  url: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin  # TODO: update
+  url: https://github.com/SentineLabs/s1-validin
   name: SentinelLABS <labs@sentinelone.com>
 
 desc: s1-validin is a rapid power-up for Validin.
