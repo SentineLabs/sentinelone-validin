@@ -3,6 +3,7 @@ $ingest = $lib.import(s1.validin.ingest)
 
 function domain_certificates(records) {
     $source = $ingest.get_source()
+
     for $record in $records {
         $fingerprint = $record.fingerprint
         $subject = `CN={$record.common_name}`
@@ -12,10 +13,11 @@ function domain_certificates(records) {
         //parse domains as crypto:x509:sans or inet:fqdn 
         $fqdns = ([])
         $sans = ([])
+
         for $domain in $record.all_domains {
             // store wildcard domains as sans
-            if($domain.startswith('*')){
-                $sans.append(('dns', $domain))
+            if $domain.startswith("*") {
+                $sans.append(("dns", $domain))
             } else {
                 $fqdns.append({[inet:fqdn=$domain]})
             }

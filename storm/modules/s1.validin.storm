@@ -4,7 +4,6 @@ $ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
 $ingest_ctstream = $lib.import(s1.validin.ingest.ctstream)
 $ingest_dns = $lib.import(s1.validin.ingest.dns)
 $ingest_registration = $lib.import(s1.validin.ingest.registration)
-$_download = $lib.import(s1.validin.download)
 
 
 function dns(fqdn_or_ip, options) {
@@ -108,6 +107,7 @@ function dns_ip(ip, options) {
         $lib.warn($error)
     }
 
+    /* currently, no data from this endpoint is modeled
     try {
         $lib.dict.update(
             $records,
@@ -121,6 +121,7 @@ function dns_ip(ip, options) {
     } catch ("HTTPResponseError", "HTTPRetriesExceeded") as error {
         $lib.warn($error)
     }
+    */
 
     // model records
     yield $ingest_dns.dns($records)
@@ -142,6 +143,7 @@ function whois(fqdn, options) {
     yield $ingest_registration.whois($records)
 }
 
+
 function certificates(fqdn, options) {
     // get certificates for an fqdn
 
@@ -157,12 +159,13 @@ function certificates(fqdn, options) {
     yield $ingest_ctstream.domain_certificates($records)
 }
 
+
 function http(fqdn_or_ip, options) {
     // get dns records for an fqdn or ip address
 
     $form = $fqdn_or_ip.form()
-
     $res = $lib.null
+
     switch $form {
         "inet:fqdn": { $res = $http_fqdn($fqdn_or_ip.repr(), $options)}
         ("inet:ipv4", "inet:ipv6"): { $res = $http_ip($fqdn_or_ip.repr(), $options)}
@@ -171,6 +174,7 @@ function http(fqdn_or_ip, options) {
 
     yield $res
 }
+
 
 function http_fqdn(fqdn, options) {
     // get http records for an fqdn
@@ -211,11 +215,11 @@ function enrich(fqdn_node, options) {
         wildcard=$options.wildcard,
         limit=$options.limit
     )
+
     // model data
     $res1 = $ingest_dns.dns_v2($data.dns)
-    $res2 =$ingest_crawlr.crawlr($data.crawler)
-    $res3 =$ingest_registration.whois($data.registration)
-    yield ($res1, $res2, $res3) | uniq  
-}
+    $res2 = $ingest_crawlr.crawlr($data.crawler)
+    $res3 = $ingest_registration.whois($data.registration)
 
-$download = $_download.download
+    yield ($res1, $res2, $res3) | uniq
+}

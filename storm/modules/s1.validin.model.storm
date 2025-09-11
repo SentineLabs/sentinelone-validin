@@ -1,26 +1,28 @@
 function update_forms() {
     $existing_props = ()
+
     for $i in $lib.model.ext.getExtModel().props {
        $existing_props.append(`{$i.0}:{$i.1}`)
     }
 
-    if (not $existing_props.has('inet:http:request:_s1:validin:response:body_hash')) {
+    if (not $existing_props.has('inet:http:request:_s1:validin:response:body:sha1')) {
         $lib.model.ext.addFormProp(
             inet:http:request,
-            '_s1:validin:response:body_hash',
+            '_s1:validin:response:body:sha1',
             (hash:sha1, ({})),
             ({"doc":'SHA1 body hash observed by Validin crawler.' })
         )
     }
 
-    if (not $existing_props.has('inet:http:request:_s1:validin:response:favicon_hash')) {
+    if (not $existing_props.has('inet:http:request:_s1:validin:response:favicon:md5')) {
         $lib.model.ext.addFormProp(
             inet:http:request,
-            '_s1:validin:response:favicon_hash',
+            '_s1:validin:response:favicon:md5',
             (hash:md5, ({})),
             ({"doc":'MD5 favicon hash observed by Validin crawler.' })
         )
     }
+
     if (not $existing_props.has('inet:http:request:_s1:validin:response:favicon')) {
         $lib.model.ext.addFormProp(
             inet:http:request,

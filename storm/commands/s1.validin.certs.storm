@@ -1,4 +1,15 @@
-$validin = $lib.import("s1.validin")
+$validin = $lib.import(s1.validin)
 
 
-divert $cmdopts.yield $validin.certificates($node, $cmdopts)
+function main(input) {
+    yield $validin.certificates($input, $cmdopts)
+
+    /* bytes not available for ctstream certificates yet
+    if $cmdopts.download {
+        | s1.validin.download
+    }
+    */
+}
+
+
+divert $cmdopts.yield $main($node)

@@ -1,5 +1,5 @@
 name: s1-validin
-version: 3.0.0
+version: 3.1.0
 
 synapse_version: '>=2.144.0,<3.0.0'
 
@@ -7,8 +7,8 @@ genopts:
     dotstorm: true 
 
 author:
-  url: https://ghe.eng.sentinelone.tech/aaron-stephens/s1-validin
-  name: Aaron Stephens
+  url: https://github.com/SentineLabs/s1-validin
+  name: SentinelLABS <labs@sentinelone.com>
 
 desc: s1-validin is a rapid power-up for Validin.
 
@@ -21,14 +21,13 @@ docs:
     path: docs/user_guide.md
   - title: Package Documentation
     path: docs/package_documentation.md
-  - title: Validin Crawler
-    path: docs/crawlr.md
 
-
-onload: | 
-  $lib.import("s1.validin.model").update_forms()
+onload: $lib.import(s1.validin.model).update_forms()
 
 perms:
+  - perm: [s1, validin, admin]
+    gate: cortex
+    desc: Allows a user to set global configuration values for s1-validin.
   - perm: [s1, validin, user]
     gate: cortex
     desc: Allows a user to call privileged APIs from s1-validin.
@@ -36,55 +35,55 @@ perms:
 modules:
   - name: s1.validin
   - name: s1.validin.api
-  - name: s1.validin.model
   - name: s1.validin.download
   - name: s1.validin.ingest
   - name: s1.validin.ingest.crawlr
   - name: s1.validin.ingest.ctstream
   - name: s1.validin.ingest.dns
   - name: s1.validin.ingest.registration
+  - name: s1.validin.model
   - name: s1.validin.privsep
     asroot:perms:
       - [s1, validin, user]
+  - name: s1.validin.privsep.admin
+    asroot:perms:
+      - [s1, validin, admin]
 
 commands:
-  - name: s1.validin.setup.apikey
-    descr: Set the API key to use with validin (required)
-    perms:
-      - [s1, validin, user]
+  - name: s1.validin.certs
+    descr: |
+      Get domain certificates seen in the Certificate Transparency Stream.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+
+      // get all certificates for an inet:fqdn node
+      inet:fqdn=sentinelone.com | s1.validin.certs
+
     cmdargs:
-      - - apikey
-        - type: str
-          help: The API Key
-      - - --self
+      # - - --download
+      #   - type: bool
+      #     action: store_true
+      #     help: Download certificate bytes.
+      - - --first-seen
+        - type: time
+          help: Filter to certificates seen on or after this time.
+      - - --last-seen
+        - type: time
+          help: Filter to certificates seen before this time.
+      - - --wildcard
         - type: bool
-          default: false
           action: store_true
-          help: Set the key as a user variable. If not used, the key is set globally.
-  
-  - name: s1.validin.setup.apikey
-    descr: Set the API key to use with validin (required)
-    perms:
-      - [s1, validin, user]
-    cmdargs:
-      - - apikey
-        - type: str
-          help: The API Key
-      - - --self
+          help: Include certificates for subdomains.
+      - - --limit
+        - type: int
+          default: 20000
+          help: Limit number of certificates up to 20000.
+      - - --yield
         - type: bool
-          default: false
           action: store_true
-          help: Set the key as a user variable. If not used, the key is set globally.
-  - name: s1.validin.setup.apihostname
-    descr: Set the API hostname used for making API requests. Defaults to `pilot.validin.com`
-    perms:
-      - [s1, validin, user]
-    cmdargs:
-      - - hostname
-        - type: str
-          default: pilot.validin.com
-          help: The domain hostname to use.
- 
+          help: Yield created nodes.
+
   - name: s1.validin.dns
     descr: |
       Get DNS records.
@@ -109,17 +108,131 @@ commands:
     cmdargs:
       - - --first-seen
         - type: time
+          help: Filter records seen on or after this time.
       - - --last-seen
         - type: time
+          help: Filter records seen before this time.
       - - --wildcard
         - type: bool
           action: store_true
+          help: Include records for subdomains.
       - - --limit
         - type: int
           default: 20000
+          help: Limit number of records up to 20000.
       - - --yield
         - type: bool
           action: store_true
+          help: Yield created nodes.
+
+  - name: s1.validin.download
+    descr: |
+      Download raw bytes for HTTP bodies, certificates, and favicons.
+
+      This command accepts the following input node forms:
+        - crypto:x509:cert
+        - inet:http:request
+
+      // download a certificate for a crypto:x509:cert node
+      crypto:x509:cert=<xyz> | s1.validin.download
+
+    cmdargs:
+      - - --yield
+        - type: bool
+          action: store_true
+          help: Yield created nodes.
+
+  - name: s1.validin.enrich
+    descr: |
+      Enrich an FQDN with DNS, HTTP crawler, and WHOIS data.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+
+      // enrich an inet:fqdn node with dns, http, and whois data
+      inet:fqdn=sentinelone.com | s1.validin.enrich
+
+    cmdargs:
+      - - --download
+        - type: bool
+          action: store_true
+          help: Download raw HTTP data including response bodies, certificates, and favicons.
+      - - --first-seen
+        - type: time
+          help: Filter data seen on or after this time.
+      - - --last-seen
+        - type: time
+          help: Filter data seen before this time.
+      - - --wildcard
+        - type: bool
+          action: store_true
+          help: Include data for subdomains.
+      - - --limit
+        - type: int
+          default: 20000
+          help: Limit number of results up to 20000.
+      - - --yield
+        - type: bool
+          action: store_true
+          help: Yield created nodes.
+
+  - name: s1.validin.http
+    descr: |
+      Get HTTP crawl history.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+        - inet:ipv4
+        - inet:ipv6
+
+    cmdargs:
+      - - --download
+        - type: bool
+          action: store_true
+          help: Download HTTP bodies and favicons.
+      - - --first-seen
+        - type: time
+          help: Filter requests made on or after this time.
+      - - --last-seen
+        - type: time
+          help: Filter requests made before this time.
+      - - --wildcard
+        - type: bool
+          action: store_true
+          help: Include requests for subdomains.
+      - - --limit
+        - type: int
+          default: 20000
+          help: Limit number of requests up to 20000.
+      - - --yield
+        - type: bool
+          action: store_true
+          help: Yield created nodes.
+
+  - name: s1.validin.setup.apikey
+    descr: Set the Validin API key to use.
+    perms:
+      - [s1, validin, user]
+    cmdargs:
+      - - apikey
+        - type: str
+          help: The API Key
+      - - --global
+        - type: bool
+          default: false
+          action: store_true
+          help: Set the API key globally for all users.
+  
+  - name: s1.validin.setup.hostname
+    descr: Set the Validin API hostname to use globally. Default is "pilot.validin.com".
+    perms:
+      - [s1, validin, admin]
+    cmdargs:
+      - - hostname
+        - type: str
+          default: pilot.validin.com
+          help: The hostname to use.
+ 
   - name: s1.validin.whois
     descr: |
       Get WHOIS records.
@@ -133,115 +246,33 @@ commands:
     cmdargs:
       - - --first-seen
         - type: time
+          help: Filter records seen on or after this time.
       - - --last-seen
         - type: time
+          help: Filter records seen before this time.
       - - --wildcard
         - type: bool
           action: store_true
+          help: Include records for subdomains
       - - --limit
         - type: int
           default: 20000
+          help: Limit number of records up to 20000.
       - - --yield
         - type: bool
           action: store_true
-  - name: s1.validin.certs
-    descr: |
-      Get Domain Certificates.
-
-      This command accepts the following input node forms:
-        - inet:fqdn
-
-      // get all certificates for an inet:fqdn node
-      inet:fqdn=sentinelone.com | s1.validin.certs
-
-    cmdargs:
-      - - --first-seen
-        - type: time
-      - - --last-seen
-        - type: time
-      - - --wildcard
-        - type: bool
-          action: store_true
-      - - --limit
-        - type: int
-          default: 20000
-      - - --yield
-        - type: bool
-          action: store_true
-
-      - - --download
-        - type: bool
-          action: store_true
-  
-  - name: s1.validin.http
-    descr: |
-      Get HTTP Crawl History.
-
-      This command accepts the following input node forms:
-        - inet:fqdn
-        - inet:ipv4
-        - inet:ipv6
-
-    cmdargs:
-      - - --first-seen
-        - type: time
-      - - --last-seen
-        - type: time
-      - - --wildcard
-        - type: bool
-          action: store_true
-      - - --limit
-        - type: int
-          default: 20000
-      - - --yield
-        - type: bool
-          action: store_true
-      - - --download
-        - type: bool
-          action: store_true
-
-  - name: s1.validin.enrich
-    descr: |
-      Enrich an FQDN with DNS, crawler, and WHOIS records.
-
-      This command accepts the following input node forms:
-        - inet:fqdn
-
-      // get all enrich records for an inet:fqdn node
-      inet:fqdn=sentinelone.com | s1.validin.enrich
-
-    cmdargs:
-      - - --first-seen
-        - type: time
-      - - --last-seen
-        - type: time
-      - - --wildcard
-        - type: bool
-          action: store_true
-      - - --limit
-        - type: int
-          default: 20000
-      - - --yield
-        - type: bool
-          action: store_true
-
-  - name: s1.validin.download
-    descr: |
-      Download a certificate.
-
-      This command accepts the following input node forms:
-        - crypto:x509:cert
-
-      // download a certificate for an crypto:x509:cert node
-      crypto:x509:cert=<xyz> | s1.validin.download
-
-    cmdargs:
-      - - --yield
-        - type: bool
-          action: store_true
+          help: Yield created nodes.
 
 optic:
   actions:
+    - name: certs
+      storm: s1.validin.certs
+      descr: Get certificates for a domain.
+      forms: [inet:fqdn]
+    - name: certs wild
+      storm: s1.validin.certs --wildcard
+      descr: Get certificates for a domain including subdomains.
+      forms: [inet:fqdn]
     - name: dns
       storm: s1.validin.dns
       descr: Get DNS records.
@@ -250,37 +281,23 @@ optic:
       storm: s1.validin.dns --wildcard
       descr: Get DNS records including subdomains.
       forms: [inet:fqdn]
-    - name: whois
-      storm: s1.validin.whois
-      descr: Get WHOIS records.
-      forms: [inet:fqdn]
-    - name: whois wild
-      storm: s1.validin.whois --wildcard
-      descr: Get WHOIS records including subdomains.
-      forms: [inet:fqdn]
-    - name: certs
-      storm: s1.validin.certs
-      descr: Get Certificates.
-      forms: [inet:fqdn]
-    - name: certs wild
-      storm: s1.validin.certs --wildcard
-      descr: Get Certificates including subdomains.
-      forms: [inet:fqdn]
-    - name: http
-      storm: s1.validin.http
-      descr: Get HTTP Crawling history.
-      forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: download and parse
+      storm: s1.validin.download --yield | fileparser.parse
+      descr: Download HTTP bodies, certificates, and favicons, then parse.
+      forms: [crypto:x509:cert, inet:http:request]
     - name: enrich
       storm: s1.validin.enrich
       descr: Enrich with DNS, crawler, and WHOIS records.
       forms: [inet:fqdn]
-    - name: download and parse
-      storm: s1.validin.download --yield | fileparser.parse
-      descr: Download a certificate and parse it.
-      forms: [crypto:x509:cert]
-    - name: download 
-      storm: s1.validin.download --yield
-      descr: Download favicon and body and parse it. 
-      forms: [inet:http:request]
-      
-      
+    - name: http
+      storm: s1.validin.http
+      descr: Get HTTP crawling history.
+      forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: whois
+      storm: s1.validin.whois
+      descr: Get WHOIS records for a domain.
+      forms: [inet:fqdn]
+    - name: whois wild
+      storm: s1.validin.whois --wildcard
+      descr: Get WHOIS records for a domain including subdomains.
+      forms: [inet:fqdn]

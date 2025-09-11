@@ -1,100 +1,106 @@
 $api = $lib.import(s1.validin.api)
 $ingest = $lib.import(s1.validin.ingest)
 
-function download(inode, options) {
+
+function download(inode) {
+    // Download bytes for the given node from Validin.
+
     $form = $inode.form()
     $result = $lib.null
+
     switch $form {
-        "crypto:x509:cert": {$result = $download_x509_cert($inode, $options)}
-        "inet:http:request": {$result = $download_http($inode, $options)}
+        "crypto:x509:cert": {$result = $download_cert($inode)}
+        "inet:http:request": {$result = $download_http($inode)}
         *: {$lib.warn(`{$form} not supported`)}
     }
+
     yield $result
 }
 
-function download_x509_cert(x509_cert, options) {
+
+function download_cert(x509_cert) {
     $source = $ingest.get_source()
-    if($x509_cert.props.file = $lib.null){
-        $bytes = $lib.null
+
+    if ($x509_cert.props.file = $lib.null) {
         try {
-            $bytes = $api.cert_content(
-                $x509_cert.props.sha1,
-            )
+            $bytes = $api.cert_content($x509_cert.props.sha1)
         } catch * as error {
-            $lib.warn(`failed downloading x509 cert {$x509_cert.repr()}: {$error}`)
-        }      
-        if($bytes){
+            $lib.warn(`failed to download crypto:x509:cert={$x509_cert.repr()}: {$error.mesg}`)
+            $bytes = $lib.null
+        }
+
+        if $bytes {
             ($size, $sha256) = $lib.axon.put($bytes)
-            [file:bytes=$sha256 <(seen)- {$source}]
+            [file:bytes=$sha256 <(seen)+ $source]
         }
     }
 }
 
-function download_http(http_request, options) {
+
+function download_http(http_request) {
     $source = $ingest.get_source()
 
     // find or fetch body bytes
-    if ($http_request.props.`_s1:validin:response:body_hash` != $lib.null) {
-        $body_node = { file:bytes:sha1=$http_request.props.`_s1:validin:response:body_hash` }
-        if($body_node!= $lib.null){
-            $lib.print('cortex already has body node!!!')
-            $http_request.props.`response:body`=$body_node
-        } else {
-            $body_bytes = $lib.null
+    if ($http_request.props.`_s1:validin:response:body:sha1` != $lib.null) {
+        $body_node = {file:bytes:sha1=$http_request.props.`_s1:validin:response:body:sha1`}
 
+        if $body_node {
+            $http_request.props.`response:body` = $body_node
+        } else {
             try {
                 $body_bytes = $api.html_content(
-                    $http_request.props.`_s1:validin:response:body_hash`,
+                    $http_request.props.`_s1:validin:response:body:sha1`,
                 )
             } catch * as error {
-                $lib.warn(`failed downloading html body {$http_request.repr()}: {$error}`)
-            }      
-            if($body_bytes){
+                $lib.warn(`failed to download response body for inet:http:request={$http_request.repr()}: {$error.mesg}`)
+                $body_bytes = $lib.null
+            }
+
+            if $body_bytes {
                 ($size, $sha256) = $lib.axon.put($body_bytes)
-                $lib.print($size)
-                $lib.print($sha256)
+
                 $body_node = {
                     [
                         file:bytes=$sha256 
-                            :sha1=$http_request.props.`_s1:validin:response:body_hash`
-                        <(seen)- {$source}
+                            :sha1=$http_request.props.`_s1:validin:response:body:sha1`
+                        <(seen)+ $source
                     ]
                 }
-                $http_request.props.`response:body`=$body_node
+
+                $http_request.props.`response:body` = $body_node
             }
         }
     }
 
     // find or fetch favicon bytes
-    if ($http_request.props.`_s1:validin:response:favicon_hash` != $lib.null) {
-        $favicon_node = { file:bytes:md5=$http_request.props.`_s1:validin:response:favicon_hash` }
+    if ($http_request.props.`_s1:validin:response:favicon:md5` != $lib.null) {
+        $favicon_node = {file:bytes:md5=$http_request.props.`_s1:validin:response:favicon:md5`}
 
-        if($favicon_node!= $lib.null){
-            $lib.print('cortex already has favicon node!!!')
-            $http_request.props.`_s1:validin:response:favicon`=$favicon_node
+        if $favicon_node {
+            $http_request.props.`_s1:validin:response:favicon` = $favicon_node
         } else {
-            $favicon_bytes = $lib.null
             try {
-                $favfavicon_bytesicon = $api.favicon_content(
-                    $http_request.props.`_s1:validin:response:favicon_hash`,
+                $favicon_bytes = $api.favicon_content(
+                    $http_request.props.`_s1:validin:response:favicon:md5`,
                 )
             } catch * as error {
-                $lib.warn(`failed downloading favicon {$http_request.repr()}: {$error}`)
+                $lib.warn(`failed to download favicon for inet:http:request={$http_request.repr()}: {$error.name} - {$error.mesg}`)
+                $favicon_bytes = $lib.null
             }     
-            if($favicon_bytes){
+
+            if $favicon_bytes {
                 ($size, $sha256) = $lib.axon.put($favicon_bytes)
-                $lib.print($size)
-                $lib.print($sha256)
+
                 $favicon_node = {
                     [
                         file:bytes=$sha256 
-                            :md5=$http_request.props.`_s1:validin:response:favicon_hash`
-                        <(seen)- {$source}
+                            :md5=$http_request.props.`_s1:validin:response:favicon:md5`
+                        <(seen)+ $source
                     ]  
                 }
-                $http_request.props.`_s1:validin:response:favicon`=$favicon_node
+
+                $http_request.props.`_s1:validin:response:favicon` = $favicon_node
             }
         }
     }
 }
-
