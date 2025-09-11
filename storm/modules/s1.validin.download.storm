@@ -25,7 +25,7 @@ function download_cert(x509_cert) {
         try {
             $bytes = $api.cert_content($x509_cert.props.sha1)
         } catch * as error {
-            $lib.warn(`failed to download crypto:x509:cert={$x509_cert.repr()}: {$error}`)
+            $lib.warn(`failed to download crypto:x509:cert={$x509_cert.repr()}: {$error.mesg}`)
             $bytes = $lib.null
         }
 
@@ -52,7 +52,7 @@ function download_http(http_request) {
                     $http_request.props.`_s1:validin:response:body:sha1`,
                 )
             } catch * as error {
-                $lib.warn(`failed to download response body for inet:http:request={$http_request.repr()}: {$error}`)
+                $lib.warn(`failed to download response body for inet:http:request={$http_request.repr()}: {$error.mesg}`)
                 $body_bytes = $lib.null
             }
 
