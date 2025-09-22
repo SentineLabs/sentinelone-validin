@@ -1,4 +1,4 @@
-function get_api_key() {
+function __get_api_key() {
     // see if the user has their own key set
     $apikey = $lib.user.vars.get("s1:validin:apikey")
 
@@ -55,7 +55,7 @@ function base_get(uri, params) {
     // base http request for the validin api
 
     $headers = ({
-        "Authorization": `BEARER {$get_api_key()}`,
+        "Authorization": `BEARER {$__get_api_key()}`,
         "content-type": "application/json",
     })
 
@@ -80,8 +80,8 @@ function base_get(uri, params) {
             )
             $lib.time.sleep($sleep)
 
-        } elif (500 <= $response.code and $response.code < 600) {
-            // server error, sleep and retry
+        } elif ($response.code = 429 or ($response.code >= 500 and $response.code < 600)) {
+            // too many requests or server error, sleep and retry
             $lib.warn(
                 `{$url} returned HTTP code {$response.code}, sleeping {$sleep} seconds and retrying`
             )
