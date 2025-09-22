@@ -92,11 +92,12 @@ function dns_v2(records) {
 
 
 function set_seen_ival(inode, record) {
-    // set the .seen property from records
+    // set the .seen property for a record
 
     $first = ($record.first_seen * 1000)
     $last = ($record.last_seen * 1000)
-    $inode [.seen=($first, $last)]
+    yield $inode [.seen=($first, $last)]
+    return()
 }
     
 
