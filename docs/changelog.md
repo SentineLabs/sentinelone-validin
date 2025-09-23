@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1] - 2025-09-23
+
+### Bugfixes
+
+- Fix an issue where the seen interval was not being set correctly
+
+
 ## [3.1.0] - 2025-09-11
 
 ### Initial Public Release
