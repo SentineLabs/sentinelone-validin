@@ -48,3 +48,30 @@ pytest
 # Debug mode
 storm> $lib.debug = $lib.true
 ```
+
+## Minimal Runtime Setup
+
+In order to run the power-up in a minimal runtime environment, you can use the following command:
+
+```bash
+docker compose run --rm storm
+```
+
+This will start a storm shell facing the cortex with the power-up loaded. 
+Synapse-axon is not included in the minimal runtime setup, however you can still use the download command to download HTTP bodies, certificates, and favicons, then parse.
+
+First load your Api Key 
+```
+storm> s1.validin.setup.apikey <YOUR_API_KEY>
+```
+Then you use the powerup as below: 
+```
+storm> [inet:fqdn=example.com] | s1.validin.dns
+```
+
+### Limitations
+
+- Requires Synapse FileParser to process downloaded content (e.g., `inet:http:body`, `crypto:x509:cert`)
+  - FileParser is not included in the minimal runtime setup
+
+

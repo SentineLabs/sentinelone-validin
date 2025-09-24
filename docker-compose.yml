@@ -1,0 +1,48 @@
+services:
+  cortex:
+    platform: linux/amd64
+    image: vertexproject/synapse:v2.210.0
+    command: ["python", "-m", "synapse.servers.cortex", "--telepath", "tcp://0.0.0.0:27493", "--name", "cortex", "/vertex/storage"]
+    environment:
+      - SYN_CORTEX_AUTH_PASSWD=secret
+      - SYN_CORTEX_HTTPS_PORT=8443
+      - SYN_CORTEX_HOST=0.0.0.0
+      - SYN_CORTEX_HEALTH_SYSCTL_CHECKS=false
+    volumes:
+      - cortex_data:/vertex/storage
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-m", "synapse.tools.healthcheck",  "-c", "cell:///vertex/storage/"]
+      interval: 5s
+      timeout: 4s
+      retries: 3
+      start_period: 3s
+
+  loadpkg:
+    platform: linux/amd64
+    image: vertexproject/synapse:v2.210.0
+    entrypoint: []
+    command: ["python", "-m", "synapse.tools.genpkg", "/opt/s1-validin/s1-validin.yaml", '--push', "tcp://root:secret@cortex:27493"]
+    volumes: 
+      - ./:/opt/s1-validin/ 
+    depends_on:
+      cortex:
+        condition: service_healthy
+    profiles:
+      - tools
+
+  storm:
+    platform: linux/amd64
+    image: vertexproject/synapse:v2.210.0
+    entrypoint: []
+    command: ["python", "-m", "synapse.tools.storm", "tcp://root:secret@cortex:27493"]
+    depends_on:
+      - loadpkg
+    stdin_open: true
+    tty: true
+    profiles:
+      - tools
+
+volumes:
+  cortex_data:
+    driver: local
