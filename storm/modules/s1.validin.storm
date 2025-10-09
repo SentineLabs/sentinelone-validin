@@ -162,7 +162,7 @@ function whois_email(email, options) {
 function whois_fqdn(fqdn, options) {
     // get whois records for an fqdn
 
-    $records = $api.whois(
+    $records = $api.domain_whois(
         $fqdn.repr(),
         first_seen=$options.first_seen,
         last_seen=$options.last_seen,
