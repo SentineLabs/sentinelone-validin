@@ -342,6 +342,10 @@ optic:
       storm: s1.validin.http
       descr: Get HTTP crawling history.
       forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: http pivot
+      storm: s1.validin.http.pivot
+      descr: Pivot from HTTP content or a hash to related artifacts.
+      forms: [inet:http:request, hash:md5, hash:sha1, hash:sha256]
     - name: whois
       storm: s1.validin.whois
       descr: Get WHOIS records for a domain.
