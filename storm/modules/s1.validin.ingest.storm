@@ -5,3 +5,13 @@ function get_source() {
     [meta:source=($name,) :name=$name]
     return($node)
 }
+
+function set_seen_ival(inode, record) {
+    // set the .seen property for a record
+
+    $first = ($record.first_seen * 1000)
+    $last = ($record.last_seen * 1000)
+
+    yield $inode [.seen=($first, $last)]
+    return()
+}

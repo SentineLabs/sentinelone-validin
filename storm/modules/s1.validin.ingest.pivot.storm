@@ -1,0 +1,45 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+
+function pivot(records) {
+    // model pivot records
+    $source = $ingest.get_source()
+
+    for ($pivot_type, $pivot_records) in $records {
+        for $pivot_record in $pivot_records {
+            if ($lib.debug) {$lib.print(`{$pivot_type} {$pivot_record.value_type} {$pivot_record.value}`)}
+
+            if ($pivot_record.value_type = "dom") {
+                [ inet:fqdn=$pivot_record.value  ]
+            }
+            if($pivot_record.value_type = "ip4") {
+                [inet:ipv4=$pivot_record.value ]
+            }
+            if($pivot_record.value_type = "ip6") {
+                [ inet:ipv6=$pivot_record.value ]
+            }
+                
+            if $node {
+                $ingest.set_seen_ival($node, $pivot_record)
+            }
+            
+        }
+    }
+}
+
+
+function pivot_stats(records) {
+    // stats pivot records
+    $tally = $lib.stats.tally()
+    $key = $lib.null
+    for ($pivot_type, $pivot_records) in $records {
+        $key = $pivot_records.index(0).key
+        for $pivot_record in $pivot_records {
+            $tally.inc($pivot_type)
+            if ($lib.debug) {$lib.print(`{$pivot_type} {$pivot_record.key} {$pivot_record.value_type} {$pivot_record.value}`)}
+        }
+    }
+    for ($pivot_type, $count) in $tally {
+        $lib.print(`{$key} {$pivot_type} Count: {$count}`)
+    }
+}

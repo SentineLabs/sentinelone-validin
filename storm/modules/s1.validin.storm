@@ -3,6 +3,7 @@ $ingest = $lib.import(s1.validin.ingest)
 $ingest_crawlr = $lib.import(s1.validin.ingest.crawlr)
 $ingest_ctstream = $lib.import(s1.validin.ingest.ctstream)
 $ingest_dns = $lib.import(s1.validin.ingest.dns)
+$ingest_pivot = $lib.import(s1.validin.ingest.pivot)
 $ingest_registration = $lib.import(s1.validin.ingest.registration)
 
 
@@ -222,4 +223,70 @@ function enrich(fqdn_node, options) {
     $res3 = $ingest_registration.whois($data.registration)
 
     yield ($res1, $res2, $res3) | uniq
+}
+
+
+function pivot(node, options) {
+    // Pivot from an inet:http:request or inet:ipv4/6 node via Validin
+
+    $form = $node.form()
+
+    switch $form {
+        ("inet:http:request", "hash:sha1","hash:md5", "hash:sha256"): {$pivot_http($node.repr(), $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+}
+
+function pivot_http(node, options) {
+    // Pivot from an inet:http:request node via Validin
+
+    $form = $node.form()
+
+    $hashes = ([])
+
+    if ($form = "inet:http:request") {
+        if ($node.props.`_s1:validin:response:favicon:md5` != $lib.null) {
+            $hashes.append($node.props.`_s1:validin:response:favicon:md5`)
+        }
+        if ($node.props.`_s1:validin:response:body:sha1` != $lib.null) {
+            $hashes.append($node.props.`_s1:validin:response:body:sha1`)
+        }
+        if ($node.props.`_s1:validin:response:banner_0:md5` != $lib.null) {
+            $hashes.append($node.props.`_s1:validin:response:banner_0:md5`)
+        }
+        if ($node.props.`_s1:validin:response:class_0:md5` != $lib.null) {
+            $hashes.append($node.props.`_s1:validin:response:class_0:md5`)
+        }
+        if ($node.props.`_s1:validin:response:class_1:md5` != $lib.null) {
+            $hashes.append($node.props.`_s1:validin:response:class_1:md5`)
+        }
+    }
+    
+    if ($form = "hash:sha1" or $form = "hash:md5" or $form = "hash:sha256") {
+        $hashes.append($node.repr())
+    }
+
+    if ($lib.debug or $options.dry_run) {$lib.print(`Hashes: {$hashes}`)}
+    if ($lib.debug or $options.dry_run) {$lib.print(`Limit: {$options.limit}`)}
+    
+    $all_records = ([])
+    
+    for $hash in $hashes {
+        $records = $api.hash_pivots(
+            $hash,
+            category=$options.category,
+            first_seen=$options.first_seen,
+            last_seen=$options.last_seen,
+            limit=$options.limit
+        )
+        // model records
+        if (not $options.dry_run) {
+            $records = $ingest_pivot.pivot($records)
+            $all_records.extend($records)
+        } else {
+            $ingest_pivot.pivot_stats($records)
+        }
+    }
+    
+    yield $all_records | uniq
 }

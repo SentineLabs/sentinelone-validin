@@ -90,15 +90,6 @@ function dns_v2(records) {
     }
 }
 
-
-function set_seen_ival(inode, record) {
-    // set the .seen property for a record
-
-    $first = ($record.first_seen * 1000)
-    $last = ($record.last_seen * 1000)
-    yield $inode [.seen=($first, $last)]
-    return()
-}
     
 
 function a(records) {
@@ -116,7 +107,7 @@ function a(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -136,7 +127,7 @@ function aaaa(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -152,7 +143,7 @@ function cname(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -168,7 +159,7 @@ function cname_for(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -184,7 +175,7 @@ function mx(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -200,7 +191,7 @@ function mx_for(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -216,7 +207,7 @@ function ns(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -232,7 +223,7 @@ function ns_for(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -252,7 +243,7 @@ function ptr(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }
 
@@ -273,6 +264,6 @@ function txt(records) {
             continue
         }
 
-        $set_seen_ival($node, $record)
+        $ingest.set_seen_ival($node, $record)
     }
 }

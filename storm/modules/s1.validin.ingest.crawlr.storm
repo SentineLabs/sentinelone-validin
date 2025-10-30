@@ -65,12 +65,15 @@ function crawlr(records) {
         $headers = ([])
 
         if $value.banner_full {
-            for $banner_item in $value.banner_full.slice(1) {
-                ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
-                $key = $key.strip()
-                $val = $val.strip()
-                $headers.append(($key, $val))
-            }
+            if($value.banner_full.index(0).startswith("HTTP")){
+                for $banner_item in $value.banner_full.slice(1) {
+                    ($key, $val) = $lib.cast(str, $banner_item).split(":", maxsplit=1)
+                    $key = $key.strip()
+                    $val = $val.strip()
+                    $headers.append(($key, $val))
+                }
+            }   
+            
         }
 
         //lift server 
@@ -99,6 +102,9 @@ function crawlr(records) {
                     :method='GET'
                     :_s1:validin:response:body:sha1?=$value.body_hash
                     :_s1:validin:response:favicon:md5?=$value.favicon_hash
+                    :_s1:validin:response:banner_0:md5?=$value.banner_0_hash
+                    :_s1:validin:response:class_0:md5?=$value.class_0_hash
+                    :_s1:validin:response:class_1:md5?=$value.class_1_hash
             )
             <(seen)+ $source
         ]
@@ -109,14 +115,44 @@ function crawlr(records) {
 
         if $value.cert {
             $sans = ([])
-            $fqdns = ([])
+            $fqdns = $lib.set()
+            $ipv4s = $lib.set()
+            $ipv6s = $lib.set()
 
             for $domain in $value.cert_details.domains {
-                if  (not $domain.startswith('*')) {
-                    $fqdns.append({[inet:fqdn=$domain]})
+                if ($lib.trycast("inet:fqdn",$domain).index(0)){
+                    if($domain.find(".") != $lib.null){
+                        $fqdns.add({[inet:fqdn=$domain]})
+                    } else {
+                        $sans.append(('other', $domain))
+                    }
+                } elif ($lib.trycast("inet:ipv4",$domain).index(0)) {
+                    $ipv4s.add({[inet:ipv4=$domain]})
+                } elif  ($lib.trycast("inet:ipv6",$domain).index(0)) {
+                    $ipv6s.add({[inet:ipv6=$domain]})
+                } else {
+                    if $domain.startswith("*") {
+                        $sans.append(('dns', $domain))
+                    } else {
+                        $sans.append(('other', $domain))
+                    }
                 } 
-                $sans.append(('dns', $domain))
             }
+            
+            $cert = { crypto:x509:cert=($value.cert_fingerprint_sha256,) }
+
+
+            if ($cert != $lib.null) {
+                if ($cert.props.'identities:fqdns') {  $fqdns.adds($cert.props.'identities:fqdns') }
+                if ($cert.props.'identities:ipv4s') { $ipv4s.adds($cert.props.'identities:ipv4s') }
+                if ($cert.props.'identities:ipv6s') { $ipv6s.adds($cert.props.'identities:ipv6s') }
+                if ($cert.props.'identities:sans') { $sans.extend($cert.props.'identities:sans') }
+            }
+
+            if ($lib.len($fqdns)) {$fqdns=$fqdns.list()} else { $fqdns = $lib.null }
+            if ($lib.len($ipv4s)) {$ipv4s=$ipv4s.list()} else { $ipv4s = $lib.null }
+            if ($lib.len($ipv6s)) {$ipv6s=$ipv6s.list()} else { $ipv6s = $lib.null }
+            //if ($lib.len($sans))  {$sans=$sans.list()} else { $sans = $lib.null }  // TODO: Dedup ans sort sans array of tuples
             
             {
                 [ 
@@ -128,6 +164,8 @@ function crawlr(records) {
                             :validity:notbefore=$value.cert.not_before
                             :validity:notafter=$value.cert.not_after
                             :identities:fqdns?=$fqdns
+                            :identities:ipv4s?=$ipv4s
+                            :identities:ipv6s?=$ipv6s
                             //:ext:sans?=$sans
                     )
                 ] 

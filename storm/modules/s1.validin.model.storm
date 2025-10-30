@@ -23,6 +23,37 @@ function update_forms() {
         )
     }
 
+
+    if (not $existing_props.has('inet:http:request:_s1:validin:response:banner_0:md5')) {
+        $lib.model.ext.addFormProp(
+            inet:http:request,
+            '_s1:validin:response:banner_0:md5',
+            (hash:md5, ({})),
+            ({"doc":'MD5 banner hash observed by Validin crawler.' })
+        )
+    }
+
+
+    if (not $existing_props.has('inet:http:request:_s1:validin:response:class_0:md5')) {
+        $lib.model.ext.addFormProp(
+            inet:http:request,
+            '_s1:validin:response:class_0:md5',
+            (str, ({})),
+            ({"doc":'CLASS v0.0 hash observed by Validin crawler.' })
+        )
+    }
+
+
+    if (not $existing_props.has('inet:http:request:_s1:validin:response:class_1:md5')) {
+        $lib.model.ext.addFormProp(
+            inet:http:request,
+            '_s1:validin:response:class_1:md5',
+            (str, ({})),
+            ({"doc":'CLASS v0.1 hash observed by Validin crawler.' })
+        )
+    }
+
+
     if (not $existing_props.has('inet:http:request:_s1:validin:response:favicon')) {
         $lib.model.ext.addFormProp(
             inet:http:request,
