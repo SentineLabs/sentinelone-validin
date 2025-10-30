@@ -78,7 +78,7 @@ commands:
           help: Include certificates for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of certificates up to 20000.
       - - --yield
         - type: bool
@@ -119,7 +119,7 @@ commands:
           help: Include records for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of records up to 20000.
       - - --yield
         - type: bool
@@ -170,7 +170,7 @@ commands:
           help: Include data for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of results up to 20000.
       - - --yield
         - type: bool
@@ -203,7 +203,7 @@ commands:
           help: Include requests for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of requests up to 20000.
       - - --yield
         - type: bool
@@ -247,7 +247,7 @@ commands:
           help: Filter records seen before this time.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of records up to 20000.
       - - --yield
         - type: bool
@@ -305,7 +305,7 @@ commands:
           help: Include records for subdomains
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of records up to 20000.
       - - --yield
         - type: bool
