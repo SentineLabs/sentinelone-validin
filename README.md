@@ -1,6 +1,6 @@
-# `s1-validin`
+# `sentinelone-validin`
 
-`s1-validin` is a [Synapse Rapid Power-Up](https://synapse.docs.vertex.link/en/latest/synapse/power_ups.html) for [Validin](https://validin.com). It provides commands to query for and model DNS records, HTTP crawl data, TLS certificates, and WHOIS information.
+`sentinelone-validin` is a [Synapse Rapid Power-Up](https://synapse.docs.vertex.link/en/latest/synapse/power_ups.html) for [Validin](https://validin.com). It provides commands to query for and model DNS records, HTTP crawl data, TLS certificates, and WHOIS information.
 
 ## Quick Start
 
