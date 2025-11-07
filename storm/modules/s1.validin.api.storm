@@ -84,7 +84,6 @@ function hash_pivots(hash, category=$lib.null, first_seen=$lib.null, last_seen=$
     if $category {
         $uri = `axon/hash/pivots/{$hash}/{$category}`
     }
-    $lib.print($uri)
     $params = ({
         "wildcard": $wildcard
     })

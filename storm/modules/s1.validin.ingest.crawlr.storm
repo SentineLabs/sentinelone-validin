@@ -73,7 +73,6 @@ function crawlr(records) {
                     $headers.append(($key, $val))
                 }
             }   
-            
         }
 
         //lift server 
