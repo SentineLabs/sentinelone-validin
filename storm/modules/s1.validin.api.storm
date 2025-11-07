@@ -181,7 +181,7 @@ function ip_extra(ip, first_seen=$lib.null, last_seen=$lib.null, limit=20000) {
 
 
 // whois endpoint
-function whois(
+function domain_whois(
     fqdn, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
 ) {
     $uri = `axon/domain/registration/history/{$fqdn}`
@@ -195,6 +195,24 @@ function whois(
             last_seen=$last_seen,
             limit=$limit
         ).records.registration  // this is the only record type for whois
+    )
+}
+
+
+function string_whois(
+    string, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000
+) {
+    $uri = "axon/string/registration/history2"
+    $params = ({"string": $string, "wildcard": $wildcard})
+
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).records
     )
 }
 

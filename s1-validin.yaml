@@ -1,5 +1,5 @@
 name: s1-validin
-version: 3.1.1
+version: 3.2.0
 
 synapse_version: '>=2.144.0,<3.0.0'
 
@@ -238,6 +238,7 @@ commands:
       Get WHOIS records.
 
       This command accepts the following input node forms:
+        - inet:email
         - inet:fqdn
 
       // get all whois records for an inet:fqdn node
@@ -295,8 +296,8 @@ optic:
       forms: [inet:fqdn, inet:ipv4, inet:ipv6]
     - name: whois
       storm: s1.validin.whois
-      descr: Get WHOIS records for a domain.
-      forms: [inet:fqdn]
+      descr: Get WHOIS records for a domain or email.
+      forms: [inet:fqdn, inet:email]
     - name: whois wild
       storm: s1.validin.whois --wildcard
       descr: Get WHOIS records for a domain including subdomains.

@@ -12,8 +12,8 @@ function dns(fqdn_or_ip, options) {
     $form = $fqdn_or_ip.form()
 
     switch $form {
-        "inet:fqdn": {$dns_fqdn($fqdn_or_ip.repr(), $options)}
-        ("inet:ipv4", "inet:ipv6"): {$dns_ip($fqdn_or_ip.repr(), $options)}
+        "inet:fqdn": {yield $dns_fqdn($fqdn_or_ip.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {yield $dns_ip($fqdn_or_ip.repr(), $options)}
         *: {$lib.warn(`{$form} not supported`)}
     }
 }
@@ -128,10 +128,41 @@ function dns_ip(ip, options) {
 }
 
 
-function whois(fqdn, options) {
+function whois(inode, options) {
+    // get whois records
+
+    $form = $inode.form()
+
+    switch $form {
+        "inet:email": {yield $whois_email($inode, $options)}
+        "inet:fqdn": {yield $whois_fqdn($inode, $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+
+}
+
+
+function whois_email(email, options) {
+    // get whois records for an email
+
+    $records = $api.string_whois(
+        $email.repr(),
+        first_seen=$options.first_seen,
+        last_seen=$options.last_seen,
+        limit=$options.limit
+    )
+
+    // model records
+    for ($key, $values) in $records {
+        yield $ingest_registration.whois($values)
+    }
+}
+
+
+function whois_fqdn(fqdn, options) {
     // get whois records for an fqdn
 
-    $records = $api.whois(
+    $records = $api.domain_whois(
         $fqdn.repr(),
         first_seen=$options.first_seen,
         last_seen=$options.last_seen,
