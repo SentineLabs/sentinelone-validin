@@ -75,6 +75,35 @@ crypto:x509:cert | s1.validin.download
 crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 ```
 
+### HTTP Pivoting
+
+```storm
+// Pivot from an HTTP request to related artifacts
+inet:http:request=<guid> | s1.validin.http.pivot
+
+// Pivot from a hash (MD5, SHA1, or SHA256)
+hash:sha256=<value> | s1.validin.http.pivot
+
+// Filter by specific category
+inet:http:request=<guid> | s1.validin.http.pivot --category BODY_SHA1
+
+// Preview without creating nodes
+inet:http:request=<guid> | s1.validin.http.pivot --dry-run
+
+// Filter by date range
+hash:md5=<value> | s1.validin.http.pivot --first-seen 2024/01/01 --last-seen 2024/12/31
+```
+
+**Available Pivot Categories:**
+- `BANNER_0_HASH` - Banner hash pivots
+- `BODY_SHA1` - HTTP body SHA1 pivots
+- `CERT_FINGERPRINT` - Certificate fingerprint pivots
+- `CERT_FINGERPRINT_SHA256` - Certificate SHA256 pivots
+- `CLASS_0_HASH` - CLASS v0.0 hash pivots
+- `CLASS_1_HASH` - CLASS v0.1 hash pivots
+- `FAVICON_HASH` - Favicon hash pivots
+- `HEADER_HASH` - Header hash pivots
+
 ## Common Parameters
 
 | Parameter | Description | Default |
@@ -84,6 +113,8 @@ crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 | `--wildcard` | Include subdomains | False |
 | `--limit` | Max records | 20000 |
 | `--yield` | Yield nodes | False |
+| `--category` | Pivot category filter | None |
+| `--dry-run` | Preview without creating nodes | False |
 
 ## Tips
 
@@ -91,3 +122,5 @@ crypto:x509:cert | s1.validin.download --yield | fileparser.parse
 - Combine with native Synapse pivots for powerful analysis
 - Set reasonable `--limit` values for large datasets
 - Use date filters to focus on specific timeframes
+- Use `--dry-run` with `s1.validin.http.pivot` to preview results before creating nodes
+- Pivot operations can discover related infrastructure based on HTTP fingerprints and hashes

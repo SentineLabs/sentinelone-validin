@@ -13,6 +13,7 @@
 | `s1.validin.ingest.crawlr` | HTTP crawl ingestion |
 | `s1.validin.ingest.ctstream` | Certificate Transparency |
 | `s1.validin.ingest.dns` | DNS record ingestion |
+| `s1.validin.ingest.pivot` | Hash pivot ingestion |
 | `s1.validin.ingest.registration` | WHOIS ingestion |
 | `s1.validin.model` | Data model extensions |
 | `s1.validin.privsep` | User privilege separation |
@@ -23,6 +24,9 @@
 - `inet:http:request._s1:validin:response:body:sha1` - SHA1 of crawled body
 - `inet:http:request._s1:validin:response:favicon` - Favicon bytes
 - `inet:http:request._s1:validin:response:favicon:md5` - MD5 of favicon
+- `inet:http:request._s1:validin:response:banner_0:md5` - MD5 of banner hash
+- `inet:http:request._s1:validin:response:class_0:md5` - CLASS v0.0 hash
+- `inet:http:request._s1:validin:response:class_1:md5` - CLASS v0.1 hash
 
 ## API Integration
 
@@ -56,6 +60,11 @@ Breakdown of endpoints used by command.
 
 - `/api/axon/domain/crawl/history/:domain` - Domain Crawl history
 - `/api/axon/ip/crawl/history/{ip}` - IP crawl history
+
+#### `s1.validin.http.pivot`
+
+- `/api/axon/hash/pivots/:hash` - Hash pivot search
+- `/api/axon/hash/pivots/:hash/:category` - Category-filtered hash pivot
 
 #### `s1.validin.whois`
 
