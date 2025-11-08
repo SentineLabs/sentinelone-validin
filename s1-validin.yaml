@@ -40,6 +40,7 @@ modules:
   - name: s1.validin.ingest.crawlr
   - name: s1.validin.ingest.ctstream
   - name: s1.validin.ingest.dns
+  - name: s1.validin.ingest.pivot
   - name: s1.validin.ingest.registration
   - name: s1.validin.model
   - name: s1.validin.privsep
@@ -77,7 +78,7 @@ commands:
           help: Include certificates for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of certificates up to 20000.
       - - --yield
         - type: bool
@@ -118,7 +119,7 @@ commands:
           help: Include records for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of records up to 20000.
       - - --yield
         - type: bool
@@ -169,7 +170,7 @@ commands:
           help: Include data for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of results up to 20000.
       - - --yield
         - type: bool
@@ -202,12 +203,60 @@ commands:
           help: Include requests for subdomains.
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of requests up to 20000.
       - - --yield
         - type: bool
           action: store_true
           help: Yield created nodes.
+
+  - name: s1.validin.http.pivot
+    descr: |
+      Pivot from HTTP content or a hash to related artifacts.
+
+      This command accepts the following input node forms:
+        - inet:http:request
+        - hash:md5
+        - hash:sha1
+        - hash:sha256
+
+      // pivot from an inet:http:request node
+      inet:http:request=<guid> | s1.validin.http.pivot
+
+      // pivot from a hash node
+      hash:md5=<value> | s1.validin.http.pivot
+
+    cmdargs:
+      - - --category
+        - type: str
+          choices:
+            - BANNER_0_HASH
+            - BODY_SHA1
+            - CERT_FINGERPRINT
+            - CERT_FINGERPRINT_SHA256
+            - CLASS_0_HASH
+            - CLASS_1_HASH
+            - FAVICON_HASH
+            - HEADER_HASH
+          help: Optional pivot category filter.
+      - - --first-seen 
+        - type: time
+          help: Filter records seen on or after this time.
+      - - --last-seen
+        - type: time
+          help: Filter records seen before this time.
+      - - --limit
+        - type: int
+          default: 1000
+          help: Limit number of records up to 20000.
+      - - --yield
+        - type: bool
+          action: store_true
+          help: Yield created nodes.
+      - - --dry-run
+        - type: bool
+          action: store_true
+          help: Do not create nodes, only print them.
 
   - name: s1.validin.setup.apikey
     descr: Set the Validin API key to use.
@@ -257,7 +306,7 @@ commands:
           help: Include records for subdomains
       - - --limit
         - type: int
-          default: 20000
+          default: 1000
           help: Limit number of records up to 20000.
       - - --yield
         - type: bool
@@ -294,6 +343,10 @@ optic:
       storm: s1.validin.http
       descr: Get HTTP crawling history.
       forms: [inet:fqdn, inet:ipv4, inet:ipv6]
+    - name: http pivot
+      storm: s1.validin.http.pivot
+      descr: Pivot from HTTP content or a hash to related artifacts.
+      forms: [inet:http:request, hash:md5, hash:sha1, hash:sha256]
     - name: whois
       storm: s1.validin.whois
       descr: Get WHOIS records for a domain or email.

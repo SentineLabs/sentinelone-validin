@@ -45,7 +45,7 @@ function domain_connections(
 }
 
 
-// content endpoints
+// hash endpoints
 function html_content(sha1) {
     $uri = `axon/hash/content/html/sha1/{$sha1}`
     $response = $endpoint($uri)
@@ -77,6 +77,25 @@ function favicon_content(md5) {
         return($lib.base64.decode($response.result))
     }
     return($lib.null)
+}
+
+function hash_pivots(hash, category=$lib.null, first_seen=$lib.null, last_seen=$lib.null, wildcard=$lib.false, limit=20000) {
+    $uri = `axon/hash/pivots/{$hash}`
+    if $category {
+        $uri = `axon/hash/pivots/{$hash}/{$category}`
+    }
+    $params = ({
+        "wildcard": $wildcard
+    })
+    return(
+        $endpoint(
+            $uri,
+            params=$params,
+            first_seen=$first_seen,
+            last_seen=$last_seen,
+            limit=$limit
+        ).records
+    )
 }
 
 
