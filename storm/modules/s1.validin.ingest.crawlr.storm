@@ -159,9 +159,9 @@ function crawlr(records) {
                         crypto:x509:cert=($value.cert_fingerprint_sha256,)
                             :sha256=$value.cert_fingerprint_sha256
                             :sha1=$value.cert_details.fingerprint
-                            :issuer=$value.cert.cert_issuer.O
-                            :validity:notbefore=$value.cert.not_before
-                            :validity:notafter=$value.cert.not_after
+                            :issuer?=$value.cert.cert_issuer.O
+                            :validity:notbefore?=$value.cert.not_before
+                            :validity:notafter?=$value.cert.not_after
                             :identities:fqdns?=$fqdns
                             :identities:ipv4s?=$ipv4s
                             :identities:ipv6s?=$ipv6s
