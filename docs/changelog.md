@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.3.1] - 2025-11-19
+
+### Fixes
+
+- Fixed HTTP crawler certificate handling when no issuer is reported
+
 ## [3.3.0] - 2025-11-08
 
 ### Features
