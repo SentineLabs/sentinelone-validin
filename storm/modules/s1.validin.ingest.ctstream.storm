@@ -5,16 +5,17 @@ function domain_certificates(records) {
     $source = $ingest.get_source()
 
     for $record in $records {
-        $fingerprint = $record.fingerprint
-        $subject = `CN={$record.common_name}`
-        $notbefore = ($record.not_before * 1000)
-        $notafter = ($record.not_after * 1000)
+        $fingerprint = $record.value.details.fingerprint
+        $fingerprint_sha256 = $record.value.details.fingerprint_sha256
+        $subject = `CN={$record.value.common_name}`
+        $notbefore = $lib.trycast(time, $record.value.not_before).index(1)
+        $notafter = $lib.trycast(time, $record.value.not_after).index(1)
 
         //parse domains as crypto:x509:sans or inet:fqdn 
         $fqdns = ([])
         $sans = ([])
 
-        for $domain in $record.all_domains {
+        for $domain in $record.value.details.domains {
             // store wildcard domains as sans
             if $domain.startswith("*") {
                 $sans.append(("dns", $domain))
@@ -23,22 +24,18 @@ function domain_certificates(records) {
             }
         }
 
-        // find extra urls
-        // TODO: place into extended properties (e.g. :_validin:authority_info_access_uris,..)
-        $urls = ()
-        $urls.extend($record.authority_info_access_uris)
-        $urls.extend($record.certificate_policy_uri)
-
         // create the cert
         [
             crypto:x509:cert=($fingerprint,)
                 :sha1=$fingerprint
+                :sha256?=$fingerprint_sha256
                 :subject=$subject
-                :validity:notbefore=$notbefore
-                :validity:notafter=$notafter
+                :issuer?=$record.value.cert_issuer
+                :validity:notbefore?=$notbefore
+                :validity:notafter?=$notafter
                 :identities:fqdns?=$fqdns
-                :identities:urls?=$urls
-                //:ext:sans?=$sans
+                :ext:sans?=$sans
+                .seen=$record.value.timestamp
 
             <(seen)+ $source
         ]
