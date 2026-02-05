@@ -30,3 +30,7 @@ dist/
 
 # Logs
 *.log
+
+# Temporary files
+.tmp/
+tmp/

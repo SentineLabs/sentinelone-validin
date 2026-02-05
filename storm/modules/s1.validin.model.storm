@@ -62,4 +62,133 @@ function update_forms() {
             ({"doc":'Favicon bytes observed by Validin crawler.' })
         )
     }
+
+    // Reputation rank properties for inet:fqdn
+    if (not $existing_props.has('inet:fqdn:_s1:validin:rank:majestic')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:rank:majestic',
+            (int, ({})),
+            ({"doc":'The average rank of a domain on the Majestic top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered "stable".' })
+        )
+    }
+
+    if (not $existing_props.has('inet:fqdn:_s1:validin:rank:tranco')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:rank:tranco',
+            (int, ({})),
+            ({"doc":'The average rank of a domain on the Tranco top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered "stable".' })
+        )
+    }
+
+    if (not $existing_props.has('inet:fqdn:_s1:validin:rank:umbrella')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:rank:umbrella',
+            (int, ({})),
+            ({"doc":'The average rank of a domain on the Umbrella top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered "stable".' })
+        )
+    }
+
+    if (not $existing_props.has('inet:fqdn:_s1:validin:rank:anchors')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:rank:anchors',
+            (int, ({})),
+            ({"doc":'Validin Top Anchor Links rank. Represents the domain ranking based on anchor link popularity.' })
+        )
+    }
+
+    if (not $existing_props.has('inet:fqdn:_s1:validin:verdict')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:verdict',
+            (str, ({})),
+            ({"doc":'Validin reputation verdict observed by Validin.' })
+        )
+    }
+
+    if (not $existing_props.has('inet:fqdn:_s1:validin:reputation')) {
+        $lib.model.ext.addFormProp(
+            inet:fqdn,
+            '_s1:validin:reputation',
+            (float, ({})),
+            ({"doc":'Validin reputation score observed by Validin.' })
+        )
+    }
+
+    // Reputation rank properties for inet:ipv4
+    if (not $existing_props.has('inet:ipv4:_s1:validin:rank:pivot_count')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv4,
+            '_s1:validin:rank:pivot_count',
+            (int, ({})),
+            ({"doc":"The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv4:_s1:validin:rank:top_a')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv4,
+            '_s1:validin:rank:top_a',
+            (int, ({})),
+            ({"doc":"Validin Top IPv4 Addresses rank. Represents the IP ranking in Validin's top IPv4 addresses list." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv4:_s1:validin:verdict')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv4,
+            '_s1:validin:verdict',
+            (str, ({})),
+            ({"doc":"Validin reputation verdict observed by Validin." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv4:_s1:validin:reputation')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv4,
+            '_s1:validin:reputation',
+            (float, ({})),
+            ({"doc":"Validin reputation score observed by Validin." })
+        )
+    }
+
+    // Reputation rank properties for inet:ipv6
+    if (not $existing_props.has('inet:ipv6:_s1:validin:rank:pivot_count')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv6,
+            '_s1:validin:rank:pivot_count',
+            (int, ({})),
+            ({"doc":"The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv6:_s1:validin:rank:top_a')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv6,
+            '_s1:validin:rank:top_a',
+            (int, ({})),
+            ({"doc":"Validin Top IPv6 Addresses rank. Represents the IP ranking in Validin's top IPv6 addresses list." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv6:_s1:validin:verdict')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv6,
+            '_s1:validin:verdict',
+            (str, ({})),
+            ({"doc":"Validin reputation verdict observed by Validin." })
+        )
+    }
+
+    if (not $existing_props.has('inet:ipv6:_s1:validin:reputation')) {
+        $lib.model.ext.addFormProp(
+            inet:ipv6,
+            '_s1:validin:reputation',
+            (float, ({})),
+            ({"doc":"Validin reputation score observed by Validin." })
+        )
+    }
 }

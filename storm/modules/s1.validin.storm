@@ -5,6 +5,7 @@ $ingest_ctstream = $lib.import(s1.validin.ingest.ctstream)
 $ingest_dns = $lib.import(s1.validin.ingest.dns)
 $ingest_pivot = $lib.import(s1.validin.ingest.pivot)
 $ingest_registration = $lib.import(s1.validin.ingest.registration)
+$ingest_reputation = $lib.import(s1.validin.ingest.reputation)
 
 
 function dns(fqdn_or_ip, options) {
@@ -292,16 +293,16 @@ function pivot_http(node, options) {
             $hashes.append($node.props.`_s1:validin:response:class_1:md5`)
         }
     }
-    
+
     if ($form = "hash:sha1" or $form = "hash:md5" or $form = "hash:sha256") {
         $hashes.append($node.repr())
     }
 
     if ($lib.debug or $options.dry_run) {$lib.print(`Hashes: {$hashes}`)}
     if ($lib.debug or $options.dry_run) {$lib.print(`Limit: {$options.limit}`)}
-    
+
     $all_records = ([])
-    
+
     for $hash in $hashes {
         $records = $api.hash_pivots(
             $hash,
@@ -318,6 +319,35 @@ function pivot_http(node, options) {
             $ingest_pivot.pivot_stats($records)
         }
     }
-    
+
     yield $all_records | uniq
+}
+
+
+function reputation(node, options) {
+    // get reputation information for domains and IPs
+
+    $form = $node.form()
+
+    switch $form {
+        "inet:fqdn": {yield $reputation_domain($node.repr(), $options)}
+        ("inet:ipv4", "inet:ipv6"): {yield $reputation_ip($node.repr(), $options)}
+        *: {$lib.warn(`{$form} not supported`)}
+    }
+}
+
+
+function reputation_domain(fqdn, options) {
+    // get domain reputation
+
+    $data = $api.domain_reputation($fqdn)
+    yield $ingest_reputation.domain_reputation($fqdn, $data)
+}
+
+
+function reputation_ip(ip, options) {
+    // get IP reputation
+
+    $data = $api.ip_reputation($ip)
+    yield $ingest_reputation.ip_reputation($ip, $data)
 }

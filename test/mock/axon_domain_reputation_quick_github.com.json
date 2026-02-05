@@ -1,0 +1,169 @@
+{
+    "query_opts": {
+        "limit": 20000,
+        "wildcard": false
+    },
+    "informational": {
+        "structure": {
+            "fqdn": "github.com",
+            "e2ld": "github.com",
+            "etld": "com"
+        }
+    },
+    "annotations": [
+        {
+            "description": "MAGESTIC_MILLION_RANK",
+            "key": "github.com",
+            "value": 16,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 9.59176003468815,
+            "title": "Magestic Stable Rank: 16",
+            "help_text": "The average rank of a domain on the Magestic top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "PIVOT_COUNT_ANCHORS_LINKS",
+            "key": "github.com",
+            "value": 78113880,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "ANCHORS_LINKS: Estimated Pivot Count: 78M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_CERT_DOMAIN",
+            "key": "github.com",
+            "value": 13274120,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "CERT_DOMAIN: Estimated Pivot Count: 13M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_IFRAMES_LINKS",
+            "key": "github.com",
+            "value": 19080,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "IFRAMES_LINKS: Estimated Pivot Count: 19K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_JS_LINKS",
+            "key": "github.com",
+            "value": 130460,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "JS_LINKS: Estimated Pivot Count: 130K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LINKS_LINKS",
+            "key": "github.com",
+            "value": 620060,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LINKS_LINKS: Estimated Pivot Count: 620K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LOCATION_DOMAIN",
+            "key": "github.com",
+            "value": 1918120,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LOCATION_DOMAIN: Estimated Pivot Count: 1.9M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_META_LINKS",
+            "key": "github.com",
+            "value": 569520,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "META_LINKS: Estimated Pivot Count: 570K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "TRANCO_TOP_1M_RANK",
+            "key": "github.com",
+            "value": 48,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 8.637517525248825,
+            "title": "Tranco Stable Rank: 48",
+            "help_text": "The average rank of a domain on the Tranco top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "UMBRELLA_TOP_1M_RANK",
+            "key": "github.com",
+            "value": 2588,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 5.174071456006675,
+            "title": "Umbrella Stable Rank: 2588",
+            "help_text": "The average rank of a domain on the Umbrella top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "VALIDIN_TOP_ANCHORS_RANK",
+            "key": "github.com",
+            "value": 21,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "Validin Top Anchor Links Rank: 21"
+        },
+        {
+            "title": "Observed on Block Lists (10)",
+            "description": "malicious",
+            "category": "risk",
+            "risk_cat": "malicious",
+            "score": 8,
+            "weight": 2.0,
+            "values": [
+                "abuse.ch ThreatFox database dump",
+                "abuse.ch URLhaus database dump",
+                "BotScout - Recently Caught Bots",
+                "Facebook Threat Research",
+                "PhishTank - online, valid phishing database",
+                "Phishing.Database - phishing domains ACTIVE",
+                "DigitalSide Threat-Intel - CSV listings",
+                "Zscaler ThreatLabz public report IOCs",
+                "urlhaus.abuse.ch - Download - URL",
+                "vxvault.net - URL"
+            ]
+        },
+        {
+            "title": "Observed on Ad Block Lists (7)",
+            "description": "ads",
+            "category": "risk",
+            "risk_cat": "suspicious",
+            "score": 5,
+            "weight": 1.4,
+            "values": [
+                "adblockplus.org - latvian easy list - Host",
+                "Easylist - Adblock Plus - RuAdList and EasyList combination subscription",
+                "AddBlockPlus - cookiemonster - host",
+                "fanboy-social - Adblock Plus - host",
+                "Adblock Plus - cntblock - host",
+                "Adblock Plus - dropboxusercontent.com - host",
+                "adblockplus - rolist+easylist - host"
+            ]
+        }
+    ],
+    "score": 1.7,
+    "verdict": "low_risk"
+}

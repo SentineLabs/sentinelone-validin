@@ -1,0 +1,167 @@
+{
+    "query_opts": {
+        "limit": 20000,
+        "wildcard": false
+    },
+    "informational": {
+        "structure": {
+            "fqdn": "google.com",
+            "e2ld": "google.com",
+            "etld": "com"
+        }
+    },
+    "annotations": [
+        {
+            "description": "MAGESTIC_MILLION_RANK",
+            "key": "google.com",
+            "value": 2,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 11.397940008672037,
+            "title": "Magestic Stable Rank: 2",
+            "help_text": "The average rank of a domain on the Magestic top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "PIVOT_COUNT_ANCHORS_LINKS",
+            "key": "google.com",
+            "value": 9478060,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "ANCHORS_LINKS: Estimated Pivot Count: 9.5M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_CERT_DOMAIN",
+            "key": "google.com",
+            "value": 2683300,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "CERT_DOMAIN: Estimated Pivot Count: 2.7M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_IFRAMES_LINKS",
+            "key": "google.com",
+            "value": 63860,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "IFRAMES_LINKS: Estimated Pivot Count: 64K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_JS_LINKS",
+            "key": "google.com",
+            "value": 315340,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "JS_LINKS: Estimated Pivot Count: 315K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LINKS_LINKS",
+            "key": "google.com",
+            "value": 809640,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LINKS_LINKS: Estimated Pivot Count: 810K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LOCATION_DOMAIN",
+            "key": "google.com",
+            "value": 6299260,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LOCATION_DOMAIN: Estimated Pivot Count: 6.3M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_META_LINKS",
+            "key": "google.com",
+            "value": 22920,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "META_LINKS: Estimated Pivot Count: 23K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "TRANCO_TOP_1M_RANK",
+            "key": "google.com",
+            "value": 1,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 12.0,
+            "title": "Tranco Stable Rank: 1",
+            "help_text": "The average rank of a domain on the Tranco top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "UMBRELLA_TOP_1M_RANK",
+            "key": "google.com",
+            "value": 1,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "popularity",
+            "score": 1,
+            "weight": 12.0,
+            "title": "Umbrella Stable Rank: 1",
+            "help_text": "The average rank of a domain on the Umbrella top-N list over 14 days. A domain must remain on this list for 14 continuous days to be considered \"stable.\""
+        },
+        {
+            "description": "VALIDIN_TOP_ANCHORS_RANK",
+            "key": "google.com",
+            "value": 8,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "Validin Top Anchor Links Rank: 8"
+        },
+        {
+            "title": "Observed on Block Lists (6)",
+            "description": "malicious",
+            "category": "risk",
+            "risk_cat": "malicious",
+            "score": 8,
+            "weight": 1.2,
+            "values": [
+                "abuse.ch ThreatFox database dump",
+                "BotScout - Recently Caught Bots",
+                "Phishunt.io feed",
+                "PhishTank - online, valid phishing database",
+                "Phishing.Database - phishing domains ACTIVE",
+                "Validin Public Phishing Feed"
+            ]
+        },
+        {
+            "title": "Observed on Ad Block Lists (9)",
+            "description": "ads",
+            "category": "risk",
+            "risk_cat": "suspicious",
+            "score": 5,
+            "weight": 1.8,
+            "values": [
+                "adblockplus.org - latvian easy list - Host",
+                "Easylist - Adblock Plus - RuAdList and EasyList combination subscription",
+                "AddBlockPlus - cookiemonster - host",
+                "fanboy-social - Adblock Plus - host",
+                "Adblock Plus - cntblock - host",
+                "adblockplus - easylist - host",
+                "adblockplus - slovenian-list - host",
+                "adblockplus - rolist+easylist - host",
+                "adblockplus.org - YousList"
+            ]
+        }
+    ],
+    "score": 1.4,
+    "verdict": "low_risk"
+}

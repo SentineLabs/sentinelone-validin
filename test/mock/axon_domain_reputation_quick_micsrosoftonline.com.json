@@ -1,0 +1,62 @@
+{
+    "query_opts": {
+        "limit": 20000,
+        "wildcard": false
+    },
+    "informational": {
+        "structure": {
+            "fqdn": "micsrosoftonline.com",
+            "e2ld": "micsrosoftonline.com",
+            "etld": "com"
+        },
+        "tags": {
+            "category/malicious": 1
+        }
+    },
+    "annotations": [
+        {
+            "description": "USOMTR",
+            "title": "usom.gov.tr - Malicious URL list",
+            "url": "https://www.usom.gov.tr/url-list.txt",
+            "custom": {
+                "tags": [
+                    "category/malicious"
+                ]
+            },
+            "key": "micsrosoftonline.com",
+            "score": 9,
+            "weight": 1,
+            "category": "risk",
+            "risk_cat": "malicious"
+        },
+        {
+            "category": "risk",
+            "description": "Observed on Maltrail",
+            "title": "apt_voidblizzard (Malware)",
+            "weight": 5,
+            "score": 9,
+            "url": "/threats/detailed/apt_voidblizzard",
+            "custom": {
+                "references": [
+                    "https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/"
+                ],
+                "type": "apt_voidblizzard",
+                "category": "malware",
+                "ext_url": "https://github.com/stamparm/maltrail/blob/master/trails/static/malware/apt_voidblizzard.txt",
+                "source": "maltrail",
+                "aliases": [
+                    "laundry bear",
+                    "void blizzard",
+                    "pluggyape",
+                    "uac-0190"
+                ]
+            },
+            "risk_cat": "malware",
+            "maltrail": "https://github.com/stamparm/maltrail/blob/master/trails/static/malware/apt_voidblizzard.txt",
+            "key_type": "dom",
+            "key": "micsrosoftonline.com"
+        }
+    ],
+    "score": 9.0,
+    "verdict": "malicious"
+}

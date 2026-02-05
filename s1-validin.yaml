@@ -1,5 +1,5 @@
 name: s1-validin
-version: 3.3.2
+version: 3.4.0
 
 synapse_version: '>=2.144.0,<3.0.0'
 
@@ -42,6 +42,7 @@ modules:
   - name: s1.validin.ingest.dns
   - name: s1.validin.ingest.pivot
   - name: s1.validin.ingest.registration
+  - name: s1.validin.ingest.reputation
   - name: s1.validin.model
   - name: s1.validin.privsep
     asroot:perms:
@@ -282,6 +283,33 @@ commands:
           default: pilot.validin.com
           help: The hostname to use.
  
+  - name: s1.validin.reputation
+    descr: |
+      Get reputation information for domains and IPs.
+
+      This command accepts the following input node forms:
+        - inet:fqdn
+        - inet:ipv4
+        - inet:ipv6
+
+      // get reputation for a domain
+      inet:fqdn=example.com | s1.validin.reputation
+
+      // get reputation for an IP address
+      inet:ipv4=8.8.8.8 | s1.validin.reputation
+
+      // get reputation with IP location and ASN data
+      inet:ipv4=8.8.8.8 | s1.validin.reputation 
+
+      // get reputation and yield the enriched nodes
+      inet:fqdn=example.com | s1.validin.reputation --yield
+
+    cmdargs:
+      - - --yield
+        - type: bool
+          action: store_true
+          help: Yield created nodes.
+
   - name: s1.validin.whois
     descr: |
       Get WHOIS records.
@@ -347,6 +375,10 @@ optic:
       storm: s1.validin.http.pivot
       descr: Pivot from HTTP content or a hash to related artifacts.
       forms: [inet:http:request, hash:md5, hash:sha1, hash:sha256]
+    - name: reputation
+      storm: s1.validin.reputation
+      descr: Get reputation information for domains and IPs.
+      forms: [inet:fqdn, inet:ipv4, inet:ipv6]
     - name: whois
       storm: s1.validin.whois
       descr: Get WHOIS records for a domain or email.

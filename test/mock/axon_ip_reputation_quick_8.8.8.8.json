@@ -1,0 +1,126 @@
+{
+    "query_opts": {
+        "limit": 20000,
+        "wildcard": false
+    },
+    "informational": {
+        "title": "Google Cloud",
+        "cloud": "google",
+        "cidrs": [
+            "8.8.8.0/24"
+        ],
+        "sources": [
+            {
+                "key": "8.0.0.0/9",
+                "value": 3356.0,
+                "value_type": "float"
+            },
+            {
+                "key": "8.0.0.0/12",
+                "value": 3356.0,
+                "value_type": "float"
+            },
+            {
+                "key": "8.8.8.0/24",
+                "value": 15169.0,
+                "value_type": "float"
+            },
+            {
+                "description": "GOOGIP",
+                "title": "Google Cloud",
+                "url": "https://www.gstatic.com/ipranges/goog.json",
+                "custom": {
+                    "tags": [
+                        "category/infrastructure",
+                        "type/google"
+                    ]
+                },
+                "key": "8.8.8.0/24",
+                "cloud": "google"
+            }
+        ],
+        "location": {
+            "country": "US",
+            "latitude": "37.422",
+            "longitude": "-122.085",
+            "postcode": "",
+            "city": "Mountain View",
+            "state": "California",
+            "cidr": "8.8.8.0/24"
+        },
+        "tags": {
+            "category/infrastructure": 1,
+            "type/google": 1
+        },
+        "ownership": [
+            {
+                "owner": "GOOGLE",
+                "country": "US",
+                "asn": "AS 15169",
+                "name": "GOOGLE, US",
+                "cidrs": [
+                    "8.8.8.0/24"
+                ]
+            },
+            {
+                "owner": "LEVEL3",
+                "country": "US",
+                "asn": "AS 3356",
+                "name": "LEVEL3, US",
+                "cidrs": [
+                    "8.0.0.0/12",
+                    "8.0.0.0/9"
+                ]
+            }
+        ]
+    },
+    "annotations": [
+        {
+            "description": "PIVOT_COUNT_IP",
+            "key": "8.8.8.8",
+            "value": 875980,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "IP: Estimated Pivot Count: 876K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LOCATION_IP4",
+            "key": "8.8.8.8",
+            "value": 13580,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LOCATION_IP4: Estimated Pivot Count: 14K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "VALIDIN_TOP_A_RANK",
+            "key": "8.8.8.8",
+            "value": 2225,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "Validin Top IPv4 Addresses Rank: 2225"
+        },
+        {
+            "title": "Observed on Block Lists (6)",
+            "description": "malicious",
+            "category": "risk",
+            "risk_cat": "malicious",
+            "score": 8,
+            "weight": 1.2,
+            "values": [
+                "abuse.ch ThreatFox database dump",
+                "BotScout - Recently Caught Bots",
+                "botscout - 1 day - IP",
+                "firebog.net - Host - Prigent-Malware",
+                "MyIP.ms - Latest IP Blacklist",
+                "StrictBlockPAllebone - Manually curated IP Blocklist of malicios IPs that scan/attempt to connect to services"
+            ]
+        }
+    ],
+    "score": 8.0,
+    "verdict": "malicious"
+}

@@ -284,3 +284,16 @@ function ip_crawl_history(
         ).records.crawlr
     )
 }
+
+
+// reputation endpoints
+function domain_reputation(fqdn) {
+    $uri = `axon/domain/reputation/quick/{$fqdn}`
+    return($endpoint($uri))
+}
+
+
+function ip_reputation(ip) {
+    $uri = `axon/ip/reputation/quick/{$ip}`
+    return($endpoint($uri))
+}
