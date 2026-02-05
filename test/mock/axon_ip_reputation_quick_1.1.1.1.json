@@ -1,0 +1,82 @@
+{
+    "query_opts": {
+        "limit": 20000,
+        "wildcard": false
+    },
+    "informational": {
+        "sources": [
+            {
+                "key": "1.1.1.0/24",
+                "value": 13335.0,
+                "value_type": "float"
+            }
+        ],
+        "location": {
+            "country": "AU",
+            "latitude": "-33.8688",
+            "longitude": "151.209",
+            "postcode": "",
+            "city": "Sydney",
+            "state": "New South Wales",
+            "cidr": "1.1.1.0/24"
+        },
+        "ownership": [
+            {
+                "owner": "CLOUDFLARENET",
+                "country": "US",
+                "asn": "AS 13335",
+                "name": "CLOUDFLARENET, US",
+                "cidrs": [
+                    "1.1.1.0/24"
+                ]
+            }
+        ]
+    },
+    "annotations": [
+        {
+            "description": "PIVOT_COUNT_IP",
+            "key": "1.1.1.1",
+            "value": 2213460,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "IP: Estimated Pivot Count: 2.2M",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "PIVOT_COUNT_LOCATION_IP4",
+            "key": "1.1.1.1",
+            "value": 18100,
+            "value_type": "float",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "LOCATION_IP4: Estimated Pivot Count: 18K",
+            "help_text": "The Validin estimated count of this pivot's popularity. Pivots with high estimated counts are less likely to be useful."
+        },
+        {
+            "description": "VALIDIN_TOP_A_RANK",
+            "key": "1.1.1.1",
+            "value": 3220,
+            "value_type": "int",
+            "category": "risk",
+            "risk_cat": "val_popularity",
+            "title": "Validin Top IPv4 Addresses Rank: 3220"
+        },
+        {
+            "title": "Observed on Block Lists (4)",
+            "description": "malicious",
+            "category": "risk",
+            "risk_cat": "malicious",
+            "score": 8,
+            "weight": 0.8,
+            "values": [
+                "abuse.ch ThreatFox database dump",
+                "BotScout - Recently Caught Bots",
+                "botscout - 1 day - IP",
+                "report.cs.rutgers.edu - IP"
+            ]
+        }
+    ],
+    "score": 8.0,
+    "verdict": "malicious"
+}

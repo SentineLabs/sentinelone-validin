@@ -1,0 +1,141 @@
+$ingest = $lib.import(s1.validin.ingest)
+
+
+function extract_asn_int(asn_string) {
+    $asn_parts = $asn_string.split(" ")
+    $asn_num = $asn_parts.index(1)
+    return($lib.cast(int, $asn_num))
+}
+
+
+function create_asn_from_ownership(ip_form, ownership) {
+    $source = $ingest.get_source()
+    $asn_int = $extract_asn_int($ownership.asn)
+    
+    //TODO :org synthesis
+    [inet:asn=$asn_int :name?=$ownership.owner]
+    
+    for $cidr in $ownership.cidrs {
+        if ($ip_form = "inet:ipv4") {
+            [(inet:asnet4=($asn_int, $cidr))]
+        } elif ($ip_form = "inet:ipv6") {
+            [(inet:asnet6=($asn_int, $cidr))]
+        }
+    }
+}
+
+
+function domain_reputation(fqdn, data) {
+    // model domain reputation data from validin
+
+    $source = $ingest.get_source()
+
+    $domain_annotation_extended_proprty_value_map = ({
+        'MAGESTIC_MILLION_RANK':'majestic',
+        'TRANCO_TOP_1M_RANK':'tranco',
+        'UMBRELLA_TOP_1M_RANK':'umbrella',
+        'VALIDIN_TOP_ANCHORS_RANK':'anchors',
+    })
+
+    function annotate_fqdn(annotation) {
+        /*
+            Validin FQDN Anontation may be keyed with parnet fqdn, so we need to lift the node first
+        */
+        $extended_property_key = $domain_annotation_extended_proprty_value_map.`{$annotation.description}`
+        if $extended_property_key {
+            [inet:fqdn=$annotation.key]
+            $node.data.set(`s1:validin:rank:{$extended_property_key}`, $annotation)
+            $node.props.set(`_s1:validin:rank:{$extended_property_key}`, $annotation.value)
+        }
+    }
+
+    try {
+        // Create/lift the fqdn node
+        [
+            inet:fqdn=$fqdn
+            :_s1:validin:verdict?=$data.verdict
+            :_s1:validin:reputation?=$data.score
+        ]
+
+        // Store raw response data
+        $node.data.set(s1:validin:reputation, $data)
+
+        // Extract ranks from annotations array
+        if ($data.annotations != $lib.null) {
+            for $annotation in $data.annotations {
+                yield $annotate_fqdn($annotation)
+            } 
+        } | uniq | [ <(seen)+ $source ]
+    } catch * as error {
+        $lib.warn(`Failed to model domain reputation for {$fqdn}: {$error}`)
+    }
+}
+
+
+function ip_reputation(ip, data) {
+    // model IP reputation data from validin
+
+    $source = $ingest.get_source()
+
+    try {
+        $is_ipv6 = $ip.find(":")
+
+        if $is_ipv6 {
+            [ inet:ipv6=$ip ]
+        } else {
+            [ inet:ipv4=$ip ]
+        }
+
+        $node.data.set(s1:validin:reputation, $data)
+
+        [
+            :_s1:validin:verdict?=$data.verdict
+            :_s1:validin:reputation?=$data.score
+        ]
+        
+        // Extract ranks from annotations array
+        if ($data.annotations != $lib.null) {{
+            for $annotation in $data.annotations {
+                switch $annotation.description {
+                    "PIVOT_COUNT_IP": {
+                        [:_s1:validin:rank:pivot_count?=$annotation.value]
+                    }
+                    "VALIDIN_TOP_A_RANK": {
+                        [:_s1:validin:rank:top_a?=$annotation.value]
+                    }
+                }
+            }
+        }}
+
+
+        // Set location from latitude/longitude
+        if ($data.informational.location != $lib.null) {
+            $lat = $lib.cast(float, $data.informational.location.latitude)
+            $lon = $lib.cast(float, $data.informational.location.longitude)
+            [
+                :latlong=($lat, $lon)
+                :loc?=$data.informational.location.country
+            ]
+        }
+
+        // Extract ASN from ownership
+        if ($data.informational.ownership != $lib.null) {
+            $ip_form = $node.form()
+            // TODO: handle nested ownership whenever synapse starts supporting it (see test/mock/axon_ip_reputation_quick_8.8.8.8.json)
+            $ownership = $data.informational.ownership.index(0) 
+            
+            if ($ownership.asn != $lib.null) {
+                [:asn=$extract_asn_int($ownership.asn)]
+            }
+
+            for $owner in $data.informational.ownership {
+                yield $create_asn_from_ownership($ip_form, $owner)
+
+            }
+        }
+      
+        | uniq | [<(seen)+ $source]
+    } catch * as error {
+        $lib.warn(`Failed to model IP reputation for {$ip}: {$error}`)
+    }
+}
